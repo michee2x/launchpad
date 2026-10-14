@@ -1,0 +1,1090 @@
+<!doctype html>
+<html lang="en" class="dark" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="color-scheme" content="dark light">
+
+  <!-- Immediate Pre-Paint Theme Initialization -->
+  <script>
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem('wyv-theme') || localStorage.getItem('wyv_theme'); } catch (e) {}
+      var system = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      var theme = (saved === 'light' || saved === 'dark') ? saved : system;
+      document.documentElement.classList.toggle('dark', theme === 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+
+  <title>WyvStudio — Video Ads From a Link, Script or Idea</title>
+  <meta name="description" content="WyvStudio turns a product link, script or one-line idea into a finished video ad with AI voiceover and captions, for a one-time $7.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#ff6b35">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Fraunces -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Play CDN with exact Rocket.new tokens configuration -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            background: 'var(--background)',
+            foreground: 'var(--foreground)',
+            card: {
+              DEFAULT: 'var(--card)',
+              foreground: 'var(--card-foreground)',
+            },
+            primary: {
+              DEFAULT: 'var(--primary)',
+              foreground: 'var(--primary-foreground)',
+            },
+            secondary: {
+              DEFAULT: 'var(--secondary)',
+              foreground: 'var(--secondary-foreground)',
+            },
+            accent: {
+              DEFAULT: 'var(--accent)',
+              foreground: 'var(--accent-foreground)',
+            },
+            muted: {
+              DEFAULT: 'var(--muted)',
+              foreground: 'var(--muted-foreground)',
+            },
+            border: 'var(--border)',
+            input: 'var(--input)',
+            ring: 'var(--ring)',
+            success: {
+              DEFAULT: 'var(--success)',
+              foreground: 'var(--success-foreground)',
+            },
+            warning: {
+              DEFAULT: 'var(--warning)',
+              foreground: 'var(--warning-foreground)',
+            },
+            destructive: {
+              DEFAULT: 'var(--destructive)',
+              foreground: 'var(--destructive-foreground)',
+            },
+          },
+          borderRadius: {
+            DEFAULT: 'var(--radius)',
+          },
+          fontFamily: {
+            sans: ['var(--font-plus-jakarta-sans)', 'sans-serif'],
+            serif: ['var(--font-fraunces)', 'serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Custom Stylesheet (Animation Keyframes, Blobs, Grid & Shimmers) -->
+  <link rel="stylesheet" href="rocket-styles.css?v=1">
+
+  <!-- LAUNCHPAD TRACKING: paste Launchpad's required script or pixel here when the marketer sends it. -->
+</head>
+<body class="bg-background text-foreground selection:bg-primary/20 selection:text-primary">
+
+  <!-- HEADER -->
+  <header class="absolute inset-x-0 top-0 z-40">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6">
+      <a href="#top" class="flex items-center gap-3" aria-label="WyvStudio home">
+        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-primary shadow-sm shadow-primary/30">
+          <svg viewBox="0 0 64 64" class="h-6 w-6 text-primary-foreground" aria-hidden="true">
+            <path d="M14 18 L22 46 L32 28 L42 46 L50 18" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+          </svg>
+        </span>
+        <span class="text-lg font-bold tracking-tight text-foreground">WyvStudio</span>
+      </a>
+      <div class="flex items-center gap-3">
+        <span class="hidden rounded-full border border-border bg-card/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground backdrop-blur sm:inline-flex">
+          Launch offer
+        </span>
+        <button
+          type="button"
+          id="theme-toggle"
+          aria-label="Switch to light mode"
+          class="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-border bg-card/70 px-4 text-sm font-medium text-foreground backdrop-blur transition-colors hover:bg-secondary"
+        >
+          <span class="inline-block h-2.5 w-2.5 rounded-full bg-primary"></span>
+          <span id="theme-toggle-label">Dark mode</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="top" class="relative min-h-screen overflow-hidden bg-background pb-16 pt-28 sm:pt-32">
+      <!-- Depth layers & Ambient Blobs -->
+      <div class="bg-grid-lines mask-grid-fade pointer-events-none absolute inset-0 z-0 opacity-60" aria-hidden="true"></div>
+      <div class="blob-primary float-slow pointer-events-none absolute -left-24 top-10 h-[420px] w-[420px] rounded-full opacity-40" aria-hidden="true"></div>
+      <div class="blob-accent float-slow pointer-events-none absolute -right-24 top-48 h-[380px] w-[380px] rounded-full opacity-30" aria-hidden="true"></div>
+      <div id="hero-glow" class="pointer-events-none absolute left-1/2 top-24 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-primary/20 blur-[100px] transition-transform duration-300 ease-out" aria-hidden="true"></div>
+      <div class="grain pointer-events-none absolute inset-0 z-0" aria-hidden="true"></div>
+
+      <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="reveal-ready mx-auto max-w-3xl text-center" style="animation-delay: 0ms;">
+          <p class="inline-flex rounded-full border border-border bg-card/80 px-5 py-2 text-xs font-semibold uppercase leading-relaxed tracking-[0.18em] text-muted-foreground backdrop-blur sm:text-[13px]">
+            For media buyers, affiliate marketers, DTC brands and creators who need more ad creatives, faster
+          </p>
+        </div>
+
+        <div class="reveal-ready mx-auto mt-8 max-w-4xl text-center" style="animation-delay: 120ms;">
+          <h1 class="text-hero-xl font-extrabold text-foreground">
+            Turn any product link, script or one-line idea into a <span class="font-serif-accent text-primary">video ad,</span> ready to post
+          </h1>
+        </div>
+
+        <div class="reveal-ready mx-auto mt-6 max-w-2xl text-center" style="animation-delay: 220ms;">
+          <p class="text-base leading-relaxed text-muted-foreground sm:text-lg">
+            Without a $200-a-month tool stack, weeks waiting on freelance creators, or hours slicing clips in a timeline editor. Test new creatives for less than the price of a coffee.
+          </p>
+        </div>
+
+        <div class="mt-12 grid items-center gap-10 lg:mt-16 lg:grid-cols-12 lg:gap-12">
+          <!-- Video Column -->
+          <div class="reveal-ready lg:col-span-5" style="animation-delay: 120ms;">
+            <div class="relative mx-auto w-full max-w-[300px] lg:max-w-[340px]">
+              <div class="absolute -inset-4 rounded-[2.5rem] bg-primary/15 blur-2xl" aria-hidden="true"></div>
+              <div class="relative overflow-hidden rounded-[1.5rem] border border-border bg-foreground shadow-2xl">
+                <video
+                  class="aspect-[9/16] max-h-[540px] w-full bg-foreground object-cover sm:aspect-[4/5] lg:aspect-[9/16]"
+                  src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/composer/promo.mp4"
+                  poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/composer/promo.jpg"
+                  muted
+                  loop
+                  playsinline
+                  controls
+                  preload="metadata"
+                  data-autoplay
+                ></video>
+              </div>
+              <p class="mx-auto mt-5 inline-flex w-full items-center justify-center gap-2 text-center text-sm font-medium text-muted-foreground">
+                <svg class="h-[18px] w-[18px] text-primary" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm14.024-.983a1.125 1.125 0 0 1 0 1.966l-5.603 3.113A1.125 1.125 0 0 1 9 15.113V8.887c0-.857.921-1.4 1.671-.983l5.603 3.113Z" clip-rule="evenodd" />
+                </svg>
+                Made with WyvStudio, from one line of text.
+              </p>
+            </div>
+          </div>
+
+          <!-- Bullets + CTA Column -->
+          <div class="reveal-ready lg:col-span-7" style="animation-delay: 240ms;">
+            <ul class="space-y-5">
+              <li class="flex gap-4">
+                <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/15">
+                  <svg class="h-[18px] w-[18px] text-accent" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+                <p class="text-base leading-relaxed text-muted-foreground">
+                  <span class="font-bold text-foreground">Script to video: </span>
+                  drop a link, paste a script or type a thought. WyvStudio writes the script and builds the scenes, voiceover and captions.
+                </p>
+              </li>
+              <li class="flex gap-4">
+                <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/15">
+                  <svg class="h-[18px] w-[18px] text-accent" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+                <p class="text-base leading-relaxed text-muted-foreground">
+                  <span class="font-bold text-foreground">Natural AI voices: </span>
+                  with real pacing, not robotic read-outs.
+                </p>
+              </li>
+              <li class="flex gap-4">
+                <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/15">
+                  <svg class="h-[18px] w-[18px] text-accent" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+                <p class="text-base leading-relaxed text-muted-foreground">
+                  <span class="font-bold text-foreground">Animated captions: </span>
+                  timed word by word, for people watching with the sound off.
+                </p>
+              </li>
+              <li class="flex gap-4">
+                <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/15">
+                  <svg class="h-[18px] w-[18px] text-accent" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+                <p class="text-base leading-relaxed text-muted-foreground">
+                  <span class="font-bold text-foreground">You stay in control: </span>
+                  review the script and scenes before you export, and change any scene.
+                </p>
+              </li>
+              <li class="flex gap-4">
+                <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/15">
+                  <svg class="h-[18px] w-[18px] text-accent" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+                <p class="text-base leading-relaxed text-muted-foreground">
+                  <span class="font-bold text-foreground">Yours to use: </span>
+                  run your videos as paid ads, post them, or deliver them to clients.
+                </p>
+              </li>
+            </ul>
+
+            <div class="mt-10 lp-cta">
+              <a
+                href="#checkout"
+                data-buy="fe"
+                class="lp-buy sheen group relative inline-flex min-h-[56px] items-center justify-center gap-3 overflow-hidden rounded-full bg-primary px-8 py-4 text-base font-bold text-primary-foreground shadow-xl shadow-primary/25 transition-transform duration-300 hover:-translate-y-0.5 sm:text-lg w-full sm:w-auto text-center"
+              >
+                <span>Get instant access to WyvStudio for $7</span>
+                <svg class="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd" />
+                </svg>
+              </a>
+              <p class="mt-4 text-sm font-medium text-muted-foreground">
+                200 credits included · No watermark · 14-day money-back guarantee
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEM SECTION -->
+    <section class="relative bg-secondary pb-20 pt-16 sm:pb-24 sm:pt-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
+          <div class="lg:col-span-7">
+            <h2
+              data-cut-heading
+              data-cut-text="The rules of video advertising changed."
+              data-cut-accent="Most advertisers are paying for it."
+              class="text-display font-extrabold text-foreground"
+            ></h2>
+          </div>
+          <div class="space-y-5 lg:col-span-5">
+            <div class="reveal-ready" style="animation-delay: 0ms;">
+              <p class="text-[17px] leading-relaxed text-muted-foreground">
+                A few years ago one decent video ad could carry a campaign for months. Not any more. Meta and TikTok now find your buyers from the creative itself, so the thing that decides whether a campaign scales is simple: how fast can you test new angles?
+              </p>
+            </div>
+            <div class="reveal-ready" style="animation-delay: 100ms;">
+              <p class="text-[17px] leading-relaxed text-muted-foreground">
+                One new ad a week is a gamble on one creative. When it fatigues and your cost per acquisition doubles, you're back at square one. The advertisers who win launch fresh variations every week, swap out tired ads in minutes, and spin up new versions of the hooks that work. They aren't working harder. They have a faster way to make the videos.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal-ready mt-20 sm:mt-24" style="animation-delay: 0ms;">
+          <h3 class="max-w-2xl text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+            The three traps that keep you from testing more creatives
+          </h3>
+        </div>
+
+        <!-- 3 Trap Cards -->
+        <div class="mt-10 grid gap-6 md:grid-cols-3">
+          <!-- Trap 1 -->
+          <div class="reveal-ready" style="animation-delay: 0ms;">
+            <article class="flex h-full flex-col rounded-3xl border border-border bg-card p-8 shadow-sm transition-transform duration-500 hover:-translate-y-2">
+              <div class="flex items-center justify-between">
+                <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15">
+                  <svg class="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                  </svg>
+                </span>
+                <span class="font-serif-accent text-5xl text-primary/30">1</span>
+              </div>
+              <h4 class="mt-8 text-xl font-bold text-card-foreground">The creator lottery</h4>
+              <p class="mt-4 text-[16px] leading-relaxed text-muted-foreground">Half the creators never reply. The rest want money up front, take two weeks, mispronounce your product and deliver a flat read. Revisions cost extra. One video, a few hundred dollars, and it's dead in two days.</p>
+            </article>
+          </div>
+
+          <!-- Trap 2 (offset) -->
+          <div class="reveal-ready slot-offset-md" style="animation-delay: 120ms;">
+            <article class="flex h-full flex-col rounded-3xl border border-border bg-card p-8 shadow-sm transition-transform duration-500 hover:-translate-y-2">
+              <div class="flex items-center justify-between">
+                <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15">
+                  <svg class="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m7.848 8.25 1.536.887m8.416 4.86 1.35.779a2.25 2.25 0 0 1-2.25 3.897l-2.025-1.169m-7.027-8.374a2.25 2.25 0 1 1-2.25-3.897L7.848 6.4m0 1.85 7.8 4.5m-7.8-4.5v1.85m0-1.85L5.7 5.25m2.148 3-2.148-1.24m0 0a2.25 2.25 0 0 0-2.25 3.897l2.025 1.169m1.536-.887L15.648 16.5m-8.416-4.86 1.35-.779a2.25 2.25 0 0 1 2.25 3.897l-2.025 1.169m7.027-8.374a2.25 2.25 0 1 0 2.25-3.897L15.648 6.4m0 1.85-7.8 4.5m7.8-4.5v1.85m0-1.85 2.148-1.24m-2.148 3 2.148 1.24m0 0a2.25 2.25 0 0 1 2.25 3.897l-2.025 1.169" />
+                  </svg>
+                </span>
+                <span class="font-serif-accent text-5xl text-primary/30">2</span>
+              </div>
+              <h4 class="mt-8 text-xl font-bold text-card-foreground">The editing swamp</h4>
+              <p class="mt-4 text-[16px] leading-relaxed text-muted-foreground">Hours hunting stock footage, recording voiceovers again and again, slicing audio, fixing auto-captions. Five hours later you have one 30-second video and no time left for the offer or the numbers.</p>
+            </article>
+          </div>
+
+          <!-- Trap 3 -->
+          <div class="reveal-ready" style="animation-delay: 240ms;">
+            <article class="flex h-full flex-col rounded-3xl border border-border bg-card p-8 shadow-sm transition-transform duration-500 hover:-translate-y-2">
+              <div class="flex items-center justify-between">
+                <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15">
+                  <svg class="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 2.25 19.5Z" />
+                  </svg>
+                </span>
+                <span class="font-serif-accent text-5xl text-primary/30">3</span>
+              </div>
+              <h4 class="mt-8 text-xl font-bold text-card-foreground">The bloated subscription</h4>
+              <p class="mt-4 text-[16px] leading-relaxed text-muted-foreground">$150 to $250 a month for avatars that stare, voices that sound fake, and credits that vanish on a video you can't use.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS SECTION -->
+    <section class="relative overflow-hidden bg-background py-20 sm:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="max-w-3xl">
+          <h2
+            data-cut-heading
+            data-cut-text="Meet WyvStudio:"
+            data-cut-accent="a video ad engine built for speed"
+            class="text-display font-extrabold text-foreground"
+          ></h2>
+          <div class="reveal-ready" style="animation-delay: 120ms;">
+            <p class="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              WyvStudio turns a product, a script or a thought into a finished video ad in three steps. Not an editor you have to learn. Not an avatar gimmick.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="mt-16 grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
+          <div class="reveal-ready lg:col-span-5" style="animation-delay: 0ms;">
+            <div class="relative">
+              <span class="font-serif-accent pointer-events-none absolute -top-10 -left-2 select-none text-[6rem] leading-none text-primary/15 sm:text-[7rem]">1</span>
+              <div class="relative pt-8">
+                <h3 class="text-xl font-bold tracking-tight text-foreground sm:text-2xl">Drop in your starting point.</h3>
+                <p class="mt-5 text-[17px] leading-relaxed text-muted-foreground">
+                  Paste a link to your store, Amazon listing or offer and WyvStudio pulls out the benefits and selling points. Or paste your own script. Or type one rough line, like:
+                </p>
+                <blockquote class="mt-6 rounded-2xl border border-border bg-card p-5 shadow-sm">
+                  <p class="font-serif-accent text-lg leading-snug text-card-foreground">
+                    &ldquo;A 20-second punchy ad for my desk mat showing how it fixes cable mess, ending with a 20% discount.&rdquo;
+                  </p>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+          <div class="reveal-ready lg:col-span-7" style="animation-delay: 150ms;">
+            <div class="overflow-hidden rounded-3xl border border-border bg-card p-2 shadow-2xl sm:p-3">
+              <div class="overflow-hidden rounded-2xl">
+                <img
+                  src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/launch/composer-start.jpg"
+                  alt="Starting a new video in WyvStudio"
+                  loading="lazy"
+                  class="h-auto w-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 (Bridge Card) -->
+        <div class="reveal-ready my-16 sm:my-20" style="animation-delay: 0ms;">
+          <div class="relative overflow-hidden rounded-[1.5rem] border border-border bg-secondary p-8 sm:p-10">
+            <span class="font-serif-accent pointer-events-none absolute -right-2 -top-6 select-none text-[7rem] leading-none text-primary/15 sm:text-[8rem]">2</span>
+            <div class="relative max-w-2xl">
+              <h3 class="text-xl font-bold tracking-tight text-secondary-foreground sm:text-2xl">WyvStudio builds the video.</h3>
+              <p class="mt-5 text-[17px] leading-relaxed text-muted-foreground">
+                A direct-response script (hook, problem, solution, call to action), a natural AI voiceover, visuals matched to each line, and animated captions.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
+          <div class="reveal-ready order-2 lg:order-1 lg:col-span-7" style="animation-delay: 100ms;">
+            <div class="overflow-hidden rounded-3xl border border-border bg-card p-2 shadow-2xl sm:p-3">
+              <div class="overflow-hidden rounded-2xl">
+                <img
+                  src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/launch/composer-editor.jpg"
+                  alt="The WyvStudio scene editor: every line, clip and voice in one place"
+                  loading="lazy"
+                  class="h-auto w-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="reveal-ready order-1 lg:order-2 lg:col-span-5" style="animation-delay: 0ms;">
+            <div class="relative">
+              <span class="font-serif-accent pointer-events-none absolute -top-10 -left-2 select-none text-[6rem] leading-none text-primary/15 sm:text-[7rem]">3</span>
+              <div class="relative pt-8">
+                <h3 class="text-xl font-bold tracking-tight text-foreground sm:text-2xl">Review, adjust and export.</h3>
+                <p class="mt-5 text-[17px] leading-relaxed text-muted-foreground">
+                  Watch the preview, swap a clip, change a line and re-record its voice, then export with no watermark. Pick vertical 9:16 for TikTok, Reels and Shorts, square 1:1 for feeds, or landscape 16:9 for YouTube.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SAMPLES BENTO SECTION -->
+    <section class="relative bg-secondary py-20 sm:py-24">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <h2
+            data-cut-heading
+            data-cut-text="Made with"
+            data-cut-accent="WyvStudio"
+            class="text-display font-extrabold text-foreground"
+          ></h2>
+          <div class="reveal-ready" style="animation-delay: 100ms;">
+            <p class="max-w-md text-base leading-relaxed text-muted-foreground">
+              Real videos from the composer: script, AI voiceover, visuals and captions, from a link or a line of text.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-12 lg:grid-rows-2">
+          <!-- Card 1: Promo -->
+          <div class="reveal-ready md:col-span-2 lg:col-span-6 lg:row-span-2" style="animation-delay: 0ms;">
+            <figure class="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-foreground shadow-lg">
+              <video
+                class="h-full w-full bg-foreground object-cover aspect-[9/16] max-h-[420px] sm:aspect-[16/10] sm:max-h-none lg:aspect-auto lg:h-full"
+                src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/composer/promo.mp4"
+                poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/composer/promo.jpg"
+                muted
+                loop
+                playsinline
+                controls
+                preload="none"
+                data-autoplay
+              ></video>
+              <figcaption class="pointer-events-none absolute left-4 top-4 rounded-full bg-background/85 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-foreground backdrop-blur">
+                Promo
+              </figcaption>
+            </figure>
+          </div>
+
+          <!-- Card 2: Desk mat -->
+          <div class="reveal-ready lg:col-span-3" style="animation-delay: 100ms;">
+            <figure class="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-foreground shadow-lg">
+              <video
+                class="h-full w-full bg-foreground object-cover aspect-[9/16] max-h-[380px]"
+                src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/composer/desk.mp4"
+                poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/composer/desk.jpg"
+                muted
+                loop
+                playsinline
+                controls
+                preload="none"
+                data-autoplay
+              ></video>
+              <figcaption class="pointer-events-none absolute left-4 top-4 rounded-full bg-background/85 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-foreground backdrop-blur">
+                Desk mat
+              </figcaption>
+            </figure>
+          </div>
+
+          <!-- Card 3: Stock footage -->
+          <div class="reveal-ready lg:col-span-3" style="animation-delay: 200ms;">
+            <figure class="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-foreground shadow-lg">
+              <video
+                class="h-full w-full bg-foreground object-cover aspect-[9/16] max-h-[380px]"
+                src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/composer/stock.mp4"
+                poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/composer/stock.jpg"
+                muted
+                loop
+                playsinline
+                controls
+                preload="none"
+                data-autoplay
+              ></video>
+              <figcaption class="pointer-events-none absolute left-4 top-4 rounded-full bg-background/85 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-foreground backdrop-blur">
+                Stock footage
+              </figcaption>
+            </figure>
+          </div>
+
+          <!-- Card 4: AI images -->
+          <div class="reveal-ready md:col-span-2 lg:col-span-6" style="animation-delay: 300ms;">
+            <figure class="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-foreground shadow-lg">
+              <video
+                class="h-full w-full bg-foreground object-cover aspect-[16/10] lg:aspect-[16/6]"
+                src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/composer/ai-images.mp4"
+                poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/composer/ai-images.jpg"
+                muted
+                loop
+                playsinline
+                controls
+                preload="none"
+                data-autoplay
+              ></video>
+              <figcaption class="pointer-events-none absolute left-4 top-4 rounded-full bg-background/85 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-foreground backdrop-blur">
+                AI images
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COST COMPARISON SECTION -->
+    <section class="relative bg-background py-20 sm:py-24">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6">
+        <div class="text-center">
+          <h2
+            data-cut-heading
+            data-cut-text="Replace the"
+            data-cut-accent="tool stack"
+            class="text-display font-extrabold text-foreground"
+          ></h2>
+        </div>
+
+        <div id="cost-comparison-table" class="mt-14 overflow-hidden rounded-[2rem] border border-border bg-card shadow-xl">
+          <div class="hidden grid-cols-12 gap-4 border-b border-border bg-secondary px-8 py-4 text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground sm:grid">
+            <span class="col-span-4">What most advertisers pay for</span>
+            <span class="col-span-5" aria-hidden="true"></span>
+            <span class="col-span-3 text-right">Typical monthly cost</span>
+          </div>
+
+          <ul>
+            <!-- Row 1 -->
+            <li class="grid grid-cols-1 items-center gap-2 border-b border-border px-6 py-5 sm:grid-cols-12 sm:gap-4 sm:px-8">
+              <span class="text-[16px] font-semibold text-card-foreground sm:col-span-4">AI copywriting tool</span>
+              <div class="hidden sm:col-span-5 sm:block">
+                <div class="h-2.5 w-full rounded-full bg-muted">
+                  <div class="bar-grow h-full rounded-full bg-primary/70" style="width: 14%; animation-delay: 0ms;"></div>
+                </div>
+              </div>
+              <span class="text-[16px] font-bold text-muted-foreground sm:col-span-3 sm:text-right">$20 – $40</span>
+            </li>
+            <!-- Row 2 -->
+            <li class="grid grid-cols-1 items-center gap-2 border-b border-border px-6 py-5 sm:grid-cols-12 sm:gap-4 sm:px-8">
+              <span class="text-[16px] font-semibold text-card-foreground sm:col-span-4">AI voice generator</span>
+              <div class="hidden sm:col-span-5 sm:block">
+                <div class="h-2.5 w-full rounded-full bg-muted">
+                  <div class="bar-grow h-full rounded-full bg-primary/70" style="width: 34%; animation-delay: 120ms;"></div>
+                </div>
+              </div>
+              <span class="text-[16px] font-bold text-muted-foreground sm:col-span-3 sm:text-right">$22 – $99</span>
+            </li>
+            <!-- Row 3 -->
+            <li class="grid grid-cols-1 items-center gap-2 border-b border-border px-6 py-5 sm:grid-cols-12 sm:gap-4 sm:px-8">
+              <span class="text-[16px] font-semibold text-card-foreground sm:col-span-4">Stock footage</span>
+              <div class="hidden sm:col-span-5 sm:block">
+                <div class="h-2.5 w-full rounded-full bg-muted">
+                  <div class="bar-grow h-full rounded-full bg-primary/70" style="width: 22%; animation-delay: 240ms;"></div>
+                </div>
+              </div>
+              <span class="text-[16px] font-bold text-muted-foreground sm:col-span-3 sm:text-right">$35 – $65</span>
+            </li>
+            <!-- Row 4 -->
+            <li class="grid grid-cols-1 items-center gap-2 border-b border-border px-6 py-5 sm:grid-cols-12 sm:gap-4 sm:px-8">
+              <span class="text-[16px] font-semibold text-card-foreground sm:col-span-4">Auto-caption app</span>
+              <div class="hidden sm:col-span-5 sm:block">
+                <div class="h-2.5 w-full rounded-full bg-muted">
+                  <div class="bar-grow h-full rounded-full bg-primary/70" style="width: 10%; animation-delay: 360ms;"></div>
+                </div>
+              </div>
+              <span class="text-[16px] font-bold text-muted-foreground sm:col-span-3 sm:text-right">$15 – $30</span>
+            </li>
+            <!-- Row 5 -->
+            <li class="grid grid-cols-1 items-center gap-2 border-b border-border px-6 py-5 sm:grid-cols-12 sm:gap-4 sm:px-8">
+              <span class="text-[16px] font-semibold text-card-foreground sm:col-span-4">Video editing software</span>
+              <div class="hidden sm:col-span-5 sm:block">
+                <div class="h-2.5 w-full rounded-full bg-muted">
+                  <div class="bar-grow h-full rounded-full bg-primary/70" style="width: 19%; animation-delay: 480ms;"></div>
+                </div>
+              </div>
+              <span class="text-[16px] font-bold text-muted-foreground sm:col-span-3 sm:text-right">$20 – $55</span>
+            </li>
+          </ul>
+
+          <!-- Total Row -->
+          <div class="grid grid-cols-1 items-center gap-2 bg-foreground px-6 py-7 sm:grid-cols-12 sm:gap-4 sm:px-8">
+            <span class="text-[17px] font-bold text-background sm:col-span-4">Total</span>
+            <div class="hidden sm:col-span-5 sm:block">
+              <div class="h-2.5 w-full rounded-full bg-background/20">
+                <div class="bar-grow h-full w-full rounded-full bg-primary" style="animation-delay: 700ms;"></div>
+              </div>
+            </div>
+            <span class="text-xl font-extrabold text-primary sm:col-span-3 sm:text-right">$112 – $289 a month</span>
+          </div>
+        </div>
+
+        <p class="mx-auto mt-10 max-w-2xl text-center text-lg leading-relaxed text-muted-foreground">
+          WyvStudio puts the script, voice, visuals, captions and export in one place, for a
+          <span class="font-bold text-foreground">one-time $7 today.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- OFFER SECTION -->
+    <section id="checkout" class="relative overflow-hidden bg-secondary py-20 sm:py-24">
+      <div class="blob-primary pointer-events-none absolute -right-24 top-0 h-[360px] w-[360px] rounded-full opacity-30" aria-hidden="true"></div>
+      <div class="relative mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
+          <!-- Stack Details -->
+          <div class="lg:col-span-7">
+            <h2
+              data-cut-heading
+              data-cut-text="Everything you get"
+              data-cut-accent="today"
+              class="text-display font-extrabold text-foreground"
+            ></h2>
+
+            <ul class="mt-10 space-y-4">
+              <li class="reveal-ready" style="animation-delay: 0ms;">
+                <div class="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm">
+                  <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary">
+                    <svg class="h-[18px] w-[18px] text-primary-foreground" viewBox="0 0 24 24" fill="currentColor">
+                      <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <p class="text-[17px] font-medium leading-relaxed text-card-foreground">Make a video from a product link, a script, or a one-line idea</p>
+                </div>
+              </li>
+              <li class="reveal-ready" style="animation-delay: 60ms;">
+                <div class="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm">
+                  <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary">
+                    <svg class="h-[18px] w-[18px] text-primary-foreground" viewBox="0 0 24 24" fill="currentColor">
+                      <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <p class="text-[17px] font-medium leading-relaxed text-card-foreground">AI script, natural AI voiceover, matched visuals and animated captions</p>
+                </div>
+              </li>
+              <li class="reveal-ready" style="animation-delay: 120ms;">
+                <div class="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm">
+                  <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary">
+                    <svg class="h-[18px] w-[18px] text-primary-foreground" viewBox="0 0 24 24" fill="currentColor">
+                      <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <p class="text-[17px] font-medium leading-relaxed text-card-foreground">Stock footage and images built in</p>
+                </div>
+              </li>
+              <li class="reveal-ready" style="animation-delay: 180ms;">
+                <div class="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm">
+                  <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary">
+                    <svg class="h-[18px] w-[18px] text-primary-foreground" viewBox="0 0 24 24" fill="currentColor">
+                      <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <p class="text-[17px] font-medium leading-relaxed text-card-foreground">Review the script and scenes, edit any scene, re-record its voice</p>
+                </div>
+              </li>
+              <li class="reveal-ready" style="animation-delay: 240ms;">
+                <div class="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm">
+                  <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary">
+                    <svg class="h-[18px] w-[18px] text-primary-foreground" viewBox="0 0 24 24" fill="currentColor">
+                      <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <p class="text-[17px] font-medium leading-relaxed text-card-foreground">Vertical 9:16, square 1:1 or landscape 16:9</p>
+                </div>
+              </li>
+              <li class="reveal-ready" style="animation-delay: 300ms;">
+                <div class="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm">
+                  <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary">
+                    <svg class="h-[18px] w-[18px] text-primary-foreground" viewBox="0 0 24 24" fill="currentColor">
+                      <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <p class="text-[17px] font-medium leading-relaxed text-card-foreground">Export with no watermark</p>
+                </div>
+              </li>
+              <li class="reveal-ready" style="animation-delay: 360ms;">
+                <div class="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm">
+                  <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary">
+                    <svg class="h-[18px] w-[18px] text-primary-foreground" viewBox="0 0 24 24" fill="currentColor">
+                      <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <p class="text-[17px] font-medium leading-relaxed text-card-foreground">200 credits included</p>
+                </div>
+              </li>
+            </ul>
+
+            <div class="reveal-ready mt-10" style="animation-delay: 0ms;">
+              <h3 class="text-xl font-bold tracking-tight text-foreground">
+                Plus two bonuses, free when you join today
+              </h3>
+              <div class="mt-5 grid gap-4 md:grid-cols-2">
+                <!-- Bonus 1 -->
+                <div class="rounded-2xl border border-border bg-card p-6 shadow-sm">
+                  <span class="inline-flex rounded-full bg-primary/15 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-accent">
+                    Bonus
+                  </span>
+                  <p class="mt-4 text-[16px] leading-relaxed text-muted-foreground">
+                    <span class="font-bold text-foreground">The "CPA Crusher" rapid video testing protocol: </span>
+                    the three-step framework for testing creative angles on Meta and TikTok with a small budget, finding the winner and scaling it.
+                  </p>
+                </div>
+                <!-- Bonus 2 -->
+                <div class="rounded-2xl border border-border bg-card p-6 shadow-sm">
+                  <span class="inline-flex rounded-full bg-primary/15 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-accent">
+                    Bonus
+                  </span>
+                  <p class="mt-4 text-[16px] leading-relaxed text-muted-foreground">
+                    <span class="font-bold text-foreground">The "Series" organic playbook: </span>
+                    how to turn one product or topic into a multi-part short-video series that builds an audience without ad spend.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sticky Price Card -->
+          <div class="reveal-ready lg:sticky lg:top-8 lg:col-span-5" style="animation-delay: 150ms;">
+            <div class="relative overflow-hidden rounded-[2rem] border border-border bg-foreground p-8 shadow-2xl sm:p-10">
+              <div class="blob-primary pointer-events-none absolute -right-10 -top-10 h-56 w-56 rounded-full opacity-50" aria-hidden="true"></div>
+              <div class="relative">
+                <p class="text-sm font-bold uppercase tracking-[0.2em] text-background/60">Launch price</p>
+                <p class="mt-3 flex items-end gap-2">
+                  <span class="text-5xl font-extrabold tracking-tight text-background sm:text-6xl">$7</span>
+                </p>
+                <p class="mt-3 text-[17px] font-medium text-background/80">
+                  One-time payment. No subscription.
+                </p>
+                <div class="mt-8 lp-cta">
+                  <a
+                    href="#checkout"
+                    data-buy="fe"
+                    class="lp-buy sheen group relative inline-flex min-h-[56px] items-center justify-center gap-3 overflow-hidden rounded-full bg-primary px-8 py-4 text-base font-bold text-primary-foreground shadow-xl shadow-primary/25 transition-transform duration-300 hover:-translate-y-0.5 sm:text-lg w-full text-center"
+                  >
+                    <span>Get instant access for $7</span>
+                    <svg class="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd" />
+                    </svg>
+                  </a>
+                </div>
+                <p class="mt-5 text-center text-sm font-medium text-background/70">
+                  Secure checkout · Instant access · 14-day money-back guarantee
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Why $7 + Guarantee Grid -->
+        <div class="mt-20 grid gap-6 md:grid-cols-2">
+          <!-- Why $7 -->
+          <div class="reveal-ready" style="animation-delay: 0ms;">
+            <article class="h-full rounded-3xl border border-border bg-card p-8 shadow-sm sm:p-10">
+              <h3 class="text-2xl font-bold tracking-tight text-card-foreground">Why only $7?</h3>
+              <p class="mt-5 text-[17px] leading-relaxed text-muted-foreground">
+                We want to remove every reason to hesitate. You've probably been burned by tools that promised a lot and delivered robotic voices and broken renders. At $7, you can see WyvStudio's speed and quality for yourself.
+              </p>
+              <p class="mt-4 text-[17px] leading-relaxed text-muted-foreground">
+                We want to earn your business. Once you make a video ad that works, we think you'll keep using WyvStudio, and as you scale you may want more credits or the advanced features. Or you may not. You're free to take the $7 access, make your videos, and never pay us another cent.
+              </p>
+            </article>
+          </div>
+          <!-- 14-day guarantee -->
+          <div class="reveal-ready" style="animation-delay: 120ms;">
+            <article class="relative h-full overflow-hidden rounded-3xl border border-border bg-card p-8 shadow-sm sm:p-10">
+              <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-success text-success-foreground shadow-sm">
+                <svg class="h-7 w-7" viewBox="0 0 24 24" fill="currentColor">
+                  <path fill-rule="evenodd" d="M12.516 2.17a.75.75 0 0 0-1.032 0 11.209 11.209 0 0 1-7.877 3.08.75.75 0 0 0-.722.515A12.74 12.74 0 0 0 2.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 0 0 .374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 0 0-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08Zm3.094 8.016a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" />
+                </svg>
+              </span>
+              <h3 class="mt-6 text-2xl font-bold tracking-tight text-card-foreground">14-day money-back guarantee</h3>
+              <p class="mt-5 text-[17px] leading-relaxed text-muted-foreground">
+                Use it for 14 days. If it isn't right for you, for any reason, email <a href="mailto:support@wyvstudio.com" class="font-semibold text-foreground underline underline-offset-4">support@wyvstudio.com</a> within 14 days and you get your $7 back. The videos you exported stay yours.
+              </p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSING SECTION -->
+    <section class="relative bg-background py-20 sm:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <!-- Two paths -->
+        <div class="text-center">
+          <h2
+            data-cut-heading
+            data-cut-text="Two paths"
+            data-cut-accent="from here"
+            class="text-display font-extrabold text-foreground"
+          ></h2>
+        </div>
+
+        <div class="mt-12 grid gap-6 md:grid-cols-2">
+          <!-- Path 1 -->
+          <div class="reveal-ready" style="animation-delay: 0ms;">
+            <article class="h-full rounded-3xl border border-border bg-secondary p-8 sm:p-10">
+              <p class="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">Path one</p>
+              <p class="mt-5 text-lg leading-relaxed text-muted-foreground">
+                Keep hunting stock footage, paying creators who deliver late, and editing until midnight while competitors out-test you.
+              </p>
+            </article>
+          </div>
+          <!-- Path 2 -->
+          <div class="reveal-ready" style="animation-delay: 120ms;">
+            <article class="relative h-full overflow-hidden rounded-3xl border border-border bg-foreground p-8 sm:p-10 shadow-xl">
+              <div class="blob-primary pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full opacity-50" aria-hidden="true"></div>
+              <div class="relative">
+                <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Path two</p>
+                <p class="mt-5 text-lg font-medium leading-relaxed text-background">
+                  Spend $7 today, paste your first product link, and start testing new angles every week.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="reveal-ready mt-14 text-center lp-cta" style="animation-delay: 0ms;">
+          <a
+            href="#checkout"
+            data-buy="fe"
+            class="lp-buy sheen group relative inline-flex min-h-[56px] items-center justify-center gap-3 overflow-hidden rounded-full bg-primary px-8 py-4 text-base font-bold text-primary-foreground shadow-xl shadow-primary/25 transition-transform duration-300 hover:-translate-y-0.5 sm:text-lg w-full sm:w-auto text-center"
+          >
+            <span>Claim your WyvStudio access for $7</span>
+            <svg class="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd" />
+            </svg>
+          </a>
+          <p class="mt-4 text-sm font-medium text-muted-foreground">
+            200 credits · No watermark · 14-day money-back guarantee
+          </p>
+        </div>
+
+        <!-- FAQ + P.S. -->
+        <div class="mt-20 grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <div class="lg:col-span-4">
+            <h2
+              data-cut-heading
+              data-cut-text="Questions"
+              class="text-display font-extrabold text-foreground"
+            ></h2>
+            <div class="reveal-ready mt-10 rounded-3xl border border-border bg-secondary p-7" style="animation-delay: 150ms;">
+              <p class="text-[17px] leading-relaxed text-muted-foreground">
+                <span class="font-extrabold text-foreground">P.S. </span>
+                $7 is a coffee that's gone in fifteen minutes, or a video ad engine you can use today. If one video brings in one sale, it has paid for itself. If it doesn't, you get your $7 back.
+              </p>
+            </div>
+          </div>
+
+          <div class="reveal-ready lg:col-span-8" style="animation-delay: 100ms;">
+            <!-- Accordion List -->
+            <ul class="divide-y divide-border overflow-hidden rounded-3xl border border-border bg-card shadow-sm">
+              <!-- Item 1 -->
+              <li>
+                <button
+                  type="button"
+                  data-faq-btn
+                  aria-expanded="true"
+                  class="flex min-h-[64px] w-full items-center justify-between gap-6 px-6 py-5 text-left transition-colors hover:bg-secondary sm:px-8"
+                >
+                  <span class="text-[17px] font-bold text-card-foreground">Do I need video editing experience?</span>
+                  <span data-faq-icon class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/15 transition-transform duration-300 rotate-45">
+                    <svg class="h-[18px] w-[18px] text-accent" viewBox="0 0 24 24" fill="currentColor">
+                      <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                </button>
+                <div class="faq-panel faq-panel-open">
+                  <div class="overflow-hidden">
+                    <p class="px-6 pb-6 text-[16px] leading-relaxed text-muted-foreground sm:px-8">
+                      No. If you can paste a link or type a sentence, you can use WyvStudio. It writes the script, times the voice, places the visuals and adds the captions for you.
+                    </p>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Item 2 -->
+              <li>
+                <button
+                  type="button"
+                  data-faq-btn
+                  aria-expanded="false"
+                  class="flex min-h-[64px] w-full items-center justify-between gap-6 px-6 py-5 text-left transition-colors hover:bg-secondary sm:px-8"
+                >
+                  <span class="text-[17px] font-bold text-card-foreground">Can I start with just a link?</span>
+                  <span data-faq-icon class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/15 transition-transform duration-300">
+                    <svg class="h-[18px] w-[18px] text-accent" viewBox="0 0 24 24" fill="currentColor">
+                      <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                </button>
+                <div class="faq-panel">
+                  <div class="overflow-hidden">
+                    <p class="px-6 pb-6 text-[16px] leading-relaxed text-muted-foreground sm:px-8">
+                      Yes. Paste a public product or offer page (Shopify, Amazon, an affiliate page). WyvStudio reads the benefits and images and builds the script and video from them.
+                    </p>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Item 3 -->
+              <li>
+                <button
+                  type="button"
+                  data-faq-btn
+                  aria-expanded="false"
+                  class="flex min-h-[64px] w-full items-center justify-between gap-6 px-6 py-5 text-left transition-colors hover:bg-secondary sm:px-8"
+                >
+                  <span class="text-[17px] font-bold text-card-foreground">Will the voices sound robotic?</span>
+                  <span data-faq-icon class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/15 transition-transform duration-300">
+                    <svg class="h-[18px] w-[18px] text-accent" viewBox="0 0 24 24" fill="currentColor">
+                      <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                </button>
+                <div class="faq-panel">
+                  <div class="overflow-hidden">
+                    <p class="px-6 pb-6 text-[16px] leading-relaxed text-muted-foreground sm:px-8">
+                      No. WyvStudio uses natural AI voices with human pacing, and you can re-record any line.
+                    </p>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Item 4 -->
+              <li>
+                <button
+                  type="button"
+                  data-faq-btn
+                  aria-expanded="false"
+                  class="flex min-h-[64px] w-full items-center justify-between gap-6 px-6 py-5 text-left transition-colors hover:bg-secondary sm:px-8"
+                >
+                  <span class="text-[17px] font-bold text-card-foreground">What do the 200 credits cover?</span>
+                  <span data-faq-icon class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/15 transition-transform duration-300">
+                    <svg class="h-[18px] w-[18px] text-accent" viewBox="0 0 24 24" fill="currentColor">
+                      <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                </button>
+                <div class="faq-panel">
+                  <div class="overflow-hidden">
+                    <p class="px-6 pb-6 text-[16px] leading-relaxed text-muted-foreground sm:px-8">
+                      Credits pay for each part of a video as it is made, and the app shows the cost before anything runs. 200 credits are enough to make your first videos and see the results for yourself. You can top up any time.
+                    </p>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Item 5 -->
+              <li>
+                <button
+                  type="button"
+                  data-faq-btn
+                  aria-expanded="false"
+                  class="flex min-h-[64px] w-full items-center justify-between gap-6 px-6 py-5 text-left transition-colors hover:bg-secondary sm:px-8"
+                >
+                  <span class="text-[17px] font-bold text-card-foreground">Do I own my videos?</span>
+                  <span data-faq-icon class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/15 transition-transform duration-300">
+                    <svg class="h-[18px] w-[18px] text-accent" viewBox="0 0 24 24" fill="currentColor">
+                      <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                </button>
+                <div class="faq-panel">
+                  <div class="overflow-hidden">
+                    <p class="px-6 pb-6 text-[16px] leading-relaxed text-muted-foreground sm:px-8">
+                      Yes. You keep ownership of everything you make, and you can run it as ads, post it, or deliver it to clients.
+                    </p>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Item 6 -->
+              <li>
+                <button
+                  type="button"
+                  data-faq-btn
+                  aria-expanded="false"
+                  class="flex min-h-[64px] w-full items-center justify-between gap-6 px-6 py-5 text-left transition-colors hover:bg-secondary sm:px-8"
+                >
+                  <span class="text-[17px] font-bold text-card-foreground">How does the guarantee work?</span>
+                  <span data-faq-icon class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/15 transition-transform duration-300">
+                    <svg class="h-[18px] w-[18px] text-accent" viewBox="0 0 24 24" fill="currentColor">
+                      <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                </button>
+                <div class="faq-panel">
+                  <div class="overflow-hidden">
+                    <p class="px-6 pb-6 text-[16px] leading-relaxed text-muted-foreground sm:px-8">
+                      Email support@wyvstudio.com within 14 days of purchase and you get a full refund. The videos you exported stay yours.
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-border bg-background">
+    <div class="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-14 sm:px-6 md:flex-row md:items-center md:justify-between">
+      <div class="flex items-center gap-3">
+        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-primary shadow-sm shadow-primary/30">
+          <svg viewBox="0 0 64 64" class="h-6 w-6 text-primary-foreground" aria-hidden="true">
+            <path d="M14 18 L22 46 L32 28 L42 46 L50 18" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+          </svg>
+        </span>
+        <p class="text-[15px] font-medium text-muted-foreground">
+          © 2026 Kollignton Kay Technologies Limited
+        </p>
+      </div>
+      <nav aria-label="Footer" class="flex flex-wrap items-center gap-x-8 gap-y-3 text-[15px] font-medium">
+        <a href="mailto:support@wyvstudio.com" class="py-2 text-muted-foreground transition-colors hover:text-foreground">support@wyvstudio.com</a>
+        <a href="/terms" class="py-2 text-muted-foreground transition-colors hover:text-foreground">Terms</a>
+        <a href="/privacy" class="py-2 text-muted-foreground transition-colors hover:text-foreground">Privacy</a>
+        <a href="/refund" class="py-2 text-muted-foreground transition-colors hover:text-foreground">Refunds</a>
+      </nav>
+    </div>
+    <!-- LAUNCHPAD DISCLAIMER -->
+    <div class="mx-auto max-w-7xl px-4 pb-10 sm:px-6">
+      <p class="border-t border-border/40 pt-6 text-sm text-muted-foreground/80 italic">
+        Launchpad retailer disclaimer: pending from the marketer.
+      </p>
+    </div>
+  </footer>
+
+  <!-- COOKIE NOTICE DIALOG -->
+  <div
+    id="cookie-notice"
+    role="dialog"
+    aria-label="Cookie notice"
+    class="hidden fixed inset-x-4 bottom-4 z-50 mx-auto max-w-3xl rounded-2xl border border-border bg-card p-5 shadow-2xl sm:inset-x-6 sm:p-6"
+  >
+    <p class="text-[15px] leading-relaxed text-muted-foreground">
+      We use essential cookies for login and billing, plus anonymized error tracking via Sentry. With your OK, Google Ads and PostHog also use cookies to measure our ads and site visits. See our
+      <a href="/privacy" class="font-semibold text-foreground underline underline-offset-4">Privacy Policy</a>.
+    </p>
+    <div class="mt-4 flex flex-col gap-3 sm:flex-row sm:justify-end">
+      <button
+        type="button"
+        id="cookie-essential"
+        class="min-h-[44px] rounded-full border border-border px-6 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
+      >
+        Essential only
+      </button>
+      <button
+        type="button"
+        id="cookie-allow"
+        class="min-h-[44px] rounded-full bg-primary px-6 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+      >
+        Allow
+      </button>
+    </div>
+  </div>
+
+  <!-- Funnel Logic & Interactive Animation Engine -->
+  <script src="launch.js?v=5" defer></script>
+</body>
+</html>
