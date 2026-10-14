@@ -94,8 +94,8 @@
 <body class="bg-background text-foreground selection:bg-primary/20 selection:text-primary">
 
   <!-- HEADER -->
-  <header class="absolute inset-x-0 top-0 z-40">
-    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6">
+  <header id="site-header" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
       <a href="#top" class="flex items-center gap-3" aria-label="WyvStudio home">
         <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-primary shadow-sm shadow-primary/30">
           <svg viewBox="0 0 64 64" class="h-6 w-6 text-primary-foreground" aria-hidden="true">
@@ -105,25 +105,100 @@
         <span class="text-lg font-bold tracking-tight text-foreground">WyvStudio</span>
       </a>
       <div class="flex items-center gap-3">
-        <span class="hidden rounded-full border border-border bg-card/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground backdrop-blur sm:inline-flex">
-          Launch offer
-        </span>
+        <!-- Theme toggle: icon-only, keeps functionality without visual clutter -->
         <button
           type="button"
           id="theme-toggle"
-          aria-label="Switch to light mode"
-          class="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-border bg-card/70 px-4 text-sm font-medium text-foreground backdrop-blur transition-colors hover:bg-secondary"
+          aria-label="Switch theme"
+          class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card/70 text-muted-foreground backdrop-blur transition-colors hover:bg-secondary hover:text-foreground"
         >
-          <span class="inline-block h-2.5 w-2.5 rounded-full bg-primary"></span>
-          <span id="theme-toggle-label">Dark mode</span>
+          <!-- Sun icon (shown in dark mode) -->
+          <svg id="theme-icon-sun" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+          <!-- Moon icon (shown in light mode) -->
+          <svg id="theme-icon-moon" class="h-4 w-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
         </button>
       </div>
     </div>
   </header>
 
+  <style>
+    /* Sticky header — transparent at top, frosted glass on scroll */
+    #site-header {
+      background: transparent;
+      border-bottom: 1px solid transparent;
+    }
+    #site-header.header-scrolled {
+      background: color-mix(in srgb, var(--background) 80%, transparent);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border-bottom-color: var(--border);
+      box-shadow: 0 1px 24px 0 rgba(0,0,0,0.18);
+    }
+
+    /* Bold, unmissable brand-orange CTA pill */
+    .brand-cta-btn {
+      background: linear-gradient(135deg, #ff8238 0%, #ff6b35 50%, #eb4e1b 100%) !important;
+      color: #ffffff !important;
+      box-shadow: 0 10px 32px -4px rgba(255, 107, 53, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.35) inset !important;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease !important;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    }
+    .brand-cta-btn:hover {
+      transform: translateY(-2px) scale(1.03) !important;
+      box-shadow: 0 16px 42px -4px rgba(255, 107, 53, 0.8), 0 0 28px 4px rgba(255, 107, 53, 0.45) !important;
+    }
+    .brand-cta-btn:active {
+      transform: translateY(0) scale(0.99) !important;
+    }
+  </style>
+
+  <script>
+    /* Sticky header scroll behaviour */
+    (function () {
+      var header = document.getElementById('site-header');
+      function onScroll() {
+        if (window.scrollY > 10) {
+          header.classList.add('header-scrolled');
+        } else {
+          header.classList.remove('header-scrolled');
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+
+    /* Theme toggle — icon swap */
+    (function () {
+      var btn = document.getElementById('theme-toggle');
+      if (!btn) return;
+      var sunIcon  = document.getElementById('theme-icon-sun');
+      var moonIcon = document.getElementById('theme-icon-moon');
+
+      function syncIcons() {
+        var isDark = document.documentElement.classList.contains('dark');
+        if (sunIcon)  sunIcon.classList.toggle('hidden', !isDark);
+        if (moonIcon) moonIcon.classList.toggle('hidden', isDark);
+        btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      }
+
+      btn.addEventListener('click', function () {
+        var isDark = document.documentElement.classList.toggle('dark');
+        document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        try { localStorage.setItem('wyv-theme', isDark ? 'dark' : 'light'); } catch (e) {}
+        syncIcons();
+      });
+
+      syncIcons();
+    })();
+  </script>
+
   <main>
     <!-- HERO SECTION -->
-    <section id="top" class="relative min-h-screen overflow-hidden bg-background pb-16 pt-28 sm:pt-32">
+    <section id="top" class="relative min-h-screen overflow-hidden bg-background pb-16 pt-28 sm:pt-36">
       <!-- Depth layers & Ambient Blobs -->
       <div class="bg-grid-lines mask-grid-fade pointer-events-none absolute inset-0 z-0 opacity-60" aria-hidden="true"></div>
       <div class="blob-primary float-slow pointer-events-none absolute -left-24 top-10 h-[420px] w-[420px] rounded-full opacity-40" aria-hidden="true"></div>
@@ -153,13 +228,13 @@
         <div class="mt-12 grid items-center gap-10 lg:mt-16 lg:grid-cols-12 lg:gap-12">
           <!-- Video Column -->
           <div class="reveal-ready lg:col-span-5" style="animation-delay: 120ms;">
-            <div class="relative mx-auto w-full max-w-[300px] lg:max-w-[340px]">
+            <div class="relative mx-auto w-full max-w-[420px] lg:max-w-[460px]">
               <div class="absolute -inset-4 rounded-[2.5rem] bg-primary/15 blur-2xl" aria-hidden="true"></div>
               <div class="relative overflow-hidden rounded-[1.5rem] border border-border bg-foreground shadow-2xl">
                 <video
-                  class="aspect-[9/16] max-h-[540px] w-full bg-foreground object-cover sm:aspect-[4/5] lg:aspect-[9/16]"
-                  src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/composer/promo.mp4"
-                  poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/composer/promo.jpg"
+                  class="aspect-[16/9] w-full bg-foreground object-cover"
+                  src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b09.mp4"
+                  poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b09.jpg"
                   muted
                   loop
                   playsinline
@@ -168,11 +243,11 @@
                   data-autoplay
                 ></video>
               </div>
-              <p class="mx-auto mt-5 inline-flex w-full items-center justify-center gap-2 text-center text-sm font-medium text-muted-foreground">
+              <p class="mx-auto mt-4 inline-flex w-full items-center justify-center gap-2 text-center text-sm font-medium text-muted-foreground">
                 <svg class="h-[18px] w-[18px] text-primary" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm14.024-.983a1.125 1.125 0 0 1 0 1.966l-5.603 3.113A1.125 1.125 0 0 1 9 15.113V8.887c0-.857.921-1.4 1.671-.983l5.603 3.113Z" clip-rule="evenodd" />
                 </svg>
-                Made with WyvStudio, from one line of text.
+                Made with WyvStudio: 2-minute video cut to a 30s ad.
               </p>
             </div>
           </div>
@@ -241,12 +316,10 @@
               <a
                 href="#checkout"
                 data-buy="fe"
-                class="lp-buy sheen group relative inline-flex min-h-[56px] items-center justify-center gap-3 overflow-hidden rounded-full bg-primary px-8 py-4 text-base font-bold text-primary-foreground shadow-xl shadow-primary/25 transition-transform duration-300 hover:-translate-y-0.5 sm:text-lg w-full sm:w-auto text-center"
+                class="lp-buy brand-cta-btn group relative inline-flex min-h-[60px] items-center justify-center gap-3 overflow-hidden rounded-full px-8 py-4 text-center sm:text-lg w-full sm:w-auto"
               >
-                <span>Get instant access to WyvStudio for $7</span>
-                <svg class="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd" />
-                </svg>
+                <span class="text-base sm:text-lg font-black tracking-tight text-white">YES — Get Instant Access to WyvStudio for $7</span>
+                <span class="text-xl sm:text-2xl font-black text-white transition-transform duration-300 group-hover:translate-x-1.5">→</span>
               </a>
               <p class="mt-4 text-sm font-medium text-muted-foreground">
                 200 credits included · No watermark · 14-day money-back guarantee
@@ -268,6 +341,32 @@
               data-cut-accent="Most advertisers are paying for it."
               class="text-display font-extrabold text-foreground"
             ></h2>
+
+            <!-- Showcase Video to fill empty space -->
+            <div class="reveal-ready mt-8 max-w-[520px]" style="animation-delay: 150ms;">
+              <div class="relative overflow-hidden rounded-2xl border border-border bg-card shadow-xl transition-all duration-300 hover:shadow-2xl">
+                <div class="relative aspect-video w-full overflow-hidden bg-foreground">
+                  <video
+                    class="h-full w-full object-cover"
+                    src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b10.mp4"
+                    poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b10.jpg"
+                    muted
+                    loop
+                    playsinline
+                    controls
+                    preload="none"
+                    data-autoplay
+                  ></video>
+                </div>
+                <div class="flex items-center justify-between px-4 py-3 bg-card border-t border-border">
+                  <div class="flex items-center gap-2.5">
+                    <span class="inline-block h-2.5 w-2.5 rounded-full bg-primary animate-pulse"></span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-card-foreground">Sample Ad: 3 Hooks That Stop The Scroll</span>
+                  </div>
+                  <span class="text-xs font-semibold text-muted-foreground">30s · WyvStudio</span>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="space-y-5 lg:col-span-5">
             <div class="reveal-ready" style="animation-delay: 0ms;">
@@ -718,24 +817,65 @@
               </h3>
               <div class="mt-5 grid gap-4 md:grid-cols-2">
                 <!-- Bonus 1 -->
-                <div class="rounded-2xl border border-border bg-card p-6 shadow-sm">
-                  <span class="inline-flex rounded-full bg-primary/15 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-accent">
-                    Bonus
-                  </span>
-                  <p class="mt-4 text-[16px] leading-relaxed text-muted-foreground">
-                    <span class="font-bold text-foreground">The "CPA Crusher" rapid video testing protocol: </span>
-                    the three-step framework for testing creative angles on Meta and TikTok with a small budget, finding the winner and scaling it.
-                  </p>
+                <div class="rounded-2xl border border-border bg-card p-5 shadow-sm transition-all duration-300 hover:shadow-md hover:border-primary/40">
+                  <div class="flex items-center justify-between gap-2 border-b border-border/50 pb-3">
+                    <span class="inline-flex items-center gap-1.5 rounded-full bg-primary/15 px-3 py-1 text-xs font-extrabold uppercase tracking-[0.16em] text-accent">
+                      <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+                      Bonus #1
+                    </span>
+                    <span class="rounded-full bg-success/10 border border-success/20 px-2.5 py-0.5 text-[11px] font-bold text-success">
+                      $97 Value · FREE
+                    </span>
+                  </div>
+                  <div class="mt-4 flex items-start gap-4">
+                    <div class="flex-1">
+                      <h4 class="text-[16px] font-bold text-card-foreground leading-snug">
+                        The "CPA Crusher" rapid video testing protocol
+                      </h4>
+                      <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+                        The three-step framework for testing creative angles on Meta and TikTok with a small budget, finding the winner and scaling it.
+                      </p>
+                    </div>
+                    <div class="w-[96px] sm:w-[110px] shrink-0 overflow-hidden rounded-xl border border-border bg-foreground/5 shadow-md">
+                      <img
+                        src="bonus-cpa-crusher.jpg"
+                        alt="CPA Crusher 3D Mockup"
+                        class="aspect-square w-full object-cover transition-transform duration-300 hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
                 </div>
+
                 <!-- Bonus 2 -->
-                <div class="rounded-2xl border border-border bg-card p-6 shadow-sm">
-                  <span class="inline-flex rounded-full bg-primary/15 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-accent">
-                    Bonus
-                  </span>
-                  <p class="mt-4 text-[16px] leading-relaxed text-muted-foreground">
-                    <span class="font-bold text-foreground">The "Series" organic playbook: </span>
-                    how to turn one product or topic into a multi-part short-video series that builds an audience without ad spend.
-                  </p>
+                <div class="rounded-2xl border border-border bg-card p-5 shadow-sm transition-all duration-300 hover:shadow-md hover:border-primary/40">
+                  <div class="flex items-center justify-between gap-2 border-b border-border/50 pb-3">
+                    <span class="inline-flex items-center gap-1.5 rounded-full bg-primary/15 px-3 py-1 text-xs font-extrabold uppercase tracking-[0.16em] text-accent">
+                      <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+                      Bonus #2
+                    </span>
+                    <span class="rounded-full bg-success/10 border border-success/20 px-2.5 py-0.5 text-[11px] font-bold text-success">
+                      $97 Value · FREE
+                    </span>
+                  </div>
+                  <div class="mt-4 flex items-start gap-4">
+                    <div class="flex-1">
+                      <h4 class="text-[16px] font-bold text-card-foreground leading-snug">
+                        The "Series" organic playbook
+                      </h4>
+                      <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+                        How to turn one product or topic into a multi-part short-video series that builds an audience without ad spend.
+                      </p>
+                    </div>
+                    <div class="w-[96px] sm:w-[110px] shrink-0 overflow-hidden rounded-xl border border-border bg-foreground/5 shadow-md">
+                      <img
+                        src="bonus-series-playbook.jpg"
+                        alt="The Series Playbook 3D Mockup"
+                        class="aspect-square w-full object-cover transition-transform duration-300 hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
