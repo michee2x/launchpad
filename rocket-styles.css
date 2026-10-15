@@ -233,44 +233,54 @@ h1, h2, h3, h4, h5, h6, p {
   }
 }
 
-/* Infinite Video Marquee & Touch Scroller */
+/* ================================================
+   Infinite Video Marquee — Pure CSS Animation
+   ================================================ */
+
+/* Keyframe: slide left by 50% (= width of Set A)
+   so Set B seamlessly lines up and loops forever */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Clip the animation — overflow:hidden is the only rule needed here */
 .video-scroll-container {
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  -webkit-overflow-scrolling: touch;
-  cursor: grab;
-  scroll-behavior: auto;
-  touch-action: pan-y pinch-zoom;
+  overflow: hidden;
+  width: 100%;
 }
 
-.video-scroll-container::-webkit-scrollbar {
-  display: none;
-}
-
-.video-scroll-container:active {
-  cursor: grabbing;
-}
-
+/* The animated track */
 .infinite-video-track {
-  display: flex !important;
-  flex-wrap: nowrap !important;
-  width: max-content !important;
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
   gap: 14px;
-  will-change: transform, scroll-position;
+  animation: marquee-scroll 32s linear infinite;
+  will-change: transform;
+}
+
+/* Pause on desktop hover */
+.video-scroll-container:hover .infinite-video-track {
+  animation-play-state: paused;
+}
+
+/* Pause when a video is actively playing */
+.video-scroll-container.marquee-paused .infinite-video-track {
+  animation-play-state: paused;
 }
 
 .video-tile {
-  flex: 0 0 152px !important;
-  width: 152px !important;
+  flex: 0 0 152px;
+  width: 152px;
   user-select: none;
+  -webkit-user-select: none;
 }
 
 @media (min-width: 640px) {
   .video-tile {
-    flex: 0 0 186px !important;
-    width: 186px !important;
+    flex: 0 0 186px;
+    width: 186px;
   }
 }
 
@@ -290,15 +300,14 @@ h1, h2, h3, h4, h5, h6, p {
   height: 100%;
   object-fit: cover;
   display: block;
-  pointer-events: none;
 }
 
 .video-tile .play-btn {
   position: absolute;
   inset: 0;
   margin: auto;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: none;
   background: var(--primary);
@@ -306,9 +315,9 @@ h1, h2, h3, h4, h5, h6, p {
   cursor: pointer;
   display: grid;
   place-items: center;
-  transition: transform .2s ease, opacity .2s ease, background-color .2s ease;
+  transition: transform .2s ease, opacity .15s ease;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
-  z-index: 5;
+  z-index: 10;
 }
 
 @media (min-width: 640px) {
@@ -322,37 +331,18 @@ h1, h2, h3, h4, h5, h6, p {
   transform: scale(1.08);
 }
 
+/* Play button is GONE when playing — no overlap, no blocking */
 .video-tile.is-playing .play-btn {
-  opacity: 0;
-  pointer-events: none;
+  display: none !important;
 }
 
-.video-tile.is-playing .vid-box:hover .play-btn {
-  opacity: 0.9;
-  pointer-events: auto;
-}
-
-/* Reduced Motion Fallbacks */
+/* Reduced Motion: stop the animation, make it static */
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  .reveal-ready {
-    opacity: 1;
-    transform: none;
-  }
-  .cut-char {
-    transform: none;
-  }
-  .bar-grow {
-    transform: scaleX(1);
-  }
-  .float-slow {
-    animation: none;
-  }
-  .infinite-video-track {
-    animation: none;
-    overflow-x: auto;
-  }
+  html { scroll-behavior: auto; }
+  .reveal-ready { opacity: 1; transform: none; }
+  .cut-char { transform: none; }
+  .bar-grow { transform: scaleX(1); }
+  .float-slow { animation: none; }
+  .infinite-video-track { animation: none; }
 }
 

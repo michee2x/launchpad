@@ -87,7 +87,7 @@
   </script>
 
   <!-- Custom Stylesheet (Animation Keyframes, Blobs, Grid & Shimmers) -->
-  <link rel="stylesheet" href="rocket-styles.css?v=15">
+  <link rel="stylesheet" href="rocket-styles.css?v=16">
 
   <!-- LAUNCHPAD TRACKING: paste Launchpad's required script or pixel here when the marketer sends it. -->
 </head>
@@ -224,40 +224,37 @@
       transform: translateY(0) scale(0.99) !important;
     }
 
-    /* Video Marquee Core Styles (Inline Fallback so it is never stuck or blocked) */
+    /* Video Marquee — pure CSS animation (mirrors rocket-styles.css) */
+    @keyframes marquee-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
     .video-scroll-container {
-      overflow-x: auto;
-      overflow-y: hidden;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      -webkit-overflow-scrolling: touch;
-      cursor: grab;
-      scroll-behavior: auto;
-      touch-action: pan-y pinch-zoom;
-    }
-    .video-scroll-container::-webkit-scrollbar {
-      display: none;
-    }
-    .video-scroll-container:active {
-      cursor: grabbing;
+      overflow: hidden;
+      width: 100%;
     }
     .infinite-video-track {
-      display: flex !important;
-      flex-wrap: nowrap !important;
-      width: max-content !important;
+      display: flex;
+      flex-wrap: nowrap;
+      width: max-content;
       gap: 14px;
-      will-change: transform, scroll-position;
+      animation: marquee-scroll 32s linear infinite;
+      will-change: transform;
+    }
+    .video-scroll-container:hover .infinite-video-track {
+      animation-play-state: paused;
+    }
+    .video-scroll-container.marquee-paused .infinite-video-track {
+      animation-play-state: paused;
     }
     .video-tile {
-      flex: 0 0 152px !important;
-      width: 152px !important;
+      flex: 0 0 152px;
+      width: 152px;
       user-select: none;
+      -webkit-user-select: none;
     }
     @media (min-width: 640px) {
-      .video-tile {
-        flex: 0 0 186px !important;
-        width: 186px !important;
-      }
+      .video-tile { flex: 0 0 186px; width: 186px; }
     }
     .video-tile .vid-box {
       position: relative;
@@ -269,19 +266,13 @@
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
       cursor: pointer;
     }
-    .video-tile .vid-box video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      pointer-events: none;
-    }
+    .video-tile .vid-box video { width: 100%; height: 100%; object-fit: cover; display: block; }
     .video-tile .play-btn {
       position: absolute;
       inset: 0;
       margin: auto;
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       border: none;
       background: var(--primary);
@@ -289,27 +280,14 @@
       cursor: pointer;
       display: grid;
       place-items: center;
-      transition: transform .2s ease, opacity .2s ease, background-color .2s ease;
+      transition: transform .2s ease;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
-      z-index: 5;
+      z-index: 10;
     }
-    @media (min-width: 640px) {
-      .video-tile .play-btn {
-        width: 48px;
-        height: 48px;
-      }
-    }
-    .video-tile .vid-box:hover .play-btn {
-      transform: scale(1.08);
-    }
-    .video-tile.is-playing .play-btn {
-      opacity: 0;
-      pointer-events: none;
-    }
-    .video-tile.is-playing .vid-box:hover .play-btn {
-      opacity: 0.9;
-      pointer-events: auto;
-    }
+    @media (min-width: 640px) { .video-tile .play-btn { width: 48px; height: 48px; } }
+    .video-tile .vid-box:hover .play-btn { transform: scale(1.08); }
+    /* Hide play button entirely while playing */
+    .video-tile.is-playing .play-btn { display: none !important; }
   </style>
 
   <script>
@@ -432,6 +410,88 @@
       // Synchronize icons immediately with current DOM state
       var initialIsDark = document.documentElement.classList.contains('dark');
       applyTheme(initialIsDark ? 'dark' : 'light');
+    })();
+
+    /* -------------------------------------------------------
+     * Video tile playback — play/pause + hide play button
+     * The marquee itself is pure CSS (@keyframes), no JS needed
+     * ------------------------------------------------------- */
+    (function () {
+      function bootVideoTiles() {
+        var wrapper = document.querySelector('.infinite-video-wrapper');
+        if (!wrapper || wrapper._tilesBooted) return;
+        wrapper._tilesBooted = true;
+
+        var container = wrapper.querySelector('.video-scroll-container');
+        var tiles = wrapper.querySelectorAll('.video-tile');
+
+        /* Pause animation on touch (mobile swipe feel) */
+        if (container) {
+          container.addEventListener('touchstart', function () {
+            container.classList.add('marquee-paused');
+          }, { passive: true });
+          container.addEventListener('touchend', function () {
+            if (!wrapper.querySelector('.video-tile.is-playing')) {
+              container.classList.remove('marquee-paused');
+            }
+          }, { passive: true });
+          container.addEventListener('touchcancel', function () {
+            if (!wrapper.querySelector('.video-tile.is-playing')) {
+              container.classList.remove('marquee-paused');
+            }
+          }, { passive: true });
+        }
+
+        tiles.forEach(function (tile) {
+          var vid = tile.querySelector('video');
+          var btn = tile.querySelector('.play-btn');
+          var box = tile.querySelector('.vid-box');
+          if (!vid) return;
+
+          function togglePlay(e) {
+            if (e) { e.preventDefault(); e.stopPropagation(); }
+            if (vid.paused) {
+              tiles.forEach(function (t) {
+                var tv = t.querySelector('video');
+                if (tv && tv !== vid) { tv.pause(); t.classList.remove('is-playing'); }
+              });
+              vid.muted = false;
+              vid.play().then(function () {
+                tile.classList.add('is-playing');
+                if (container) container.classList.add('marquee-paused');
+              }).catch(function () {
+                vid.muted = true;
+                vid.play().then(function () {
+                  tile.classList.add('is-playing');
+                  if (container) container.classList.add('marquee-paused');
+                }).catch(function () {});
+              });
+            } else {
+              vid.pause();
+              tile.classList.remove('is-playing');
+              if (container && !wrapper.querySelector('.video-tile.is-playing')) {
+                container.classList.remove('marquee-paused');
+              }
+            }
+          }
+
+          if (btn) btn.addEventListener('click', togglePlay);
+          if (box) box.addEventListener('click', togglePlay);
+          vid.addEventListener('ended', function () {
+            tile.classList.remove('is-playing');
+            vid.currentTime = 0;
+            if (container && !wrapper.querySelector('.video-tile.is-playing')) {
+              container.classList.remove('marquee-paused');
+            }
+          });
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bootVideoTiles);
+      } else {
+        bootVideoTiles();
+      }
     })();
   </script>
 
@@ -764,24 +824,13 @@
           <!-- Left: Infinite Scrolling Video Showcase -->
           <div class="reveal-ready order-2 lg:order-1 lg:col-span-7" style="animation-delay: 150ms;">
             <div class="infinite-video-wrapper rounded-3xl border border-border bg-card p-3 sm:p-5 shadow-2xl relative overflow-hidden">
-              <!-- Header Bar inside card with Next/Prev and status -->
-              <div class="flex items-center justify-between px-2 pt-1 pb-3 mb-2 border-b border-border/50">
-                <div class="flex items-center gap-2">
-                  <span class="inline-block h-2.5 w-2.5 rounded-full bg-primary animate-pulse" aria-hidden="true"></span>
-                  <span class="text-xs font-bold uppercase tracking-wider text-card-foreground">Started from a sentence</span>
-                </div>
-                <div class="flex items-center gap-1.5 sm:gap-2">
-                  <span class="text-[11px] font-semibold text-muted-foreground hidden sm:inline">Swipe or use arrows</span>
-                  <button type="button" id="marquee-prev" class="h-7 w-7 rounded-full border border-border bg-secondary/80 hover:bg-secondary text-foreground inline-flex items-center justify-center transition-colors shadow-xs" aria-label="Previous video">
-                    <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd"/></svg>
-                  </button>
-                  <button type="button" id="marquee-next" class="h-7 w-7 rounded-full border border-border bg-secondary/80 hover:bg-secondary text-foreground inline-flex items-center justify-center transition-colors shadow-xs" aria-label="Next video">
-                    <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"/></svg>
-                  </button>
-                </div>
+              <!-- Status bar -->
+              <div class="flex items-center gap-2 px-2 pt-1 pb-3 mb-1 border-b border-border/50">
+                <span class="inline-block h-2.5 w-2.5 rounded-full bg-primary animate-pulse" aria-hidden="true"></span>
+                <span class="text-xs font-bold uppercase tracking-wider text-card-foreground">Started from a sentence</span>
               </div>
 
-              <!-- Infinite Marquee Track with Edge Gradients & Touch/Drag Container -->
+              <!-- Infinite Marquee Track with Edge Gradients -->
               <div class="relative w-full py-1">
                 <!-- Left fade gradient -->
                 <div class="pointer-events-none absolute inset-y-0 left-0 w-6 sm:w-12 bg-gradient-to-r from-card via-card/85 to-transparent z-10" aria-hidden="true"></div>
@@ -790,10 +839,9 @@
 
                 <div
                   id="video-marquee-container"
-                  class="video-scroll-container w-full overflow-x-auto overflow-y-hidden py-1"
-                  style="scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch;"
+                  class="video-scroll-container w-full"
                 >
-                  <div id="video-marquee-track" class="infinite-video-track flex flex-nowrap items-start gap-3 sm:gap-4 w-max">
+                  <div id="video-marquee-track" class="infinite-video-track items-start">
                   <!-- SET A (8 Premier WyvStudio Videos) -->
                   <!-- 1. Launch promo -->
                   <figure class="video-tile">
@@ -1931,6 +1979,6 @@
   </div>
 
   <!-- Funnel Logic & Interactive Animation Engine -->
-  <script src="launch.js?v=15" defer></script>
+  <script src="launch.js?v=16" defer></script>
 </body>
 </html>

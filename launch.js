@@ -284,233 +284,73 @@
     }
   }
 
-  // 9. Infinite Video Marquee Engine (Auto-scroll + Manual Touch/Drag + Video Playback)
-  function initInfiniteVideoMarquee() {
+  // 9. Video Tile Playback — CSS animation handles scrolling; JS only toggles play/pause
+  function initVideoTiles() {
     var wrapper = document.querySelector('.infinite-video-wrapper');
-    if (!wrapper) return;
+    if (!wrapper || wrapper._tilesBooted) return;
+    wrapper._tilesBooted = true;
 
-    var container = document.getElementById('video-marquee-container') || wrapper.querySelector('.video-scroll-container');
-    var track = document.getElementById('video-marquee-track') || wrapper.querySelector('.infinite-video-track');
-    if (!container || !track) return;
-
-    var isPaused = false;
-    var isInteracting = false;
-    var resumeTimer = null;
-    var speed = 0.85; // pixels per normalized frame (~50px/sec)
-    var currentPos = container.scrollLeft || 0;
-    var halfWidth = 0;
-
-    function getHalfWidth() {
-      if (track.scrollWidth > 0) {
-        halfWidth = track.scrollWidth / 2;
-      }
-      return halfWidth;
-    }
-
-    getHalfWidth();
-    window.addEventListener('resize', getHalfWidth);
-    window.addEventListener('load', getHalfWidth);
-    setTimeout(getHalfWidth, 400);
-    setTimeout(getHalfWidth, 1200);
-
-    var lastTimestamp = performance.now();
-
-    function autoScrollStep(now) {
-      var delta = (now - lastTimestamp) / 16.67;
-      lastTimestamp = now;
-
-      var hw = halfWidth || getHalfWidth();
-
-      if (!isPaused && !isInteracting && hw > 0) {
-        currentPos += speed * Math.min(delta, 2.5);
-        if (currentPos >= hw) {
-          currentPos -= hw;
-        }
-        container.scrollLeft = Math.round(currentPos);
-      } else if (isInteracting) {
-        // Keep our internal position synchronized with user touch/drag
-        currentPos = container.scrollLeft;
-      }
-
-      requestAnimationFrame(autoScrollStep);
-    }
-    requestAnimationFrame(autoScrollStep);
-
-    function startInteraction() {
-      isInteracting = true;
-      if (resumeTimer) clearTimeout(resumeTimer);
-    }
-
-    function endInteraction() {
-      if (resumeTimer) clearTimeout(resumeTimer);
-      resumeTimer = setTimeout(function () {
-        var hw = halfWidth || getHalfWidth();
-        if (hw > 0) {
-          if (container.scrollLeft >= hw) {
-            container.scrollLeft -= hw;
-          } else if (container.scrollLeft <= 0) {
-            container.scrollLeft += hw;
-          }
-        }
-        currentPos = container.scrollLeft;
-        isInteracting = false;
-      }, 1500);
-    }
-
-    // Direct touch gesture tracking for mobile
-    var touchStartX = 0;
-    var touchStartScroll = 0;
-    var hasTouchMoved = false;
-
-    container.addEventListener('touchstart', function (e) {
-      if (!e.touches || !e.touches[0]) return;
-      startInteraction();
-      touchStartX = e.touches[0].pageX;
-      touchStartScroll = container.scrollLeft;
-      hasTouchMoved = false;
-    }, { passive: true });
-
-    container.addEventListener('touchmove', function (e) {
-      if (!e.touches || !e.touches[0]) return;
-      var curX = e.touches[0].pageX;
-      var diffX = touchStartX - curX;
-      if (Math.abs(diffX) > 4) {
-        hasTouchMoved = true;
-      }
-      container.scrollLeft = touchStartScroll + diffX;
-      currentPos = container.scrollLeft;
-    }, { passive: true });
-
-    container.addEventListener('touchend', function () {
-      endInteraction();
-    }, { passive: true });
-
-    container.addEventListener('touchcancel', function () {
-      endInteraction();
-    }, { passive: true });
-
-    // Wheel event for trackpads/mice
-    container.addEventListener('wheel', function () {
-      startInteraction();
-      currentPos = container.scrollLeft;
-      endInteraction();
-    }, { passive: true });
-
-    // Mouse drag support for desktop
-    var isMouseDown = false;
-    var mouseStartX = 0;
-    var mouseStartScroll = 0;
-    var hasMouseMoved = false;
-
-    container.addEventListener('mousedown', function (e) {
-      isMouseDown = true;
-      hasMouseMoved = false;
-      startInteraction();
-      mouseStartX = e.pageX - container.offsetLeft;
-      mouseStartScroll = container.scrollLeft;
-    });
-
-    window.addEventListener('mousemove', function (e) {
-      if (!isMouseDown) return;
-      var x = e.pageX - container.offsetLeft;
-      var walk = (x - mouseStartX) * 1.3;
-      if (Math.abs(walk) > 4) {
-        hasMouseMoved = true;
-      }
-      container.scrollLeft = mouseStartScroll - walk;
-      currentPos = container.scrollLeft;
-    });
-
-    window.addEventListener('mouseup', function () {
-      if (isMouseDown) {
-        isMouseDown = false;
-        endInteraction();
-      }
-    });
-
-    // Guard hover events: only attach on desktop devices with hover & fine pointer
-    // This prevents mobile synthetic mouseenter from permanently halting auto-scroll!
-    var hasFinePointer = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    if (hasFinePointer) {
-      container.addEventListener('mouseenter', function () { isPaused = true; });
-      container.addEventListener('mouseleave', function () { if (!isMouseDown) isPaused = false; });
-    }
-
-    // Prev / Next button listeners
-    var prevBtn = document.getElementById('marquee-prev');
-    var nextBtn = document.getElementById('marquee-next');
-
-    if (prevBtn) {
-      prevBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        startInteraction();
-        container.scrollBy({ left: -220, behavior: 'smooth' });
-        setTimeout(function () {
-          currentPos = container.scrollLeft;
-          endInteraction();
-        }, 350);
-      });
-    }
-
-    if (nextBtn) {
-      nextBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        startInteraction();
-        container.scrollBy({ left: 220, behavior: 'smooth' });
-        setTimeout(function () {
-          currentPos = container.scrollLeft;
-          endInteraction();
-        }, 350);
-      });
-    }
-
-    // Individual video tile click & play controls
+    var container = wrapper.querySelector('.video-scroll-container');
     var tiles = wrapper.querySelectorAll('.video-tile');
+
+    // Pause CSS animation on touch so users feel a natural pause
+    if (container) {
+      container.addEventListener('touchstart', function () {
+        container.classList.add('marquee-paused');
+      }, { passive: true });
+      container.addEventListener('touchend', function () {
+        if (!wrapper.querySelector('.video-tile.is-playing')) {
+          container.classList.remove('marquee-paused');
+        }
+      }, { passive: true });
+      container.addEventListener('touchcancel', function () {
+        if (!wrapper.querySelector('.video-tile.is-playing')) {
+          container.classList.remove('marquee-paused');
+        }
+      }, { passive: true });
+    }
+
     tiles.forEach(function (tile) {
       var vid = tile.querySelector('video');
       var btn = tile.querySelector('.play-btn');
-      var vidBox = tile.querySelector('.vid-box');
+      var box = tile.querySelector('.vid-box');
       if (!vid) return;
 
       function togglePlay(e) {
-        if (hasMouseMoved || hasTouchMoved) return; // Ignore clicks if user was swiping/dragging
-        if (e) {
-          e.preventDefault();
-          e.stopPropagation();
-        }
+        if (e) { e.preventDefault(); e.stopPropagation(); }
         if (vid.paused) {
-          // Pause all other tiles in the marquee
-          tiles.forEach(function (other) {
-            var oVid = other.querySelector('video');
-            if (oVid && oVid !== vid) {
-              oVid.pause();
-              other.classList.remove('is-playing');
-            }
+          tiles.forEach(function (t) {
+            var tv = t.querySelector('video');
+            if (tv && tv !== vid) { tv.pause(); t.classList.remove('is-playing'); }
           });
           vid.muted = false;
           vid.play().then(function () {
             tile.classList.add('is-playing');
-            isPaused = true;
+            if (container) container.classList.add('marquee-paused');
           }).catch(function () {
             vid.muted = true;
             vid.play().then(function () {
               tile.classList.add('is-playing');
-              isPaused = true;
+              if (container) container.classList.add('marquee-paused');
             }).catch(function () {});
           });
         } else {
           vid.pause();
           tile.classList.remove('is-playing');
-          isPaused = false;
+          if (container && !wrapper.querySelector('.video-tile.is-playing')) {
+            container.classList.remove('marquee-paused');
+          }
         }
       }
 
       if (btn) btn.addEventListener('click', togglePlay);
-      if (vidBox) vidBox.addEventListener('click', togglePlay);
+      if (box) box.addEventListener('click', togglePlay);
       vid.addEventListener('ended', function () {
         tile.classList.remove('is-playing');
-        isPaused = false;
         vid.currentTime = 0;
+        if (container && !wrapper.querySelector('.video-tile.is-playing')) {
+          container.classList.remove('marquee-paused');
+        }
       });
     });
   }
@@ -525,7 +365,7 @@
       initFaq();
       initCookieNotice();
       initVideoAutoplay();
-      initInfiniteVideoMarquee();
+      initVideoTiles();
     });
   } else {
     initCutHeadings();
@@ -535,7 +375,7 @@
     initFaq();
     initCookieNotice();
     initVideoAutoplay();
-    initInfiniteVideoMarquee();
+    initVideoTiles();
   }
 
 })();
