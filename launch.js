@@ -68,18 +68,27 @@
       toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
       if (toggleLabel) toggleLabel.textContent = isDark ? 'Dark mode' : 'Light mode';
     }
+    var sun = document.getElementById('theme-icon-sun');
+    var moon = document.getElementById('theme-icon-moon');
+    if (sun) sun.classList.toggle('hidden', !isDark);
+    if (moon) moon.classList.toggle('hidden', isDark);
     try {
       localStorage.setItem('wyv-theme', theme);
       localStorage.setItem('wyv_theme', theme);
     } catch (e) {}
   }
 
-  if (toggle) {
+  // Use a single guarded listener so it never fires twice
+  if (toggle && !toggle.dataset.themeBound) {
+    toggle.dataset.themeBound = 'true';
     toggle.addEventListener('click', function () {
       var current = root.classList.contains('dark') ? 'dark' : 'light';
       applyTheme(current === 'dark' ? 'light' : 'dark');
     });
   }
+
+  // Apply on launch load
+  applyTheme(getTheme());
 
   // 2. CutHeading Splitter & Scroll Observer
   function initCutHeadings() {
