@@ -87,7 +87,7 @@
   </script>
 
   <!-- Custom Stylesheet (Animation Keyframes, Blobs, Grid & Shimmers) -->
-  <link rel="stylesheet" href="rocket-styles.css?v=1">
+  <link rel="stylesheet" href="rocket-styles.css?v=12">
 
   <!-- LAUNCHPAD TRACKING: paste Launchpad's required script or pixel here when the marketer sends it. -->
 </head>
@@ -100,48 +100,48 @@
     style="background: linear-gradient(90deg, #370343 0%, #680c68 28%, #85137d 60%, #3e0448 100%); border-bottom: 1px solid rgba(255, 255, 255, 0.15);"
     aria-label="Limited time launch offer countdown"
   >
-    <div class="mx-auto flex max-w-7xl items-center justify-between px-3 py-2 sm:px-6 sm:py-2.5">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-2.5 py-1.5 sm:px-6 sm:py-2.5 gap-2 sm:gap-4">
       <!-- Left: Offer Label -->
-      <div class="flex items-center gap-2 sm:gap-3">
-        <span class="flex h-2.5 w-2.5 shrink-0 rounded-full bg-[#00E676] animate-pulse" aria-hidden="true"></span>
-        <p class="text-xs sm:text-sm md:text-[15px] font-extrabold text-white tracking-tight leading-tight">
-          EarlyBirds Discount Ends &amp;<br class="hidden sm:inline" /> Price increases in:
+      <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
+        <span class="flex h-2 w-2 sm:h-2.5 sm:w-2.5 shrink-0 rounded-full bg-[#00E676] animate-pulse" aria-hidden="true"></span>
+        <p class="text-[11px] sm:text-sm md:text-[15px] font-extrabold text-white tracking-tight leading-tight whitespace-nowrap">
+          <span class="hidden sm:inline">EarlyBirds Discount Ends &amp;<br class="hidden sm:inline" /> </span>Ends in:
         </p>
       </div>
 
-      <!-- Center: Bold Ticking Countdown -->
-      <div class="flex items-center gap-2.5 sm:gap-5 md:gap-7">
+      <!-- Center: Bold Ticking Countdown (Ultra clean & compact on mobile) -->
+      <div class="flex items-center gap-1.5 sm:gap-5 md:gap-7 shrink-0">
         <!-- Days -->
         <div class="flex flex-col items-center">
-          <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-pink-200/90">DAYS</span>
-          <span id="top-cd-days" class="text-xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-none">00</span>
+          <span class="text-[7.5px] sm:text-[10px] font-bold uppercase tracking-widest text-pink-200/90 leading-none mb-0.5">DAYS</span>
+          <span id="top-cd-days" class="text-base sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-none">00</span>
         </div>
-        <span class="text-lg sm:text-2xl font-bold text-pink-300/60 pb-1">:</span>
+        <span class="text-xs sm:text-2xl font-bold text-pink-300/60 pb-0.5 sm:pb-1">:</span>
         <!-- Hours -->
         <div class="flex flex-col items-center">
-          <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-pink-200/90">HOURS</span>
-          <span id="top-cd-hours" class="text-xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-none">01</span>
+          <span class="text-[7.5px] sm:text-[10px] font-bold uppercase tracking-widest text-pink-200/90 leading-none mb-0.5">HOURS</span>
+          <span id="top-cd-hours" class="text-base sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-none">01</span>
         </div>
-        <span class="text-lg sm:text-2xl font-bold text-pink-300/60 pb-1">:</span>
+        <span class="text-xs sm:text-2xl font-bold text-pink-300/60 pb-0.5 sm:pb-1">:</span>
         <!-- Minutes -->
         <div class="flex flex-col items-center">
-          <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-pink-200/90">MINUTES</span>
-          <span id="top-cd-mins" class="text-xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-none">36</span>
+          <span class="text-[7.5px] sm:text-[10px] font-bold uppercase tracking-widest text-pink-200/90 leading-none mb-0.5">MINS</span>
+          <span id="top-cd-mins" class="text-base sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-none">36</span>
         </div>
-        <span class="text-lg sm:text-2xl font-bold text-pink-300/60 pb-1">:</span>
+        <span class="text-xs sm:text-2xl font-bold text-pink-300/60 pb-0.5 sm:pb-1">:</span>
         <!-- Seconds -->
         <div class="flex flex-col items-center">
-          <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-pink-200/90">SECONDS</span>
-          <span id="top-cd-secs" class="text-xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-none">43</span>
+          <span class="text-[7.5px] sm:text-[10px] font-bold uppercase tracking-widest text-pink-200/90 leading-none mb-0.5">SECS</span>
+          <span id="top-cd-secs" class="text-base sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-none">43</span>
         </div>
       </div>
 
-      <!-- Right: Green Buy Now Button + Theme Toggle -->
-      <div class="flex items-center gap-2 sm:gap-3">
+      <!-- Right: Green Buy Now Button + Theme Toggle (Theme toggle hidden on mobile to conserve space) -->
+      <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
         <button
           type="button"
           aria-label="Switch theme"
-          class="theme-toggle-btn inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur transition-colors hover:bg-white/20"
+          class="theme-toggle-btn hidden sm:inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur transition-colors hover:bg-white/20"
         >
           <!-- Sun icon (shown in dark mode) -->
           <svg class="theme-icon-sun h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -154,7 +154,7 @@
         </button>
         <a
           href="#checkout"
-          class="inline-flex items-center justify-center rounded-full bg-[#00E676] px-4 py-2 sm:px-7 sm:py-2.5 text-xs sm:text-sm md:text-base font-black text-[#04200f] shadow-[0_0_24px_rgba(0,230,118,0.7)] transition-all duration-200 hover:scale-105 hover:bg-[#00c853] hover:shadow-[0_0_32px_rgba(0,230,118,0.9)] active:scale-95"
+          class="inline-flex items-center justify-center rounded-full bg-[#00E676] px-3 py-1.5 sm:px-7 sm:py-2.5 text-xs sm:text-sm md:text-base font-black text-[#04200f] shadow-[0_0_24px_rgba(0,230,118,0.7)] transition-all duration-200 hover:scale-105 hover:bg-[#00c853] hover:shadow-[0_0_32px_rgba(0,230,118,0.9)] active:scale-95 whitespace-nowrap"
         >
           Buy Now!
         </a>
@@ -222,6 +222,90 @@
     }
     .brand-cta-btn:active {
       transform: translateY(0) scale(0.99) !important;
+    }
+
+    /* Video Marquee Core Styles (Inline Fallback so it is never stuck or blocked) */
+    .video-scroll-container {
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      -webkit-overflow-scrolling: touch;
+      cursor: grab;
+      scroll-behavior: auto;
+    }
+    .video-scroll-container::-webkit-scrollbar {
+      display: none;
+    }
+    .video-scroll-container:active {
+      cursor: grabbing;
+    }
+    .infinite-video-track {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      width: max-content !important;
+      gap: 14px;
+      will-change: transform, scroll-position;
+    }
+    .video-tile {
+      flex: 0 0 152px !important;
+      width: 152px !important;
+      user-select: none;
+    }
+    @media (min-width: 640px) {
+      .video-tile {
+        flex: 0 0 186px !important;
+        width: 186px !important;
+      }
+    }
+    .video-tile .vid-box {
+      position: relative;
+      aspect-ratio: 9 / 16;
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #0a0a0f;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+    .video-tile .vid-box video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .video-tile .play-btn {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: none;
+      background: var(--primary);
+      color: #1a0c05;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: transform .2s ease, opacity .2s ease, background-color .2s ease;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+      z-index: 5;
+    }
+    @media (min-width: 640px) {
+      .video-tile .play-btn {
+        width: 48px;
+        height: 48px;
+      }
+    }
+    .video-tile .vid-box:hover .play-btn {
+      transform: scale(1.08);
+    }
+    .video-tile.is-playing .play-btn {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .video-tile.is-playing .vid-box:hover .play-btn {
+      opacity: 0.9;
+      pointer-events: auto;
     }
   </style>
 
@@ -464,14 +548,14 @@
               </li>
             </ul>
 
-            <div class="mt-10 lp-cta">
+            <div class="mt-8 sm:mt-10 lp-cta">
               <a
                 href="#checkout"
                 data-buy="fe"
-                class="lp-buy brand-cta-btn group relative inline-flex min-h-[60px] items-center justify-center gap-3 overflow-hidden rounded-full px-8 py-4 text-center sm:text-lg w-full sm:w-auto"
+                class="lp-buy brand-cta-btn group relative inline-flex min-h-[48px] sm:min-h-[60px] items-center justify-center gap-2 sm:gap-3 overflow-hidden rounded-full px-5 py-3 sm:px-8 sm:py-4 text-center w-full sm:w-auto"
               >
-                <span class="text-base sm:text-lg font-black tracking-tight text-white">YES — Get Instant Access to WyvStudio for $7</span>
-                <span class="text-xl sm:text-2xl font-black text-white transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+                <span class="text-sm sm:text-lg font-black tracking-tight text-white whitespace-nowrap"><span class="hidden sm:inline">YES — </span>Get Instant Access for $7</span>
+                <span class="text-lg sm:text-2xl font-black text-white transition-transform duration-300 group-hover:translate-x-1.5 shrink-0">→</span>
               </a>
 
               <!-- ───── TRUST BAR — Row 1: Payment logos + Guarantee seal ───── -->
@@ -676,24 +760,37 @@
         <div class="mt-16 grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
           <!-- Left: Infinite Scrolling Video Showcase -->
           <div class="reveal-ready order-2 lg:order-1 lg:col-span-7" style="animation-delay: 150ms;">
-            <div class="infinite-video-wrapper overflow-hidden rounded-3xl border border-border bg-card p-3 sm:p-5 shadow-2xl relative">
-              <!-- Header Bar inside card -->
-              <div class="flex items-center justify-between px-2 pt-1 pb-3 mb-3 border-b border-border/50">
+            <div class="infinite-video-wrapper rounded-3xl border border-border bg-card p-3 sm:p-5 shadow-2xl relative overflow-hidden">
+              <!-- Header Bar inside card with Next/Prev and status -->
+              <div class="flex items-center justify-between px-2 pt-1 pb-3 mb-2 border-b border-border/50">
                 <div class="flex items-center gap-2">
                   <span class="inline-block h-2.5 w-2.5 rounded-full bg-primary animate-pulse" aria-hidden="true"></span>
                   <span class="text-xs font-bold uppercase tracking-wider text-card-foreground">Started from a sentence</span>
                 </div>
-                <span class="text-[11px] font-semibold text-muted-foreground">Hover to pause · Click to play</span>
+                <div class="flex items-center gap-1.5 sm:gap-2">
+                  <span class="text-[11px] font-semibold text-muted-foreground hidden sm:inline">Swipe or use arrows</span>
+                  <button type="button" id="marquee-prev" class="h-7 w-7 rounded-full border border-border bg-secondary/80 hover:bg-secondary text-foreground inline-flex items-center justify-center transition-colors shadow-xs" aria-label="Previous video">
+                    <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd"/></svg>
+                  </button>
+                  <button type="button" id="marquee-next" class="h-7 w-7 rounded-full border border-border bg-secondary/80 hover:bg-secondary text-foreground inline-flex items-center justify-center transition-colors shadow-xs" aria-label="Next video">
+                    <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"/></svg>
+                  </button>
+                </div>
               </div>
 
-              <!-- Infinite Marquee Track with Edge Gradients -->
-              <div class="relative overflow-hidden w-full py-1">
+              <!-- Infinite Marquee Track with Edge Gradients & Touch/Drag Container -->
+              <div class="relative w-full py-1">
                 <!-- Left fade gradient -->
-                <div class="pointer-events-none absolute inset-y-0 left-0 w-8 sm:w-14 bg-gradient-to-r from-card via-card/85 to-transparent z-10" aria-hidden="true"></div>
+                <div class="pointer-events-none absolute inset-y-0 left-0 w-6 sm:w-12 bg-gradient-to-r from-card via-card/85 to-transparent z-10" aria-hidden="true"></div>
                 <!-- Right fade gradient -->
-                <div class="pointer-events-none absolute inset-y-0 right-0 w-8 sm:w-14 bg-gradient-to-l from-card via-card/85 to-transparent z-10" aria-hidden="true"></div>
+                <div class="pointer-events-none absolute inset-y-0 right-0 w-6 sm:w-12 bg-gradient-to-l from-card via-card/85 to-transparent z-10" aria-hidden="true"></div>
 
-                <div class="infinite-video-track">
+                <div
+                  id="video-marquee-container"
+                  class="video-scroll-container w-full overflow-x-auto overflow-y-hidden py-1"
+                  style="scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch;"
+                >
+                  <div id="video-marquee-track" class="infinite-video-track flex flex-nowrap items-start gap-3 sm:gap-4 w-max">
                   <!-- SET A (8 Premier WyvStudio Videos) -->
                   <!-- 1. Launch promo -->
                   <figure class="video-tile">
@@ -919,7 +1016,17 @@
                       <span class="block text-[11px] font-medium text-muted-foreground mt-0.5">20s · UGC ad</span>
                     </figcaption>
                   </figure>
+                  </div>
                 </div>
+              </div>
+
+              <!-- Helper caption -->
+              <div class="mt-2.5 flex items-center justify-between px-2 text-[11px] text-muted-foreground border-t border-border/40 pt-2">
+                <span class="flex items-center gap-1.5">
+                  <span class="inline-block h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></span>
+                  Autoscrolling · Swipe horizontally anytime
+                </span>
+                <span class="font-medium text-card-foreground">Tap to play</span>
               </div>
             </div>
           </div>
@@ -1091,66 +1198,66 @@
 
           <ul>
             <!-- Row 1 -->
-            <li class="grid grid-cols-1 items-center gap-2 border-b border-border px-6 py-5 sm:grid-cols-12 sm:gap-4 sm:px-8">
-              <span class="text-[16px] font-semibold text-card-foreground sm:col-span-4">AI copywriting tool</span>
+            <li class="flex items-center justify-between border-b border-border px-5 py-4 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-8 sm:py-5">
+              <span class="text-[15px] sm:text-[16px] font-semibold text-card-foreground sm:col-span-4">AI copywriting tool</span>
               <div class="hidden sm:col-span-5 sm:block">
                 <div class="h-2.5 w-full rounded-full bg-muted">
                   <div class="bar-grow h-full rounded-full bg-primary/70" style="width: 14%; animation-delay: 0ms;"></div>
                 </div>
               </div>
-              <span class="text-[16px] font-bold text-muted-foreground sm:col-span-3 sm:text-right">$20 – $40</span>
+              <span class="text-[15px] sm:text-[16px] font-bold text-muted-foreground sm:col-span-3 sm:text-right">$20 – $40</span>
             </li>
             <!-- Row 2 -->
-            <li class="grid grid-cols-1 items-center gap-2 border-b border-border px-6 py-5 sm:grid-cols-12 sm:gap-4 sm:px-8">
-              <span class="text-[16px] font-semibold text-card-foreground sm:col-span-4">AI voice generator</span>
+            <li class="flex items-center justify-between border-b border-border px-5 py-4 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-8 sm:py-5">
+              <span class="text-[15px] sm:text-[16px] font-semibold text-card-foreground sm:col-span-4">AI voice generator</span>
               <div class="hidden sm:col-span-5 sm:block">
                 <div class="h-2.5 w-full rounded-full bg-muted">
                   <div class="bar-grow h-full rounded-full bg-primary/70" style="width: 34%; animation-delay: 120ms;"></div>
                 </div>
               </div>
-              <span class="text-[16px] font-bold text-muted-foreground sm:col-span-3 sm:text-right">$22 – $99</span>
+              <span class="text-[15px] sm:text-[16px] font-bold text-muted-foreground sm:col-span-3 sm:text-right">$22 – $99</span>
             </li>
             <!-- Row 3 -->
-            <li class="grid grid-cols-1 items-center gap-2 border-b border-border px-6 py-5 sm:grid-cols-12 sm:gap-4 sm:px-8">
-              <span class="text-[16px] font-semibold text-card-foreground sm:col-span-4">Stock footage</span>
+            <li class="flex items-center justify-between border-b border-border px-5 py-4 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-8 sm:py-5">
+              <span class="text-[15px] sm:text-[16px] font-semibold text-card-foreground sm:col-span-4">Stock footage</span>
               <div class="hidden sm:col-span-5 sm:block">
                 <div class="h-2.5 w-full rounded-full bg-muted">
                   <div class="bar-grow h-full rounded-full bg-primary/70" style="width: 22%; animation-delay: 240ms;"></div>
                 </div>
               </div>
-              <span class="text-[16px] font-bold text-muted-foreground sm:col-span-3 sm:text-right">$35 – $65</span>
+              <span class="text-[15px] sm:text-[16px] font-bold text-muted-foreground sm:col-span-3 sm:text-right">$35 – $65</span>
             </li>
             <!-- Row 4 -->
-            <li class="grid grid-cols-1 items-center gap-2 border-b border-border px-6 py-5 sm:grid-cols-12 sm:gap-4 sm:px-8">
-              <span class="text-[16px] font-semibold text-card-foreground sm:col-span-4">Auto-caption app</span>
+            <li class="flex items-center justify-between border-b border-border px-5 py-4 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-8 sm:py-5">
+              <span class="text-[15px] sm:text-[16px] font-semibold text-card-foreground sm:col-span-4">Auto-caption app</span>
               <div class="hidden sm:col-span-5 sm:block">
                 <div class="h-2.5 w-full rounded-full bg-muted">
                   <div class="bar-grow h-full rounded-full bg-primary/70" style="width: 10%; animation-delay: 360ms;"></div>
                 </div>
               </div>
-              <span class="text-[16px] font-bold text-muted-foreground sm:col-span-3 sm:text-right">$15 – $30</span>
+              <span class="text-[15px] sm:text-[16px] font-bold text-muted-foreground sm:col-span-3 sm:text-right">$15 – $30</span>
             </li>
             <!-- Row 5 -->
-            <li class="grid grid-cols-1 items-center gap-2 border-b border-border px-6 py-5 sm:grid-cols-12 sm:gap-4 sm:px-8">
-              <span class="text-[16px] font-semibold text-card-foreground sm:col-span-4">Video editing software</span>
+            <li class="flex items-center justify-between border-b border-border px-5 py-4 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-8 sm:py-5">
+              <span class="text-[15px] sm:text-[16px] font-semibold text-card-foreground sm:col-span-4">Video editing software</span>
               <div class="hidden sm:col-span-5 sm:block">
                 <div class="h-2.5 w-full rounded-full bg-muted">
                   <div class="bar-grow h-full rounded-full bg-primary/70" style="width: 19%; animation-delay: 480ms;"></div>
                 </div>
               </div>
-              <span class="text-[16px] font-bold text-muted-foreground sm:col-span-3 sm:text-right">$20 – $55</span>
+              <span class="text-[15px] sm:text-[16px] font-bold text-muted-foreground sm:col-span-3 sm:text-right">$20 – $55</span>
             </li>
           </ul>
 
           <!-- Total Row -->
-          <div class="grid grid-cols-1 items-center gap-2 bg-foreground px-6 py-7 sm:grid-cols-12 sm:gap-4 sm:px-8">
-            <span class="text-[17px] font-bold text-background sm:col-span-4">Total</span>
+          <div class="flex items-center justify-between bg-foreground px-5 py-5 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-8 sm:py-7">
+            <span class="text-[16px] sm:text-[17px] font-bold text-background sm:col-span-4">Total</span>
             <div class="hidden sm:col-span-5 sm:block">
               <div class="h-2.5 w-full rounded-full bg-background/20">
                 <div class="bar-grow h-full w-full rounded-full bg-primary" style="animation-delay: 700ms;"></div>
               </div>
             </div>
-            <span class="text-xl font-extrabold text-primary sm:col-span-3 sm:text-right">$112 – $289 a month</span>
+            <span class="text-lg sm:text-xl font-extrabold text-primary sm:col-span-3 sm:text-right">$112 – $289/mo</span>
           </div>
         </div>
 
@@ -1307,7 +1414,7 @@
 
           <!-- Sticky Price Card -->
           <div class="reveal-ready lg:sticky lg:top-24 lg:col-span-5" style="animation-delay: 150ms;">
-            <div class="rounded-3xl bg-foreground p-8 text-background shadow-2xl sm:p-10 border border-border/20">
+            <div class="rounded-3xl bg-foreground p-5 sm:p-8 md:p-10 text-background shadow-2xl border border-border/20">
               <div class="inline-flex items-center gap-2 rounded-full bg-primary/20 px-3 py-1 text-xs font-bold uppercase tracking-wider text-accent">
                 <span class="h-1.5 w-1.5 rounded-full bg-accent animate-pulse"></span>
                 Launch Price — Limited Time
@@ -1351,14 +1458,14 @@
                 </div>
               </div>
 
-              <div class="mt-7 lp-cta">
+              <div class="mt-6 sm:mt-7 lp-cta">
                 <a
                   href="#checkout"
                   data-buy="fe"
-                  class="lp-buy brand-cta-btn group relative inline-flex min-h-[58px] items-center justify-center gap-3 overflow-hidden rounded-full px-8 py-4 text-center sm:text-lg w-full"
+                  class="lp-buy brand-cta-btn group relative inline-flex min-h-[48px] sm:min-h-[58px] items-center justify-center gap-2 sm:gap-3 overflow-hidden rounded-full px-4 py-3 sm:px-8 sm:py-4 text-center w-full"
                 >
-                  <span class="text-base sm:text-lg font-black tracking-tight text-white">Get instant access for $7</span>
-                  <span class="text-xl sm:text-2xl font-black text-white transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+                  <span class="text-sm sm:text-base md:text-lg font-black tracking-tight text-white whitespace-nowrap">Get instant access for $7</span>
+                  <span class="text-base sm:text-2xl font-black text-white transition-transform duration-300 group-hover:translate-x-1.5 shrink-0">→</span>
                 </a>
               </div>
 
@@ -1590,10 +1697,10 @@
           <a
             href="#checkout"
             data-buy="fe"
-            class="lp-buy sheen group relative inline-flex min-h-[56px] items-center justify-center gap-3 overflow-hidden rounded-full bg-primary px-8 py-4 text-base font-bold text-primary-foreground shadow-xl shadow-primary/25 transition-transform duration-300 hover:-translate-y-0.5 sm:text-lg w-full sm:w-auto text-center"
+            class="lp-buy sheen group relative inline-flex min-h-[48px] sm:min-h-[56px] items-center justify-center gap-2 sm:gap-3 overflow-hidden rounded-full bg-primary px-5 py-3 sm:px-8 sm:py-4 text-center w-full sm:w-auto shadow-xl shadow-primary/25 transition-transform duration-300 hover:-translate-y-0.5"
           >
-            <span>Claim your WyvStudio access for $7</span>
-            <svg class="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor">
+            <span class="text-sm sm:text-lg font-black text-primary-foreground tracking-tight whitespace-nowrap"><span class="hidden sm:inline">Claim your </span>WyvStudio access for $7</span>
+            <svg class="h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-1 shrink-0 text-primary-foreground" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd" />
             </svg>
           </a>
@@ -1829,6 +1936,6 @@
   </div>
 
   <!-- Funnel Logic & Interactive Animation Engine -->
-  <script src="launch.js?v=5" defer></script>
+  <script src="launch.js?v=12" defer></script>
 </body>
 </html>

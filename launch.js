@@ -284,11 +284,135 @@
     }
   }
 
-  // 9. Infinite Video Marquee Playback & Interactivity
-  function initMarqueeVideoPlay() {
+  // 9. Infinite Video Marquee Engine (Auto-scroll + Manual Touch/Drag + Video Playback)
+  function initInfiniteVideoMarquee() {
     var wrapper = document.querySelector('.infinite-video-wrapper');
     if (!wrapper) return;
 
+    var container = document.getElementById('video-marquee-container') || wrapper.querySelector('.video-scroll-container');
+    var track = document.getElementById('video-marquee-track') || wrapper.querySelector('.infinite-video-track');
+    if (!container || !track) return;
+
+    var isPaused = false;
+    var isInteracting = false;
+    var resumeTimer = null;
+    var speed = 0.85; // ~50px/second smooth continuous scroll
+    var halfWidth = 0;
+
+    function measureHalfWidth() {
+      // Set A and Set B are identical duplicates
+      halfWidth = track.scrollWidth / 2;
+    }
+
+    measureHalfWidth();
+    window.addEventListener('resize', measureHalfWidth);
+    window.addEventListener('load', measureHalfWidth);
+    setTimeout(measureHalfWidth, 600);
+
+    var lastTimestamp = performance.now();
+
+    function autoScrollStep(now) {
+      var delta = (now - lastTimestamp) / 16.67;
+      lastTimestamp = now;
+
+      if (!isPaused && !isInteracting && halfWidth > 0) {
+        container.scrollLeft += speed * Math.min(delta, 2.5);
+        if (container.scrollLeft >= halfWidth) {
+          container.scrollLeft -= halfWidth;
+        }
+      }
+      requestAnimationFrame(autoScrollStep);
+    }
+    requestAnimationFrame(autoScrollStep);
+
+    function startInteraction() {
+      isInteracting = true;
+      if (resumeTimer) clearTimeout(resumeTimer);
+    }
+
+    function endInteraction() {
+      if (resumeTimer) clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(function () {
+        if (halfWidth > 0) {
+          if (container.scrollLeft >= halfWidth) {
+            container.scrollLeft -= halfWidth;
+          } else if (container.scrollLeft <= 0) {
+            container.scrollLeft += halfWidth;
+          }
+        }
+        isInteracting = false;
+      }, 1600);
+    }
+
+    // Touch events for mobile swiping
+    container.addEventListener('touchstart', startInteraction, { passive: true });
+    container.addEventListener('touchmove', startInteraction, { passive: true });
+    container.addEventListener('touchend', endInteraction, { passive: true });
+
+    // Wheel event
+    container.addEventListener('wheel', function () {
+      startInteraction();
+      endInteraction();
+    }, { passive: true });
+
+    // Mouse drag support for desktop
+    var isMouseDown = false;
+    var startX = 0;
+    var startScrollLeft = 0;
+    var hasDragged = false;
+
+    container.addEventListener('mousedown', function (e) {
+      isMouseDown = true;
+      hasDragged = false;
+      startInteraction();
+      startX = e.pageX - container.offsetLeft;
+      startScrollLeft = container.scrollLeft;
+    });
+
+    window.addEventListener('mousemove', function (e) {
+      if (!isMouseDown) return;
+      var x = e.pageX - container.offsetLeft;
+      var walk = (x - startX) * 1.4;
+      if (Math.abs(walk) > 4) {
+        hasDragged = true;
+      }
+      container.scrollLeft = startScrollLeft - walk;
+    });
+
+    window.addEventListener('mouseup', function () {
+      if (isMouseDown) {
+        isMouseDown = false;
+        endInteraction();
+      }
+    });
+
+    // Hover pause
+    container.addEventListener('mouseenter', function () { isPaused = true; });
+    container.addEventListener('mouseleave', function () { if (!isMouseDown) isPaused = false; });
+
+    // Prev / Next button listeners
+    var prevBtn = document.getElementById('marquee-prev');
+    var nextBtn = document.getElementById('marquee-next');
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        startInteraction();
+        container.scrollBy({ left: -220, behavior: 'smooth' });
+        endInteraction();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        startInteraction();
+        container.scrollBy({ left: 220, behavior: 'smooth' });
+        endInteraction();
+      });
+    }
+
+    // Individual video tile click & play controls
     var tiles = wrapper.querySelectorAll('.video-tile');
     tiles.forEach(function (tile) {
       var vid = tile.querySelector('video');
@@ -296,6 +420,7 @@
       if (!vid) return;
 
       function togglePlay(e) {
+        if (hasDragged) return; // Ignore clicks if user was dragging
         if (e) {
           e.preventDefault();
           e.stopPropagation();
@@ -312,18 +437,18 @@
           vid.muted = false;
           vid.play().then(function () {
             tile.classList.add('is-playing');
-            wrapper.classList.add('is-paused');
+            isPaused = true;
           }).catch(function () {
             vid.muted = true;
             vid.play().then(function () {
               tile.classList.add('is-playing');
-              wrapper.classList.add('is-paused');
+              isPaused = true;
             }).catch(function () {});
           });
         } else {
           vid.pause();
           tile.classList.remove('is-playing');
-          wrapper.classList.remove('is-paused');
+          isPaused = false;
         }
       }
 
@@ -331,7 +456,7 @@
       vid.addEventListener('click', togglePlay);
       vid.addEventListener('ended', function () {
         tile.classList.remove('is-playing');
-        wrapper.classList.remove('is-paused');
+        isPaused = false;
         vid.currentTime = 0;
       });
     });
@@ -347,7 +472,7 @@
       initFaq();
       initCookieNotice();
       initVideoAutoplay();
-      initMarqueeVideoPlay();
+      initInfiniteVideoMarquee();
     });
   } else {
     initCutHeadings();
@@ -357,7 +482,7 @@
     initFaq();
     initCookieNotice();
     initVideoAutoplay();
-    initMarqueeVideoPlay();
+    initInfiniteVideoMarquee();
   }
 
 })();

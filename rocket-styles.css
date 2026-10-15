@@ -233,39 +233,43 @@ h1, h2, h3, h4, h5, h6, p {
   }
 }
 
-/* Infinite Video Marquee */
-@keyframes infiniteMarquee {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-50%, 0, 0);
-  }
+/* Infinite Video Marquee & Touch Scroller */
+.video-scroll-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+  scroll-behavior: auto;
+}
+
+.video-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.video-scroll-container:active {
+  cursor: grabbing;
 }
 
 .infinite-video-track {
-  display: flex;
-  width: max-content;
-  gap: 16px;
-  animation: infiniteMarquee 42s linear infinite;
-  will-change: transform;
-}
-
-.infinite-video-wrapper:hover .infinite-video-track,
-.infinite-video-wrapper.is-paused .infinite-video-track {
-  animation-play-state: paused;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  width: max-content !important;
+  gap: 14px;
+  will-change: transform, scroll-position;
 }
 
 .video-tile {
-  flex: 0 0 176px;
-  width: 176px;
+  flex: 0 0 152px !important;
+  width: 152px !important;
   user-select: none;
 }
 
 @media (min-width: 640px) {
   .video-tile {
-    flex: 0 0 186px;
-    width: 186px;
+    flex: 0 0 186px !important;
+    width: 186px !important;
   }
 }
 
@@ -276,6 +280,7 @@ h1, h2, h3, h4, h5, h6, p {
   border-radius: 16px;
   overflow: hidden;
   background: #0a0a0f;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
 }
 
 .video-tile .vid-box video {
@@ -289,8 +294,8 @@ h1, h2, h3, h4, h5, h6, p {
   position: absolute;
   inset: 0;
   margin: auto;
-  width: 48px;
-  height: 48px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   border: none;
   background: var(--primary);
@@ -298,8 +303,16 @@ h1, h2, h3, h4, h5, h6, p {
   cursor: pointer;
   display: grid;
   place-items: center;
-  transition: transform .2s ease, opacity .2s ease;
+  transition: transform .2s ease, opacity .2s ease, background-color .2s ease;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+  z-index: 5;
+}
+
+@media (min-width: 640px) {
+  .video-tile .play-btn {
+    width: 48px;
+    height: 48px;
+  }
 }
 
 .video-tile .vid-box:hover .play-btn {
