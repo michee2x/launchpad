@@ -30,27 +30,29 @@
 
 .dark,
 [data-theme="dark"] {
-  --background: #14100d;
-  --foreground: #f6efe7;
-  --card: #1e1814;
-  --card-foreground: #f6efe7;
-  --primary: #ff6b35;
-  --primary-foreground: #1a0b03;
-  --secondary: #26201b;
-  --secondary-foreground: #f6efe7;
-  --accent: #ff9466;
-  --accent-foreground: #1a0b03;
-  --muted: #2b231d;
-  --muted-foreground: #b3a595;
-  --border: #38302a;
-  --input: #38302a;
-  --ring: #ff6b35;
-  --success: #52c685;
-  --success-foreground: #04170c;
-  --warning: #f0b04a;
-  --warning-foreground: #1c1203;
-  --destructive: #ee6a60;
-  --destructive-foreground: #1c0603;
+  --background: #0E1013;
+  --foreground: #F2EEE6;
+  --primary: #FF6B35;
+  --primary-foreground: #1A0C05;
+  --secondary: #1A1D22;
+  --secondary-foreground: #F2EEE6;
+  --accent: #D9F24A;
+  --accent-foreground: #11140A;
+  --muted: #16191E;
+  --muted-foreground: #9A978F;
+  --card: #15181D;
+  --card-foreground: #F2EEE6;
+  --border: #2A2E35;
+  --input: #2A2E35;
+  --ring: #FF6B35;
+  --success: #5FD38A;
+  --success-foreground: #06130B;
+  --warning: #F2B84B;
+  --warning-foreground: #1A1204;
+  --destructive: #FF7A63;
+  --destructive-foreground: #1A0702;
+  --ink: #07080A;
+  --ink-foreground: #F2EEE6;
 }
 
 /* Base resets & typography */
