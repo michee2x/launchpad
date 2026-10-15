@@ -136,8 +136,22 @@
         </div>
       </div>
 
-      <!-- Right: Green Buy Now Button -->
-      <div>
+      <!-- Right: Green Buy Now Button + Theme Toggle -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button
+          type="button"
+          aria-label="Switch theme"
+          class="theme-toggle-btn inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur transition-colors hover:bg-white/20"
+        >
+          <!-- Sun icon (shown in dark mode) -->
+          <svg class="theme-icon-sun h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+          <!-- Moon icon (shown in light mode) -->
+          <svg class="theme-icon-moon h-4 w-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
         <a
           href="#checkout"
           class="inline-flex items-center justify-center rounded-full bg-[#00E676] px-4 py-2 sm:px-7 sm:py-2.5 text-xs sm:text-sm md:text-base font-black text-[#04200f] shadow-[0_0_24px_rgba(0,230,118,0.7)] transition-all duration-200 hover:scale-105 hover:bg-[#00c853] hover:shadow-[0_0_32px_rgba(0,230,118,0.9)] active:scale-95"
@@ -165,14 +179,14 @@
           type="button"
           id="theme-toggle"
           aria-label="Switch theme"
-          class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card/70 text-muted-foreground backdrop-blur transition-colors hover:bg-secondary hover:text-foreground"
+          class="theme-toggle-btn inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card/70 text-muted-foreground backdrop-blur transition-colors hover:bg-secondary hover:text-foreground"
         >
           <!-- Sun icon (shown in dark mode) -->
-          <svg id="theme-icon-sun" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg id="theme-icon-sun" class="theme-icon-sun h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
           </svg>
           <!-- Moon icon (shown in light mode) -->
-          <svg id="theme-icon-moon" class="h-4 w-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg id="theme-icon-moon" class="theme-icon-moon h-4 w-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
           </svg>
         </button>
@@ -293,31 +307,44 @@
 
     /* Theme toggle — single authoritative controller */
     (function () {
-      var btn = document.getElementById('theme-toggle');
-      if (!btn) return;
-      btn.dataset.themeBound = 'true';
-      var sunIcon  = document.getElementById('theme-icon-sun');
-      var moonIcon = document.getElementById('theme-icon-moon');
-
-      function sync() {
-        var isDark = document.documentElement.classList.contains('dark');
-        if (sunIcon)  sunIcon.classList.toggle('hidden', !isDark);
-        if (moonIcon) moonIcon.classList.toggle('hidden', isDark);
-        btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-      }
-
-      btn.addEventListener('click', function () {
-        var isDark = document.documentElement.classList.toggle('dark');
-        var theme = isDark ? 'dark' : 'light';
+      function applyTheme(theme) {
+        var isDark = theme === 'dark';
+        document.documentElement.classList.toggle('dark', isDark);
         document.documentElement.setAttribute('data-theme', theme);
         try {
           localStorage.setItem('wyv-theme', theme);
           localStorage.setItem('wyv_theme', theme);
         } catch (e) {}
-        sync();
+
+        var sunIcons = document.querySelectorAll('.theme-icon-sun, #theme-icon-sun');
+        var moonIcons = document.querySelectorAll('.theme-icon-moon, #theme-icon-moon');
+        sunIcons.forEach(function (icon) { icon.classList.toggle('hidden', !isDark); });
+        moonIcons.forEach(function (icon) { icon.classList.toggle('hidden', isDark); });
+
+        var toggles = document.querySelectorAll('#theme-toggle, .theme-toggle-btn');
+        toggles.forEach(function (btn) {
+          btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+        });
+      }
+
+      window.wyvToggleTheme = function () {
+        var isDark = document.documentElement.classList.contains('dark');
+        applyTheme(isDark ? 'light' : 'dark');
+      };
+
+      // Delegated click listener so any click on the button or nested SVG/path triggers reliably
+      document.addEventListener('click', function (e) {
+        var toggle = e.target.closest('#theme-toggle, .theme-toggle-btn');
+        if (toggle) {
+          e.preventDefault();
+          e.stopPropagation();
+          window.wyvToggleTheme();
+        }
       });
 
-      sync();
+      // Synchronize icons immediately with current DOM state
+      var initialIsDark = document.documentElement.classList.contains('dark');
+      applyTheme(initialIsDark ? 'dark' : 'light');
     })();
   </script>
 
@@ -502,47 +529,21 @@
     </section>
 
     <!-- PROBLEM SECTION -->
-    <section class="relative overflow-hidden bg-secondary/50 py-20 sm:py-24 border-y border-border/50">
-      <!-- Subtle ambient depth -->
-      <div class="pointer-events-none absolute left-1/2 top-10 h-[380px] w-[380px] -translate-x-1/2 rounded-full bg-primary/5 blur-[120px]" aria-hidden="true"></div>
+    <section class="relative overflow-hidden py-20 sm:py-24 bg-secondary/35 dark:bg-[#12151b]">
+      <!-- Subtle ambient depth glow (not pitch black) -->
+      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_30%,rgba(255,107,53,0.04),transparent_70%)]" aria-hidden="true"></div>
 
       <div class="relative mx-auto max-w-7xl px-4 sm:px-6">
-        <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
-          <div class="lg:col-span-7">
+        <div class="grid gap-8 lg:grid-cols-12 lg:gap-14 items-center">
+          <div class="lg:col-span-6">
             <h2
               data-cut-heading
               data-cut-text="The rules of video advertising changed."
               data-cut-accent="Most advertisers are paying for it."
               class="text-display font-extrabold text-foreground"
             ></h2>
-
-            <!-- Showcase Video to fill empty space -->
-            <div class="reveal-ready mt-8 max-w-[520px]" style="animation-delay: 150ms;">
-              <div class="relative overflow-hidden rounded-2xl border border-border bg-card shadow-xl transition-all duration-300 hover:shadow-2xl">
-                <div class="relative aspect-video w-full overflow-hidden bg-foreground">
-                  <video
-                    class="h-full w-full object-cover"
-                    src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b10.mp4"
-                    poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b10.jpg"
-                    muted
-                    loop
-                    playsinline
-                    controls
-                    preload="none"
-                    data-autoplay
-                  ></video>
-                </div>
-                <div class="flex items-center justify-between px-4 py-3 bg-card border-t border-border">
-                  <div class="flex items-center gap-2.5">
-                    <span class="inline-block h-2.5 w-2.5 rounded-full bg-primary animate-pulse"></span>
-                    <span class="text-xs font-bold uppercase tracking-wider text-card-foreground">Sample Ad: 3 Hooks That Stop The Scroll</span>
-                  </div>
-                  <span class="text-xs font-semibold text-muted-foreground">30s · WyvStudio</span>
-                </div>
-              </div>
-            </div>
           </div>
-          <div class="space-y-5 lg:col-span-5">
+          <div class="space-y-4 lg:col-span-6">
             <div class="reveal-ready" style="animation-delay: 0ms;">
               <p class="text-[17px] leading-relaxed text-muted-foreground">
                 A few years ago one decent video ad could carry a campaign for months. Not any more. Meta and TikTok now find your buyers from the creative itself, so the thing that decides whether a campaign scales is simple: how fast can you test new angles?
@@ -556,26 +557,26 @@
           </div>
         </div>
 
-        <div class="reveal-ready mt-20 sm:mt-24" style="animation-delay: 0ms;">
+        <div class="reveal-ready mt-16 sm:mt-20" style="animation-delay: 0ms;">
           <h3 class="max-w-2xl text-xl font-bold tracking-tight text-foreground sm:text-2xl">
             The three traps that keep you from testing more creatives
           </h3>
         </div>
 
         <!-- 3 Trap Cards -->
-        <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <div class="mt-8 grid gap-6 md:grid-cols-3">
           <!-- Trap 1 -->
           <div class="reveal-ready" style="animation-delay: 0ms;">
-            <article class="flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg">
-              <div class="overflow-hidden rounded-2xl border border-border/60 bg-muted/20">
+            <article class="flex h-full flex-col overflow-hidden rounded-3xl border border-border/60 bg-card dark:bg-[#161a22] p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:hover:border-primary/40">
+              <div class="overflow-hidden rounded-2xl">
                 <img
                   src="trap-creator-lottery.jpg"
-                  alt="The creator lottery"
+                  alt="1. The creator lottery"
                   class="aspect-[16/9] w-full object-cover transition-transform duration-500 hover:scale-105"
                   loading="lazy"
                 />
               </div>
-              <h4 class="mt-5 text-xl font-bold text-card-foreground">The creator lottery</h4>
+              <h4 class="mt-5 text-xl font-bold text-card-foreground">1. The creator lottery</h4>
               <p class="mt-3 text-[15px] leading-relaxed text-muted-foreground">
                 Half the creators never reply. The rest want money up front, take two weeks, mispronounce your product and deliver a flat read. Revisions cost extra. One video, a few hundred dollars, and it's dead in two days.
               </p>
@@ -584,16 +585,16 @@
 
           <!-- Trap 2 -->
           <div class="reveal-ready slot-offset-md" style="animation-delay: 120ms;">
-            <article class="flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg">
-              <div class="overflow-hidden rounded-2xl border border-border/60 bg-muted/20">
+            <article class="flex h-full flex-col overflow-hidden rounded-3xl border border-border/60 bg-card dark:bg-[#161a22] p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:hover:border-primary/40">
+              <div class="overflow-hidden rounded-2xl">
                 <img
                   src="trap-editing-swamp.jpg"
-                  alt="The editing swamp"
+                  alt="2. The editing swamp"
                   class="aspect-[16/9] w-full object-cover transition-transform duration-500 hover:scale-105"
                   loading="lazy"
                 />
               </div>
-              <h4 class="mt-5 text-xl font-bold text-card-foreground">The editing swamp</h4>
+              <h4 class="mt-5 text-xl font-bold text-card-foreground">2. The editing swamp</h4>
               <p class="mt-3 text-[15px] leading-relaxed text-muted-foreground">
                 Hours hunting stock footage, recording voiceovers again and again, slicing audio, fixing auto-captions. Five hours later you have one 30-second video and no time left for the offer or the numbers.
               </p>
@@ -602,16 +603,16 @@
 
           <!-- Trap 3 -->
           <div class="reveal-ready" style="animation-delay: 240ms;">
-            <article class="flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg">
-              <div class="overflow-hidden rounded-2xl border border-border/60 bg-muted/20">
+            <article class="flex h-full flex-col overflow-hidden rounded-3xl border border-border/60 bg-card dark:bg-[#161a22] p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:hover:border-primary/40">
+              <div class="overflow-hidden rounded-2xl">
                 <img
                   src="trap-bloated-subscription.jpg"
-                  alt="The bloated subscription"
+                  alt="3. The bloated subscription"
                   class="aspect-[16/9] w-full object-cover transition-transform duration-500 hover:scale-105"
                   loading="lazy"
                 />
               </div>
-              <h4 class="mt-5 text-xl font-bold text-card-foreground">The bloated subscription</h4>
+              <h4 class="mt-5 text-xl font-bold text-card-foreground">3. The bloated subscription</h4>
               <p class="mt-3 text-[15px] leading-relaxed text-muted-foreground">
                 $150 to $250 a month for avatars that stare, voices that sound fake, and credits that vanish on a video you can't use.
               </p>
@@ -673,26 +674,257 @@
 
         <!-- Step 2 -->
         <div class="mt-16 grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
+          <!-- Left: Infinite Scrolling Video Showcase -->
           <div class="reveal-ready order-2 lg:order-1 lg:col-span-7" style="animation-delay: 150ms;">
-            <div class="overflow-hidden rounded-3xl border border-border bg-card p-2 shadow-2xl sm:p-3">
-              <div class="relative aspect-video w-full overflow-hidden rounded-2xl bg-foreground">
-                <video
-                  class="h-full w-full object-cover"
-                  src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b05.mp4"
-                  poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b05.jpg"
-                  muted
-                  loop
-                  playsinline
-                  controls
-                  preload="none"
-                  data-autoplay
-                ></video>
-                <div class="pointer-events-none absolute left-4 top-4 rounded-full bg-background/85 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-foreground backdrop-blur">
-                  AI Video Engine
+            <div class="infinite-video-wrapper overflow-hidden rounded-3xl border border-border bg-card p-3 sm:p-5 shadow-2xl relative">
+              <!-- Header Bar inside card -->
+              <div class="flex items-center justify-between px-2 pt-1 pb-3 mb-3 border-b border-border/50">
+                <div class="flex items-center gap-2">
+                  <span class="inline-block h-2.5 w-2.5 rounded-full bg-primary animate-pulse" aria-hidden="true"></span>
+                  <span class="text-xs font-bold uppercase tracking-wider text-card-foreground">Started from a sentence</span>
+                </div>
+                <span class="text-[11px] font-semibold text-muted-foreground">Hover to pause · Click to play</span>
+              </div>
+
+              <!-- Infinite Marquee Track with Edge Gradients -->
+              <div class="relative overflow-hidden w-full py-1">
+                <!-- Left fade gradient -->
+                <div class="pointer-events-none absolute inset-y-0 left-0 w-8 sm:w-14 bg-gradient-to-r from-card via-card/85 to-transparent z-10" aria-hidden="true"></div>
+                <!-- Right fade gradient -->
+                <div class="pointer-events-none absolute inset-y-0 right-0 w-8 sm:w-14 bg-gradient-to-l from-card via-card/85 to-transparent z-10" aria-hidden="true"></div>
+
+                <div class="infinite-video-track">
+                  <!-- SET A (8 Premier WyvStudio Videos) -->
+                  <!-- 1. Launch promo -->
+                  <figure class="video-tile">
+                    <div class="vid-box">
+                      <video src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b01.mp4" poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b01.jpg" preload="none" playsinline loop muted></video>
+                      <button type="button" class="play-btn" aria-label="Play: Launch promo in bold kinetic type">
+                        <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current ml-0.5" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                      </button>
+                    </div>
+                    <figcaption class="mt-2.5">
+                      <span class="block text-xs font-bold leading-tight text-card-foreground truncate">Launch promo in kinetic type</span>
+                      <span class="block text-[11px] font-medium text-muted-foreground mt-0.5">20s · TikTok ad</span>
+                    </figcaption>
+                  </figure>
+
+                  <!-- 2. 3 hooks -->
+                  <figure class="video-tile">
+                    <div class="vid-box">
+                      <video src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b10.mp4" poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b10.jpg" preload="none" playsinline loop muted></video>
+                      <button type="button" class="play-btn" aria-label="Play: 3 hooks that stop the scroll">
+                        <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current ml-0.5" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                      </button>
+                    </div>
+                    <figcaption class="mt-2.5">
+                      <span class="block text-xs font-bold leading-tight text-card-foreground truncate">3 hooks that stop scroll</span>
+                      <span class="block text-[11px] font-medium text-muted-foreground mt-0.5">30s · Meta ad</span>
+                    </figcaption>
+                  </figure>
+
+                  <!-- 3. $100 a month -->
+                  <figure class="video-tile">
+                    <div class="vid-box">
+                      <video src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/s100.mp4" poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/s100.jpg" preload="none" playsinline loop muted></video>
+                      <button type="button" class="play-btn" aria-label="Play: $100 a month for 30 years, as a data story">
+                        <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current ml-0.5" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                      </button>
+                    </div>
+                    <figcaption class="mt-2.5">
+                      <span class="block text-xs font-bold leading-tight text-card-foreground truncate">$100/mo for 30 yrs (data story)</span>
+                      <span class="block text-[11px] font-medium text-muted-foreground mt-0.5">20s · YouTube Shorts</span>
+                    </figcaption>
+                  </figure>
+
+                  <!-- 4. Northside Roasters -->
+                  <figure class="video-tile">
+                    <div class="vid-box">
+                      <video src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/l30703d4a.mp4" poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/l30703d4a.jpg" preload="none" playsinline loop muted></video>
+                      <button type="button" class="play-btn" aria-label="Play: Northside Roasters coffee subscription">
+                        <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current ml-0.5" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                      </button>
+                    </div>
+                    <figcaption class="mt-2.5">
+                      <span class="block text-xs font-bold leading-tight text-card-foreground truncate">Northside Roasters coffee</span>
+                      <span class="block text-[11px] font-medium text-muted-foreground mt-0.5">15s · Instagram Reels</span>
+                    </figcaption>
+                  </figure>
+
+                  <!-- 5. Small shop owners -->
+                  <figure class="video-tile">
+                    <div class="vid-box">
+                      <video src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/le0c668f6.mp4" poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/le0c668f6.jpg" preload="none" playsinline loop muted></video>
+                      <button type="button" class="play-btn" aria-label="Play: For small shop owners, with 3D icons">
+                        <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current ml-0.5" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                      </button>
+                    </div>
+                    <figcaption class="mt-2.5">
+                      <span class="block text-xs font-bold leading-tight text-card-foreground truncate">Shop owners with 3D icons</span>
+                      <span class="block text-[11px] font-medium text-muted-foreground mt-0.5">15s · Social ad</span>
+                    </figcaption>
+                  </figure>
+
+                  <!-- 6. Kinetic launch -->
+                  <figure class="video-tile">
+                    <div class="vid-box">
+                      <video src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/l540.mp4" poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/l540.jpg" preload="none" playsinline loop muted></video>
+                      <button type="button" class="play-btn" aria-label="Play: Kinetic launch teaser">
+                        <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current ml-0.5" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                      </button>
+                    </div>
+                    <figcaption class="mt-2.5">
+                      <span class="block text-xs font-bold leading-tight text-card-foreground truncate">Kinetic launch teaser</span>
+                      <span class="block text-[11px] font-medium text-muted-foreground mt-0.5">15s · Motion graphics</span>
+                    </figcaption>
+                  </figure>
+
+                  <!-- 7. Dewbloom serum -->
+                  <figure class="video-tile">
+                    <div class="vid-box">
+                      <video src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b03.mp4" poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b03.jpg" preload="none" playsinline loop muted></video>
+                      <button type="button" class="play-btn" aria-label="Play: Dewbloom serum product ad">
+                        <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current ml-0.5" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                      </button>
+                    </div>
+                    <figcaption class="mt-2.5">
+                      <span class="block text-xs font-bold leading-tight text-card-foreground truncate">Dewbloom serum product ad</span>
+                      <span class="block text-[11px] font-medium text-muted-foreground mt-0.5">15s · Product ad</span>
+                    </figcaption>
+                  </figure>
+
+                  <!-- 8. Creator testimonial -->
+                  <figure class="video-tile">
+                    <div class="vid-box">
+                      <video src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b05.mp4" poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b05.jpg" preload="none" playsinline loop muted></video>
+                      <button type="button" class="play-btn" aria-label="Play: Creator testimonial UGC ad">
+                        <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current ml-0.5" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                      </button>
+                    </div>
+                    <figcaption class="mt-2.5">
+                      <span class="block text-xs font-bold leading-tight text-card-foreground truncate">Creator testimonial UGC ad</span>
+                      <span class="block text-[11px] font-medium text-muted-foreground mt-0.5">20s · UGC ad</span>
+                    </figcaption>
+                  </figure>
+
+                  <!-- SET B (Seamless duplicate for infinite smooth loop) -->
+                  <!-- 1b. Launch promo -->
+                  <figure class="video-tile" aria-hidden="true">
+                    <div class="vid-box">
+                      <video src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b01.mp4" poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b01.jpg" preload="none" playsinline loop muted></video>
+                      <button type="button" class="play-btn" tabindex="-1" aria-label="Play: Launch promo in bold kinetic type">
+                        <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current ml-0.5" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                      </button>
+                    </div>
+                    <figcaption class="mt-2.5">
+                      <span class="block text-xs font-bold leading-tight text-card-foreground truncate">Launch promo in kinetic type</span>
+                      <span class="block text-[11px] font-medium text-muted-foreground mt-0.5">20s · TikTok ad</span>
+                    </figcaption>
+                  </figure>
+
+                  <!-- 2b. 3 hooks -->
+                  <figure class="video-tile" aria-hidden="true">
+                    <div class="vid-box">
+                      <video src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b10.mp4" poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b10.jpg" preload="none" playsinline loop muted></video>
+                      <button type="button" class="play-btn" tabindex="-1" aria-label="Play: 3 hooks that stop the scroll">
+                        <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current ml-0.5" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                      </button>
+                    </div>
+                    <figcaption class="mt-2.5">
+                      <span class="block text-xs font-bold leading-tight text-card-foreground truncate">3 hooks that stop scroll</span>
+                      <span class="block text-[11px] font-medium text-muted-foreground mt-0.5">30s · Meta ad</span>
+                    </figcaption>
+                  </figure>
+
+                  <!-- 3b. $100 a month -->
+                  <figure class="video-tile" aria-hidden="true">
+                    <div class="vid-box">
+                      <video src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/s100.mp4" poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/s100.jpg" preload="none" playsinline loop muted></video>
+                      <button type="button" class="play-btn" tabindex="-1" aria-label="Play: $100 a month for 30 years, as a data story">
+                        <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current ml-0.5" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                      </button>
+                    </div>
+                    <figcaption class="mt-2.5">
+                      <span class="block text-xs font-bold leading-tight text-card-foreground truncate">$100/mo for 30 yrs (data story)</span>
+                      <span class="block text-[11px] font-medium text-muted-foreground mt-0.5">20s · YouTube Shorts</span>
+                    </figcaption>
+                  </figure>
+
+                  <!-- 4b. Northside Roasters -->
+                  <figure class="video-tile" aria-hidden="true">
+                    <div class="vid-box">
+                      <video src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/l30703d4a.mp4" poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/l30703d4a.jpg" preload="none" playsinline loop muted></video>
+                      <button type="button" class="play-btn" tabindex="-1" aria-label="Play: Northside Roasters coffee subscription">
+                        <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current ml-0.5" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                      </button>
+                    </div>
+                    <figcaption class="mt-2.5">
+                      <span class="block text-xs font-bold leading-tight text-card-foreground truncate">Northside Roasters coffee</span>
+                      <span class="block text-[11px] font-medium text-muted-foreground mt-0.5">15s · Instagram Reels</span>
+                    </figcaption>
+                  </figure>
+
+                  <!-- 5b. Small shop owners -->
+                  <figure class="video-tile" aria-hidden="true">
+                    <div class="vid-box">
+                      <video src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/le0c668f6.mp4" poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/le0c668f6.jpg" preload="none" playsinline loop muted></video>
+                      <button type="button" class="play-btn" tabindex="-1" aria-label="Play: For small shop owners, with 3D icons">
+                        <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current ml-0.5" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                      </button>
+                    </div>
+                    <figcaption class="mt-2.5">
+                      <span class="block text-xs font-bold leading-tight text-card-foreground truncate">Shop owners with 3D icons</span>
+                      <span class="block text-[11px] font-medium text-muted-foreground mt-0.5">15s · Social ad</span>
+                    </figcaption>
+                  </figure>
+
+                  <!-- 6b. Kinetic launch -->
+                  <figure class="video-tile" aria-hidden="true">
+                    <div class="vid-box">
+                      <video src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/l540.mp4" poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/l540.jpg" preload="none" playsinline loop muted></video>
+                      <button type="button" class="play-btn" tabindex="-1" aria-label="Play: Kinetic launch teaser">
+                        <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current ml-0.5" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                      </button>
+                    </div>
+                    <figcaption class="mt-2.5">
+                      <span class="block text-xs font-bold leading-tight text-card-foreground truncate">Kinetic launch teaser</span>
+                      <span class="block text-[11px] font-medium text-muted-foreground mt-0.5">15s · Motion graphics</span>
+                    </figcaption>
+                  </figure>
+
+                  <!-- 7b. Dewbloom serum -->
+                  <figure class="video-tile" aria-hidden="true">
+                    <div class="vid-box">
+                      <video src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b03.mp4" poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b03.jpg" preload="none" playsinline loop muted></video>
+                      <button type="button" class="play-btn" tabindex="-1" aria-label="Play: Dewbloom serum product ad">
+                        <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current ml-0.5" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                      </button>
+                    </div>
+                    <figcaption class="mt-2.5">
+                      <span class="block text-xs font-bold leading-tight text-card-foreground truncate">Dewbloom serum product ad</span>
+                      <span class="block text-[11px] font-medium text-muted-foreground mt-0.5">15s · Product ad</span>
+                    </figcaption>
+                  </figure>
+
+                  <!-- 8b. Creator testimonial -->
+                  <figure class="video-tile" aria-hidden="true">
+                    <div class="vid-box">
+                      <video src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b05.mp4" poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b05.jpg" preload="none" playsinline loop muted></video>
+                      <button type="button" class="play-btn" tabindex="-1" aria-label="Play: Creator testimonial UGC ad">
+                        <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current ml-0.5" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                      </button>
+                    </div>
+                    <figcaption class="mt-2.5">
+                      <span class="block text-xs font-bold leading-tight text-card-foreground truncate">Creator testimonial UGC ad</span>
+                      <span class="block text-[11px] font-medium text-muted-foreground mt-0.5">20s · UGC ad</span>
+                    </figcaption>
+                  </figure>
                 </div>
               </div>
             </div>
           </div>
+
+          <!-- Right: Step 2 Explanatory Content -->
           <div class="reveal-ready order-1 lg:order-2 lg:col-span-5" style="animation-delay: 0ms;">
             <div class="relative">
               <!-- Step number — block, above heading, never overlaps -->

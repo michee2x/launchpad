@@ -47,48 +47,47 @@
     a.href = DECLINE[a.getAttribute('data-decline')] || '/thank-you';
   });
 
-  // 1. Theme Management (Dual class .dark and data-theme support)
+  // 1. Theme Management (Cooperative with window.wyvToggleTheme)
   var root = document.documentElement;
   var toggle = document.getElementById('theme-toggle');
   var toggleLabel = document.getElementById('theme-toggle-label');
 
-  function getTheme() {
-    try {
-      var stored = localStorage.getItem('wyv-theme') || localStorage.getItem('wyv_theme');
-      if (stored) return stored;
-    } catch (e) {}
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  }
-
-  function applyTheme(theme) {
-    var isDark = theme === 'dark';
-    root.classList.toggle('dark', isDark);
-    root.setAttribute('data-theme', theme);
-    if (toggle) {
-      toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-      if (toggleLabel) toggleLabel.textContent = isDark ? 'Dark mode' : 'Light mode';
+  if (typeof window.wyvToggleTheme !== 'function') {
+    function getTheme() {
+      try {
+        var stored = localStorage.getItem('wyv-theme') || localStorage.getItem('wyv_theme');
+        if (stored) return stored;
+      } catch (e) {}
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
-    var sun = document.getElementById('theme-icon-sun');
-    var moon = document.getElementById('theme-icon-moon');
-    if (sun) sun.classList.toggle('hidden', !isDark);
-    if (moon) moon.classList.toggle('hidden', isDark);
-    try {
-      localStorage.setItem('wyv-theme', theme);
-      localStorage.setItem('wyv_theme', theme);
-    } catch (e) {}
-  }
 
-  // Use a single guarded listener so it never fires twice
-  if (toggle && !toggle.dataset.themeBound) {
-    toggle.dataset.themeBound = 'true';
-    toggle.addEventListener('click', function () {
-      var current = root.classList.contains('dark') ? 'dark' : 'light';
-      applyTheme(current === 'dark' ? 'light' : 'dark');
-    });
-  }
+    function applyTheme(theme) {
+      var isDark = theme === 'dark';
+      root.classList.toggle('dark', isDark);
+      root.setAttribute('data-theme', theme);
+      if (toggle) {
+        toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+        if (toggleLabel) toggleLabel.textContent = isDark ? 'Dark mode' : 'Light mode';
+      }
+      var sun = document.getElementById('theme-icon-sun');
+      var moon = document.getElementById('theme-icon-moon');
+      if (sun) sun.classList.toggle('hidden', !isDark);
+      if (moon) moon.classList.toggle('hidden', isDark);
+      try {
+        localStorage.setItem('wyv-theme', theme);
+        localStorage.setItem('wyv_theme', theme);
+      } catch (e) {}
+    }
 
-  // Apply on launch load
-  applyTheme(getTheme());
+    if (toggle) {
+      toggle.addEventListener('click', function () {
+        var current = root.classList.contains('dark') ? 'dark' : 'light';
+        applyTheme(current === 'dark' ? 'light' : 'dark');
+      });
+    }
+
+    applyTheme(getTheme());
+  }
 
   // 2. CutHeading Splitter & Scroll Observer
   function initCutHeadings() {
@@ -285,6 +284,59 @@
     }
   }
 
+  // 9. Infinite Video Marquee Playback & Interactivity
+  function initMarqueeVideoPlay() {
+    var wrapper = document.querySelector('.infinite-video-wrapper');
+    if (!wrapper) return;
+
+    var tiles = wrapper.querySelectorAll('.video-tile');
+    tiles.forEach(function (tile) {
+      var vid = tile.querySelector('video');
+      var btn = tile.querySelector('.play-btn');
+      if (!vid) return;
+
+      function togglePlay(e) {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        if (vid.paused) {
+          // Pause all other tiles in the marquee
+          tiles.forEach(function (other) {
+            var oVid = other.querySelector('video');
+            if (oVid && oVid !== vid) {
+              oVid.pause();
+              other.classList.remove('is-playing');
+            }
+          });
+          vid.muted = false;
+          vid.play().then(function () {
+            tile.classList.add('is-playing');
+            wrapper.classList.add('is-paused');
+          }).catch(function () {
+            vid.muted = true;
+            vid.play().then(function () {
+              tile.classList.add('is-playing');
+              wrapper.classList.add('is-paused');
+            }).catch(function () {});
+          });
+        } else {
+          vid.pause();
+          tile.classList.remove('is-playing');
+          wrapper.classList.remove('is-paused');
+        }
+      }
+
+      if (btn) btn.addEventListener('click', togglePlay);
+      vid.addEventListener('click', togglePlay);
+      vid.addEventListener('ended', function () {
+        tile.classList.remove('is-playing');
+        wrapper.classList.remove('is-paused');
+        vid.currentTime = 0;
+      });
+    });
+  }
+
   // Initialize all interactive modules on DOM ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
@@ -295,6 +347,7 @@
       initFaq();
       initCookieNotice();
       initVideoAutoplay();
+      initMarqueeVideoPlay();
     });
   } else {
     initCutHeadings();
@@ -304,6 +357,8 @@
     initFaq();
     initCookieNotice();
     initVideoAutoplay();
+    initMarqueeVideoPlay();
   }
 
 })();
+
