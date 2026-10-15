@@ -296,18 +296,22 @@
     var isPaused = false;
     var isInteracting = false;
     var resumeTimer = null;
-    var speed = 0.85; // ~50px/second smooth continuous scroll
+    var speed = 0.85; // pixels per normalized frame (~50px/sec)
+    var currentPos = container.scrollLeft || 0;
     var halfWidth = 0;
 
-    function measureHalfWidth() {
-      // Set A and Set B are identical duplicates
-      halfWidth = track.scrollWidth / 2;
+    function getHalfWidth() {
+      if (track.scrollWidth > 0) {
+        halfWidth = track.scrollWidth / 2;
+      }
+      return halfWidth;
     }
 
-    measureHalfWidth();
-    window.addEventListener('resize', measureHalfWidth);
-    window.addEventListener('load', measureHalfWidth);
-    setTimeout(measureHalfWidth, 600);
+    getHalfWidth();
+    window.addEventListener('resize', getHalfWidth);
+    window.addEventListener('load', getHalfWidth);
+    setTimeout(getHalfWidth, 400);
+    setTimeout(getHalfWidth, 1200);
 
     var lastTimestamp = performance.now();
 
@@ -315,12 +319,19 @@
       var delta = (now - lastTimestamp) / 16.67;
       lastTimestamp = now;
 
-      if (!isPaused && !isInteracting && halfWidth > 0) {
-        container.scrollLeft += speed * Math.min(delta, 2.5);
-        if (container.scrollLeft >= halfWidth) {
-          container.scrollLeft -= halfWidth;
+      var hw = halfWidth || getHalfWidth();
+
+      if (!isPaused && !isInteracting && hw > 0) {
+        currentPos += speed * Math.min(delta, 2.5);
+        if (currentPos >= hw) {
+          currentPos -= hw;
         }
+        container.scrollLeft = Math.round(currentPos);
+      } else if (isInteracting) {
+        // Keep our internal position synchronized with user touch/drag
+        currentPos = container.scrollLeft;
       }
+
       requestAnimationFrame(autoScrollStep);
     }
     requestAnimationFrame(autoScrollStep);
@@ -333,50 +344,81 @@
     function endInteraction() {
       if (resumeTimer) clearTimeout(resumeTimer);
       resumeTimer = setTimeout(function () {
-        if (halfWidth > 0) {
-          if (container.scrollLeft >= halfWidth) {
-            container.scrollLeft -= halfWidth;
+        var hw = halfWidth || getHalfWidth();
+        if (hw > 0) {
+          if (container.scrollLeft >= hw) {
+            container.scrollLeft -= hw;
           } else if (container.scrollLeft <= 0) {
-            container.scrollLeft += halfWidth;
+            container.scrollLeft += hw;
           }
         }
+        currentPos = container.scrollLeft;
         isInteracting = false;
-      }, 1600);
+      }, 1500);
     }
 
-    // Touch events for mobile swiping
-    container.addEventListener('touchstart', startInteraction, { passive: true });
-    container.addEventListener('touchmove', startInteraction, { passive: true });
-    container.addEventListener('touchend', endInteraction, { passive: true });
+    // Direct touch gesture tracking for mobile
+    var touchStartX = 0;
+    var touchStartScroll = 0;
+    var hasTouchMoved = false;
 
-    // Wheel event
+    container.addEventListener('touchstart', function (e) {
+      if (!e.touches || !e.touches[0]) return;
+      startInteraction();
+      touchStartX = e.touches[0].pageX;
+      touchStartScroll = container.scrollLeft;
+      hasTouchMoved = false;
+    }, { passive: true });
+
+    container.addEventListener('touchmove', function (e) {
+      if (!e.touches || !e.touches[0]) return;
+      var curX = e.touches[0].pageX;
+      var diffX = touchStartX - curX;
+      if (Math.abs(diffX) > 4) {
+        hasTouchMoved = true;
+      }
+      container.scrollLeft = touchStartScroll + diffX;
+      currentPos = container.scrollLeft;
+    }, { passive: true });
+
+    container.addEventListener('touchend', function () {
+      endInteraction();
+    }, { passive: true });
+
+    container.addEventListener('touchcancel', function () {
+      endInteraction();
+    }, { passive: true });
+
+    // Wheel event for trackpads/mice
     container.addEventListener('wheel', function () {
       startInteraction();
+      currentPos = container.scrollLeft;
       endInteraction();
     }, { passive: true });
 
     // Mouse drag support for desktop
     var isMouseDown = false;
-    var startX = 0;
-    var startScrollLeft = 0;
-    var hasDragged = false;
+    var mouseStartX = 0;
+    var mouseStartScroll = 0;
+    var hasMouseMoved = false;
 
     container.addEventListener('mousedown', function (e) {
       isMouseDown = true;
-      hasDragged = false;
+      hasMouseMoved = false;
       startInteraction();
-      startX = e.pageX - container.offsetLeft;
-      startScrollLeft = container.scrollLeft;
+      mouseStartX = e.pageX - container.offsetLeft;
+      mouseStartScroll = container.scrollLeft;
     });
 
     window.addEventListener('mousemove', function (e) {
       if (!isMouseDown) return;
       var x = e.pageX - container.offsetLeft;
-      var walk = (x - startX) * 1.4;
+      var walk = (x - mouseStartX) * 1.3;
       if (Math.abs(walk) > 4) {
-        hasDragged = true;
+        hasMouseMoved = true;
       }
-      container.scrollLeft = startScrollLeft - walk;
+      container.scrollLeft = mouseStartScroll - walk;
+      currentPos = container.scrollLeft;
     });
 
     window.addEventListener('mouseup', function () {
@@ -386,9 +428,13 @@
       }
     });
 
-    // Hover pause
-    container.addEventListener('mouseenter', function () { isPaused = true; });
-    container.addEventListener('mouseleave', function () { if (!isMouseDown) isPaused = false; });
+    // Guard hover events: only attach on desktop devices with hover & fine pointer
+    // This prevents mobile synthetic mouseenter from permanently halting auto-scroll!
+    var hasFinePointer = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (hasFinePointer) {
+      container.addEventListener('mouseenter', function () { isPaused = true; });
+      container.addEventListener('mouseleave', function () { if (!isMouseDown) isPaused = false; });
+    }
 
     // Prev / Next button listeners
     var prevBtn = document.getElementById('marquee-prev');
@@ -399,7 +445,10 @@
         e.preventDefault();
         startInteraction();
         container.scrollBy({ left: -220, behavior: 'smooth' });
-        endInteraction();
+        setTimeout(function () {
+          currentPos = container.scrollLeft;
+          endInteraction();
+        }, 350);
       });
     }
 
@@ -408,7 +457,10 @@
         e.preventDefault();
         startInteraction();
         container.scrollBy({ left: 220, behavior: 'smooth' });
-        endInteraction();
+        setTimeout(function () {
+          currentPos = container.scrollLeft;
+          endInteraction();
+        }, 350);
       });
     }
 
@@ -417,10 +469,11 @@
     tiles.forEach(function (tile) {
       var vid = tile.querySelector('video');
       var btn = tile.querySelector('.play-btn');
+      var vidBox = tile.querySelector('.vid-box');
       if (!vid) return;
 
       function togglePlay(e) {
-        if (hasDragged) return; // Ignore clicks if user was dragging
+        if (hasMouseMoved || hasTouchMoved) return; // Ignore clicks if user was swiping/dragging
         if (e) {
           e.preventDefault();
           e.stopPropagation();
@@ -453,7 +506,7 @@
       }
 
       if (btn) btn.addEventListener('click', togglePlay);
-      vid.addEventListener('click', togglePlay);
+      if (vidBox) vidBox.addEventListener('click', togglePlay);
       vid.addEventListener('ended', function () {
         tile.classList.remove('is-playing');
         isPaused = false;

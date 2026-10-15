@@ -87,7 +87,7 @@
   </script>
 
   <!-- Custom Stylesheet (Animation Keyframes, Blobs, Grid & Shimmers) -->
-  <link rel="stylesheet" href="rocket-styles.css?v=12">
+  <link rel="stylesheet" href="rocket-styles.css?v=15">
 
   <!-- LAUNCHPAD TRACKING: paste Launchpad's required script or pixel here when the marketer sends it. -->
 </head>
@@ -233,6 +233,7 @@
       -webkit-overflow-scrolling: touch;
       cursor: grab;
       scroll-behavior: auto;
+      touch-action: pan-y pinch-zoom;
     }
     .video-scroll-container::-webkit-scrollbar {
       display: none;
@@ -266,12 +267,14 @@
       overflow: hidden;
       background: #0a0a0f;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
     }
     .video-tile .vid-box video {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      pointer-events: none;
     }
     .video-tile .play-btn {
       position: absolute;
@@ -1020,14 +1023,6 @@
                 </div>
               </div>
 
-              <!-- Helper caption -->
-              <div class="mt-2.5 flex items-center justify-between px-2 text-[11px] text-muted-foreground border-t border-border/40 pt-2">
-                <span class="flex items-center gap-1.5">
-                  <span class="inline-block h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></span>
-                  Autoscrolling · Swipe horizontally anytime
-                </span>
-                <span class="font-medium text-card-foreground">Tap to play</span>
-              </div>
             </div>
           </div>
 
@@ -1936,6 +1931,6 @@
   </div>
 
   <!-- Funnel Logic & Interactive Animation Engine -->
-  <script src="launch.js?v=12" defer></script>
+  <script src="launch.js?v=15" defer></script>
 </body>
 </html>

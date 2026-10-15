@@ -242,6 +242,7 @@ h1, h2, h3, h4, h5, h6, p {
   -webkit-overflow-scrolling: touch;
   cursor: grab;
   scroll-behavior: auto;
+  touch-action: pan-y pinch-zoom;
 }
 
 .video-scroll-container::-webkit-scrollbar {
@@ -281,6 +282,7 @@ h1, h2, h3, h4, h5, h6, p {
   overflow: hidden;
   background: #0a0a0f;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 }
 
 .video-tile .vid-box video {
@@ -288,6 +290,7 @@ h1, h2, h3, h4, h5, h6, p {
   height: 100%;
   object-fit: cover;
   display: block;
+  pointer-events: none;
 }
 
 .video-tile .play-btn {
