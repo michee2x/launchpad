@@ -1,4 +1,4 @@
-/* Rocket.new Design Tokens & Custom Animation Engine for WyvStudio Bundle / Pro
+/* Rocket.new Design Tokens & Custom Animation Engine for WyvStudio Launch & Scale Bundle
    Fully aligned with index.html tokens, Plus Jakarta Sans & Fraunces serif accent */
 
 :root {
@@ -10,8 +10,8 @@
   --primary-foreground: #1a0b03;
   --secondary: #f3ece4;
   --secondary-foreground: #1c1612;
-  --accent: #c2410c;
-  --accent-foreground: #fffaf5;
+  --accent: #D9F24A;
+  --accent-foreground: #11140A;
   --muted: #f0e8df;
   --muted-foreground: #6b5f55;
   --border: #e6dccf;
@@ -20,8 +20,10 @@
   --radius: 1rem;
   --font-plus-jakarta-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-fraunces: 'Fraunces', Georgia, serif;
+  --font-ibm-plex-mono: 'IBM Plex Mono', monospace;
   --font-sans: var(--font-plus-jakarta-sans);
   --font-serif: var(--font-fraunces);
+  --font-mono: var(--font-ibm-plex-mono);
   --success: #2f8f5b;
   --success-foreground: #f4fff8;
   --warning: #d98a1f;
@@ -57,7 +59,6 @@
   --ink-foreground: #F2EEE6;
 }
 
-/* Base resets & typography */
 * {
   box-sizing: border-box;
   border-color: var(--border);
@@ -81,29 +82,21 @@ h1, h2, h3, h4, h5, h6, p {
   margin: 0;
 }
 
-/* Custom Typography & Fluid Clamps (1:1 with index.html) */
+/* Fluid clamps & typography */
 .text-hero-xl {
-  font-size: clamp(2.2rem, 5.5vw, 4.25rem);
+  font-size: clamp(2.25rem, 5.8vw, 4.6rem);
   line-height: 1.05;
   letter-spacing: -0.035em;
 }
 
-.text-display {
-  font-size: clamp(1.625rem, 3.4vw, 2.5rem);
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-}
-
-.text-display-lg {
+.text-section-xl {
   font-size: clamp(1.85rem, 4.2vw, 3.25rem);
   line-height: 1.08;
   letter-spacing: -0.03em;
 }
 
-.text-price-xl {
-  font-size: clamp(3.5rem, 8vw, 6rem);
-  line-height: 0.95;
-  letter-spacing: -0.04em;
+.font-serif {
+  font-family: var(--font-fraunces), serif;
 }
 
 .font-serif-accent {
@@ -113,7 +106,11 @@ h1, h2, h3, h4, h5, h6, p {
   letter-spacing: -0.02em;
 }
 
-/* Atmospheric Glows, Blobs, Grid & Textures */
+.font-mono-label {
+  font-family: var(--font-ibm-plex-mono), monospace;
+}
+
+/* Atmospheric Glows, Blobs, Grid & Textures (exact match with index.html) */
 .blob-primary {
   background: radial-gradient(circle at 30% 30%, var(--primary), transparent 65%);
   filter: blur(70px);
@@ -122,6 +119,11 @@ h1, h2, h3, h4, h5, h6, p {
 .blob-accent {
   background: radial-gradient(circle at 60% 40%, var(--accent), transparent 65%);
   filter: blur(80px);
+}
+
+.blob-plum {
+  background: radial-gradient(circle at 50% 50%, #2A1B2D, transparent 70%);
+  filter: blur(60px);
 }
 
 .bg-grid-lines {
@@ -149,44 +151,6 @@ h1, h2, h3, h4, h5, h6, p {
   -webkit-backdrop-filter: blur(18px) saturate(180%);
 }
 
-
-
-/* Animations and Keyframes */
-.reveal-ready {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, opacity;
-}
-
-.reveal-ready.reveal-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.float-slow {
-  animation: floatSlow 8s ease-in-out infinite;
-}
-
-.drift-a {
-  animation: driftA 18s ease-in-out infinite;
-}
-
-.drift-b {
-  animation: driftB 22s ease-in-out infinite;
-}
-
-.sheen {
-  background-image: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
-  background-size: 220% 100%;
-  animation: sheen 5s linear infinite;
-}
-
-.magnetic-cta {
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
-}
-
 /* ========================================================
    BOLD, UNMISSABLE BRAND-ORANGE CTA PILL (1:1 with index.html)
    ======================================================== */
@@ -209,63 +173,99 @@ h1, h2, h3, h4, h5, h6, p {
   transform: translateY(0) scale(0.99) !important;
 }
 
-/* Add-on selection interaction */
-.addon-card-active {
-  border-color: var(--primary) !important;
-  background-color: color-mix(in srgb, var(--primary) 10%, var(--secondary)) !important;
-  box-shadow: 0 4px 20px -2px color-mix(in srgb, var(--primary) 20%, transparent);
+/* Animations & Keyframes */
+.float-slow {
+  animation: floatSlow 8s ease-in-out infinite;
 }
 
-/* Theme toggle micro-bounce */
-.theme-toggle-btn {
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
+.tile-float-a { animation: floatA 7s ease-in-out infinite; }
+.tile-float-b { animation: floatB 9s ease-in-out infinite; }
+.tile-float-c { animation: floatC 8s ease-in-out infinite; }
+.seal-spin { animation: spinSlow 24s linear infinite; }
+.pulse-ring { animation: pulseRing 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
+.ribbon-blink { animation: blinkSoft 1.8s ease-in-out infinite; }
+.wave-bar { animation: waveBar 1.4s ease-in-out infinite; transform-origin: bottom; }
+
+.shine-sweep {
+  position: relative;
+  overflow: hidden;
 }
-.theme-toggle-btn:hover {
-  transform: rotate(15deg) scale(1.1);
+
+.shine-sweep::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,0.45) 50%, transparent 65%);
+  transform: translateX(-120%);
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
 }
-.theme-toggle-btn:active {
-  transform: scale(0.92);
+
+.shine-sweep:hover::after {
+  transform: translateX(120%);
+}
+
+.reveal-up {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-up.reveal-pending {
+  opacity: 0;
+  transform: translateY(32px);
 }
 
 @keyframes floatSlow {
-  0%, 100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(2%, -3%, 0) scale(1.05);
-  }
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(2%, -3%, 0) scale(1.08); }
 }
 
-@keyframes driftA {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(30px, 20px) scale(1.08); }
+@keyframes floatA {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-14px) rotate(-1deg); }
 }
 
-@keyframes driftB {
-  0%, 100% { transform: translate(0, 0) scale(1.04); }
-  50% { transform: translate(-30px, -15px) scale(0.96); }
+@keyframes floatB {
+  0%, 100% { transform: translateY(0) rotate(4deg); }
+  50% { transform: translateY(-18px) rotate(6deg); }
 }
 
-@keyframes sheen {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+@keyframes floatC {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+@keyframes spinSlow {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulseRing {
+  0% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.55); }
+  70% { box-shadow: 0 0 0 20px rgba(255, 107, 53, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0); }
+}
+
+@keyframes blinkSoft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+@keyframes waveBar {
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .float-slow, .drift-a, .drift-b, .sheen {
+  .float-slow, .tile-float-a, .tile-float-b, .tile-float-c, .seal-spin, .pulse-ring, .ribbon-blink, .wave-bar {
     animation: none !important;
+  }
+  .reveal-up.reveal-pending {
+    opacity: 1 !important;
+    transform: none !important;
   }
   .brand-cta-btn {
     transition: none !important;
     transform: none !important;
-  }
-  .reveal-ready {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-  .magnetic-cta {
-    transform: none !important;
-    transition: none !important;
   }
 }
