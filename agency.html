@@ -12,11 +12,11 @@
   <meta name="theme-color" content="#ff6b35">
   <meta property="og:title" content="WyvStudio Agency Tier — Manage Client Campaigns">
   <meta property="og:description" content="Unlock 3,000 Credits, 30 Client Workspaces, Unlimited Channels & the Complete Agency Toolkit for $347 one-time.">
-  <meta property="og:image" content="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/launch/agency-clients.jpg">
+  <meta property="og:image" content="assets/images/agency-clients.jpg">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"WyvStudio","url":"https://special.wyvstudio.com","email":"support@wyvstudio.com"},{"@type":"SoftwareApplication","name":"WyvStudio Agency Tier","applicationCategory":"MultimediaApplication","offers":{"@type":"Offer","price":"347","priceCurrency":"USD"}}]}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600;1,9..144,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -50,7 +50,7 @@
       }
     };
   </script>
-  <link rel="stylesheet" href="rocket-agency-styles.css?v=4">
+  <link rel="stylesheet" href="rocket-agency-styles.css?v=6">
 </head>
 
 <body class="bg-background text-foreground selection:bg-primary/20 selection:text-primary">
@@ -61,18 +61,18 @@
   <p class="font-mono-label text-[12px] font-semibold uppercase tracking-wider md:text-sm">Order incomplete — do not close or refresh this page</p>
 </div>
 
-<!-- HEADER -->
-<header id="site-header" class="sticky top-0 z-40 border-b border-white/10 bg-ink/80 backdrop-blur-md">
+<!-- HEADER (Adapts seamlessly to Light and Dark mode) -->
+<header id="site-header" class="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur-md">
   <div class="mx-auto flex max-w-[1400px] items-center justify-between px-4 py-3.5 sm:px-8">
     <a href="#top" class="flex items-center gap-3" aria-label="WyvStudio home">
       <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-primary shadow-sm shadow-primary/30">
         <svg viewBox="0 0 64 64" class="h-6 w-6 text-white" aria-hidden="true"><path d="M14 18 L22 46 L32 28 L42 46 L50 18" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
       </span>
-      <span class="text-lg font-black tracking-tight text-white">WyvStudio</span>
+      <span class="text-lg font-black tracking-tight text-foreground">WyvStudio</span>
     </a>
     <div class="flex items-center gap-3">
-      <span class="hidden rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-white/60 backdrop-blur sm:inline-flex">Upgrade 3 · Final Step · Agency License</span>
-      <button type="button" id="theme-toggle" aria-label="Switch theme" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/60 backdrop-blur hover:bg-white/10 hover:text-white transition-colors">
+      <span class="hidden rounded-full border border-border bg-card/80 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground backdrop-blur sm:inline-flex">Upgrade 3 · Final Step · Agency License</span>
+      <button type="button" id="theme-toggle" aria-label="Switch theme" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card/80 text-muted-foreground backdrop-blur hover:bg-secondary hover:text-foreground transition-colors">
         <svg id="theme-icon-sun" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
         <svg id="theme-icon-moon" class="h-4 w-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
@@ -82,137 +82,123 @@
 
 <main id="top">
 
-<!-- =====================================================================
-     ATTENTION BANNER
-     ===================================================================== -->
-<section class="relative z-10 border-b border-white/10 bg-ink/90 py-3.5 px-4 sm:px-8">
+<!-- ATTENTION BANNER (Adapts cleanly to Light & Dark Mode) -->
+<section class="relative z-10 border-b border-border bg-secondary/60 py-3.5 px-4 sm:px-8">
   <div class="mx-auto flex max-w-[1400px] items-start sm:items-center gap-3">
-    <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-accent/20 text-accent mt-0.5 sm:mt-0">
+    <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary mt-0.5 sm:mt-0">
       <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
     </span>
-    <p class="text-xs sm:text-sm font-medium leading-relaxed text-white/75">
-      <strong class="font-bold text-white">ATTENTION:</strong> Your account is being finalized right now. Before you enter your dashboard, we have one final, private invitation reserved for marketing agencies, consultants, video service providers, and power users looking to monetise video creation as a service.
+    <p class="text-xs sm:text-sm font-medium leading-relaxed text-muted-foreground">
+      <strong class="font-bold text-foreground">ATTENTION:</strong> Your account is being finalized right now. Before you enter your dashboard, we have one final, private invitation reserved for marketing agencies, consultants, video service providers, and power users looking to monetise video creation as a service.
     </p>
   </div>
 </section>
 
 <!-- =====================================================================
-     1. HERO SECTION — Full-bleed photo + hero-scrim + mesh-shift
+     1. HERO SECTION (White/Light Background like index.html & bundle.html)
      ===================================================================== -->
-<section class="relative isolate overflow-hidden bg-ink text-white" style="min-height:92vh;">
-  <!-- Background photo -->
-  <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1600"
-    alt="" aria-hidden="true" loading="eager"
-    class="absolute inset-0 -z-20 h-full w-full object-cover object-center">
-  <!-- Scrim overlays -->
-  <div class="hero-scrim absolute inset-0 -z-10"></div>
-  <div class="mesh-shift absolute inset-0 -z-10 opacity-40 mix-blend-multiply"></div>
-  <!-- Ambient blobs -->
-  <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-    <div id="hero-blob-a" class="absolute -left-24 top-10 h-[420px] w-[420px]">
-      <div class="blob-accent blob-morph h-full w-full opacity-50"></div>
-    </div>
-    <div id="hero-blob-b" class="absolute -right-24 bottom-0 h-[460px] w-[460px]">
-      <div class="blob-spark blob-morph h-full w-full opacity-40"></div>
-    </div>
-  </div>
-  <div class="grain absolute inset-0 -z-10" aria-hidden="true"></div>
+<section class="relative overflow-hidden bg-background text-foreground pb-16 pt-12 sm:pt-16 md:pb-24">
+  <!-- Atmosphere & Depth Layers (1:1 with index.html & bundle.html) -->
+  <div class="bg-grid-lines mask-grid-fade pointer-events-none absolute inset-0 z-0 opacity-40" aria-hidden="true"></div>
+  <div class="blob-primary float-slow pointer-events-none absolute -left-20 top-12 h-[380px] w-[380px] rounded-full opacity-35" aria-hidden="true"></div>
+  <div class="blob-accent float-slow pointer-events-none absolute -right-20 top-44 h-[340px] w-[340px] rounded-full opacity-25" aria-hidden="true"></div>
+  <div id="hero-glow" class="pointer-events-none absolute left-1/2 top-20 h-[380px] w-[380px] -translate-x-1/2 rounded-full bg-primary/15 blur-[100px] transition-transform duration-300 ease-out" aria-hidden="true"></div>
+  <div class="grain pointer-events-none absolute inset-0 z-0" aria-hidden="true"></div>
 
-  <div class="relative mx-auto grid max-w-[1400px] gap-12 px-4 pb-16 pt-16 sm:px-8 sm:pt-24 lg:grid-cols-12 lg:gap-10 lg:pb-28 lg:pt-32">
+  <div class="relative z-10 mx-auto grid max-w-[1400px] gap-12 px-4 sm:px-8 lg:grid-cols-12 lg:items-center">
 
     <!-- Left: Copy -->
     <div class="lg:col-span-7">
-      <div class="reveal-up mb-8 flex flex-wrap items-center gap-3">
-        <span class="font-mono-label rounded-full bg-accent px-4 py-2 text-[11px] font-bold uppercase tracking-[0.14em] text-white">WyvStudio Agency Tier</span>
-        <span class="font-mono-label text-xs uppercase tracking-[0.16em] text-white/75">Manage Client Campaigns</span>
+      <div class="reveal-up mb-6 flex flex-wrap items-center gap-3">
+        <span class="font-mono-label rounded-full bg-primary/10 border border-primary/20 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-primary">WyvStudio Agency Tier</span>
+        <span class="font-mono-label text-xs uppercase tracking-[0.16em] text-muted-foreground">Manage Client Campaigns</span>
       </div>
 
-      <h1 class="reveal-up font-display text-hero-xl font-medium text-white" style="transition-delay:80ms;">
+      <h1 class="reveal-up font-display text-hero-xl font-medium text-foreground" style="transition-delay:80ms;">
         Want to Turn 60-Second Video Creation Into a
-        <em class="gradient-text-anim font-semibold not-italic"> $5,000 to $10,000/Month</em>
+        <span class="font-bold underline decoration-primary decoration-4 underline-offset-8 text-foreground">$5,000 to $10,000/Month</span>
         Recurring Agency?
       </h1>
 
-      <p class="reveal-up mt-8 max-w-2xl text-lg font-semibold leading-snug text-white sm:text-xl" style="transition-delay:160ms;">
+      <p class="reveal-up mt-6 max-w-2xl text-lg font-semibold leading-snug text-foreground sm:text-xl" style="transition-delay:160ms;">
         Deliver High-Converting Video Ads &amp; Daily Shorts to Paying Clients Without Doing the Manual Editing Work.
       </p>
-      <p class="reveal-up mt-4 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg" style="transition-delay:220ms;">
+      <p class="reveal-up mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg" style="transition-delay:220ms;">
         Unlock the WyvStudio Agency License: 3,000 Credits, Up to 30 Client Workspaces, Unlimited Publishing Channels, 50 Characters, Up to 100 Cloned Voices, and Our Complete Client-Getting Toolkit for a Single One-Time Investment of Just $347.
       </p>
 
-      <!-- Stat Grid -->
-      <div class="reveal-up mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-white/20 bg-white/20 sm:grid-cols-4" style="transition-delay:280ms;">
-        <div class="group bg-ink/70 p-5 backdrop-blur-sm transition hover:bg-accent/15 sm:p-6">
-          <p class="font-display text-4xl font-semibold text-accent sm:text-5xl">$347</p>
-          <p class="font-mono-label mt-2 text-[11px] uppercase tracking-[0.14em] text-white/75">One-Time Fee</p>
+      <!-- Stat Grid (Clean cards with bold text on white/card background) -->
+      <div class="reveal-up mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4" style="transition-delay:280ms;">
+        <div class="rounded-2xl border border-border bg-card p-5 shadow-sm transition hover:border-primary sm:p-6">
+          <p class="font-display text-3xl font-bold text-foreground sm:text-4xl">$347</p>
+          <p class="font-mono-label mt-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">One-Time Fee</p>
         </div>
-        <div class="group bg-ink/70 p-5 backdrop-blur-sm transition hover:bg-accent/15 sm:p-6">
-          <p class="font-display text-4xl font-semibold text-accent sm:text-5xl">3K</p>
-          <p class="font-mono-label mt-2 text-[11px] uppercase tracking-[0.14em] text-white/75">Agency Credits</p>
+        <div class="rounded-2xl border border-border bg-card p-5 shadow-sm transition hover:border-primary sm:p-6">
+          <p class="font-display text-3xl font-bold text-foreground sm:text-4xl">3K</p>
+          <p class="font-mono-label mt-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">Agency Credits</p>
         </div>
-        <div class="group bg-ink/70 p-5 backdrop-blur-sm transition hover:bg-accent/15 sm:p-6">
-          <p class="font-display text-4xl font-semibold text-accent sm:text-5xl">30</p>
-          <p class="font-mono-label mt-2 text-[11px] uppercase tracking-[0.14em] text-white/75">Workspaces</p>
+        <div class="rounded-2xl border border-border bg-card p-5 shadow-sm transition hover:border-primary sm:p-6">
+          <p class="font-display text-3xl font-bold text-foreground sm:text-4xl">30</p>
+          <p class="font-mono-label mt-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">Workspaces</p>
         </div>
-        <div class="group bg-ink/70 p-5 backdrop-blur-sm transition hover:bg-accent/15 sm:p-6">
-          <p class="font-display text-4xl font-semibold text-accent sm:text-5xl">100</p>
-          <p class="font-mono-label mt-2 text-[11px] uppercase tracking-[0.14em] text-white/75">Cloned Voices</p>
+        <div class="rounded-2xl border border-border bg-card p-5 shadow-sm transition hover:border-primary sm:p-6">
+          <p class="font-display text-3xl font-bold text-foreground sm:text-4xl">100</p>
+          <p class="font-mono-label mt-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">Cloned Voices</p>
         </div>
       </div>
 
       <!-- CTA -->
-      <div class="reveal-up mt-10" style="transition-delay:340ms;">
+      <div class="reveal-up mt-8" style="transition-delay:340ms;">
         <a href="#order" data-buy="agency" class="lp-buy brand-cta-btn shine-sweep cta-breathe inline-flex w-full items-center justify-center rounded-full px-6 py-5 text-center text-[15px] font-extrabold uppercase leading-snug tracking-wide text-white shadow-[0_18px_50px_-12px_rgba(242,85,31,0.6)] sm:w-auto sm:px-10 sm:text-base">
           YES! UPGRADE TO THE AGENCY TIER FOR JUST $347 →
         </a>
-        <p class="mt-4 text-sm font-semibold text-white sm:text-base">⚡ 1-Click Instant Charge to Card on File — Lifetime Agency License, No Monthly Seat Fees</p>
-        <ul class="mt-5 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-6">
-          <li class="flex items-center gap-2 text-sm text-white/90"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-accent"><path d="M20 6 9 17l-5-5"/></svg>14-Day 100% Money-Back Guarantee</li>
-          <li class="flex items-center gap-2 text-sm text-white/90"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-accent"><path d="M20 6 9 17l-5-5"/></svg>256-Bit SSL Encrypted</li>
-          <li class="flex items-center gap-2 text-sm text-white/90"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-accent"><path d="M20 6 9 17l-5-5"/></svg>Instant Account Provisioning</li>
+        <p class="mt-4 text-sm font-semibold text-foreground sm:text-base">⚡ 1-Click Instant Charge to Card on File — Lifetime Agency License, No Monthly Seat Fees</p>
+        <ul class="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-6">
+          <li class="flex items-center gap-2 text-sm text-muted-foreground"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-emerald-500"><path d="M20 6 9 17l-5-5"/></svg>14-Day 100% Money-Back Guarantee</li>
+          <li class="flex items-center gap-2 text-sm text-muted-foreground"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-emerald-500"><path d="M20 6 9 17l-5-5"/></svg>256-Bit SSL Encrypted</li>
+          <li class="flex items-center gap-2 text-sm text-muted-foreground"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-emerald-500"><path d="M20 6 9 17l-5-5"/></svg>Instant Account Provisioning</li>
         </ul>
       </div>
     </div>
 
-    <!-- Right: Dashboard showcase -->
-    <div class="reveal-up relative lg:col-span-5 lg:pt-6" style="transition-delay:200ms;">
-      <div class="float-slow hover-glow relative overflow-hidden rounded-[2rem] border border-white/25 bg-ink shadow-[0_40px_90px_-20px_rgba(0,0,0,0.8)]">
-        <!-- Browser chrome -->
-        <div class="flex items-center justify-between gap-3 border-b border-white/10 bg-white/5 px-4 py-3">
+    <!-- Right: Proportional, Clean Dashboard Showcase (Replaces the overly tall dark card) -->
+    <div class="reveal-up relative lg:col-span-5" style="transition-delay:200ms;">
+      <div class="relative overflow-hidden rounded-[2rem] border border-border bg-card shadow-xl transition-all duration-500 hover:shadow-primary/10">
+        <!-- Browser Chrome Header -->
+        <div class="flex items-center justify-between gap-3 border-b border-border bg-secondary/50 px-4 py-3">
           <div class="flex items-center gap-1.5">
-            <span class="h-2.5 w-2.5 rounded-full bg-accent"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-red-400"></span>
             <span class="h-2.5 w-2.5 rounded-full bg-yellow-400"></span>
-            <span class="h-2.5 w-2.5 rounded-full bg-green-400"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
           </div>
-          <span class="font-mono-label truncate text-[11px] font-medium text-white/50">wyvstudio.com/agency/workspaces</span>
-          <span class="font-mono-label shrink-0 rounded-full bg-primary px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white">30 / 30 slots active</span>
+          <span class="font-mono-label truncate text-[11px] font-medium text-muted-foreground">wyvstudio.com/agency/workspaces</span>
+          <span class="font-mono-label shrink-0 rounded-full bg-emerald-500/15 border border-emerald-500/30 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">30 / 30 active</span>
         </div>
-        <!-- Screenshot -->
-        <div class="relative" style="aspect-ratio:4/5;">
-          <img src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/launch/agency-clients.jpg"
+
+        <!-- Proportional Image Area -->
+        <div class="relative aspect-[16/10] w-full overflow-hidden bg-muted">
+          <img src="assets/images/agency-clients.jpg"
             alt="WyvStudio agency dashboard showing dedicated client workspaces" loading="eager"
-            class="h-full w-full object-cover transition-transform duration-[1400ms] hover:scale-105">
-          <div class="photo-scrim absolute inset-0"></div>
-          <!-- Top badge -->
-          <div class="absolute left-4 right-4 top-4 flex">
-            <span class="font-mono-label rounded-full bg-accent px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-white">Priority Render Queue: VIP</span>
-          </div>
-          <!-- Bottom widget -->
-          <div class="absolute inset-x-4 bottom-4 rounded-2xl border border-white/20 bg-ink/85 p-4 backdrop-blur-md">
-            <div class="flex items-start gap-4">
-              <p class="font-display text-4xl font-semibold leading-none text-accent">$1.2K</p>
-              <div class="min-w-0">
-                <p class="text-sm font-bold text-white">Client: Apex DTC Brand — Paid Retainer</p>
-                <p class="mt-1 text-sm leading-snug text-white/80">12 video ads generated &amp; scheduled in 45 minutes</p>
-              </div>
-            </div>
+            class="h-full w-full object-cover">
+          <div class="absolute left-3 top-3">
+            <span class="font-mono-label rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-white shadow-md">Priority Render Queue: VIP</span>
           </div>
         </div>
-        <!-- Metrics strip -->
-        <div class="grid grid-cols-3 divide-x divide-white/10 border-t border-white/10 bg-ink text-center">
-          <div class="px-2 py-4"><p class="text-sm font-extrabold text-accent sm:text-base">30</p><p class="font-mono-label mt-1 text-[10px] uppercase leading-tight tracking-wider text-white/60">Workspaces</p></div>
-          <div class="px-2 py-4"><p class="text-sm font-extrabold text-accent sm:text-base">Unlimited</p><p class="font-mono-label mt-1 text-[10px] uppercase leading-tight tracking-wider text-white/60">Publishing</p></div>
-          <div class="px-2 py-4"><p class="text-sm font-extrabold text-accent sm:text-base">Commercial</p><p class="font-mono-label mt-1 text-[10px] uppercase leading-tight tracking-wider text-white/60">White-Label</p></div>
+
+        <!-- Sleek Bottom Info Strip -->
+        <div class="border-t border-border bg-card p-5">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <p class="font-display text-2xl font-bold text-foreground">$1,200 – $3,000<span class="text-xs font-normal text-muted-foreground">/mo per client</span></p>
+              <p class="mt-1 text-xs font-semibold text-muted-foreground">Apex DTC Brand · 12 ads generated &amp; scheduled</p>
+            </div>
+            <span class="shrink-0 rounded-xl border border-primary/25 bg-primary/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-primary">Commercial</span>
+          </div>
+          <div class="mt-4 grid grid-cols-3 divide-x divide-border border-t border-border pt-4 text-center">
+            <div><p class="text-sm font-extrabold text-foreground">30</p><p class="font-mono-label mt-0.5 text-[10px] uppercase text-muted-foreground">Workspaces</p></div>
+            <div><p class="text-sm font-extrabold text-foreground">Unlimited</p><p class="font-mono-label mt-0.5 text-[10px] uppercase text-muted-foreground">Channels</p></div>
+            <div><p class="text-sm font-extrabold text-foreground">100%</p><p class="font-mono-label mt-0.5 text-[10px] uppercase text-muted-foreground">White-Label</p></div>
+          </div>
         </div>
       </div>
     </div>
@@ -241,13 +227,13 @@
     <!-- Photo Bento Grid -->
     <div class="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-6" style="grid-auto-rows:minmax(280px,auto);">
 
-      <!-- E-Commerce (tall, spans 3 cols x 2 rows) -->
+      <!-- E-Commerce -->
       <article class="reveal-up group relative isolate flex min-h-[340px] overflow-hidden rounded-[2rem] bg-ink md:col-span-2 lg:col-span-3 lg:row-span-2 lg:min-h-[560px]">
-        <img src="https://images.pexels.com/photos/4968630/pexels-photo-4968630.jpeg?auto=compress&cs=tinysrgb&w=1200"
-          alt="Online store owner packing products next to a laptop and ring light" loading="lazy"
-          class="absolute inset-0 -z-10 h-full w-full object-cover transition duration-[1400ms] ease-out group-hover:scale-105">
-        <div class="photo-scrim absolute inset-0 -z-10"></div>
-        <div class="relative z-10 mt-auto flex w-full flex-col gap-4 p-6 sm:p-8">
+        <img src="assets/images/niche-ecommerce.jpg"
+          alt="Online store owner packing products next to a laptop and ring light"
+          class="absolute inset-0 h-full w-full object-cover transition duration-[1400ms] ease-out group-hover:scale-105 pointer-events-none" style="z-index:0;">
+        <div class="photo-scrim absolute inset-0 pointer-events-none" style="z-index:1;"></div>
+        <div class="relative mt-auto flex w-full flex-col gap-4 p-6 sm:p-8" style="z-index:2;">
           <span class="font-mono-label w-fit rounded-full bg-accent px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-white">Typical Retainer: $1,500 – $3,000/mo</span>
           <h3 class="font-display text-2xl font-semibold text-white sm:text-3xl">E-Commerce Brands</h3>
           <p class="max-w-lg text-base leading-relaxed text-white/90">Needing 10+ Meta and TikTok video ads every single week to test creative hooks and beat ad fatigue.</p>
@@ -256,11 +242,11 @@
 
       <!-- Real Estate -->
       <article class="reveal-up group relative isolate flex min-h-[280px] overflow-hidden rounded-[2rem] bg-ink lg:col-span-3" style="transition-delay:110ms;">
-        <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1200"
-          alt="Modern suburban house exterior at golden hour" loading="lazy"
-          class="absolute inset-0 -z-10 h-full w-full object-cover transition duration-[1400ms] ease-out group-hover:scale-105">
-        <div class="photo-scrim absolute inset-0 -z-10"></div>
-        <div class="relative z-10 mt-auto flex w-full flex-col gap-4 p-6 sm:p-8">
+        <img src="assets/images/niche-realestate.jpg"
+          alt="Modern suburban house exterior at golden hour"
+          class="absolute inset-0 h-full w-full object-cover transition duration-[1400ms] ease-out group-hover:scale-105 pointer-events-none" style="z-index:0;">
+        <div class="photo-scrim absolute inset-0 pointer-events-none" style="z-index:1;"></div>
+        <div class="relative mt-auto flex w-full flex-col gap-4 p-6 sm:p-8" style="z-index:2;">
           <span class="font-mono-label w-fit rounded-full bg-accent px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-white">Typical Retainer: $1,200 – $2,500/mo</span>
           <h3 class="font-display text-2xl font-semibold text-white sm:text-3xl">Real Estate Agents</h3>
           <p class="max-w-lg text-base leading-relaxed text-white/90">Wanting vertical property walk-throughs, agent intros, and neighborhood reels without holding cameras.</p>
@@ -269,11 +255,11 @@
 
       <!-- Clinics -->
       <article class="reveal-up group relative isolate flex min-h-[280px] overflow-hidden rounded-[2rem] bg-ink lg:col-span-3" style="transition-delay:220ms;">
-        <img src="https://images.pexels.com/photos/3768916/pexels-photo-3768916.jpeg?auto=compress&cs=tinysrgb&w=1200"
-          alt="Physiotherapist helping a client in a bright clinic" loading="lazy"
-          class="absolute inset-0 -z-10 h-full w-full object-cover transition duration-[1400ms] ease-out group-hover:scale-105">
-        <div class="photo-scrim absolute inset-0 -z-10"></div>
-        <div class="relative z-10 mt-auto flex w-full flex-col gap-4 p-6 sm:p-8">
+        <img src="assets/images/niche-clinics.jpg"
+          alt="Physiotherapist helping a client in a bright clinic"
+          class="absolute inset-0 h-full w-full object-cover transition duration-[1400ms] ease-out group-hover:scale-105 pointer-events-none" style="z-index:0;">
+        <div class="photo-scrim absolute inset-0 pointer-events-none" style="z-index:1;"></div>
+        <div class="relative mt-auto flex w-full flex-col gap-4 p-6 sm:p-8" style="z-index:2;">
           <span class="font-mono-label w-fit rounded-full bg-accent px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-white">Typical Retainer: $1,000 – $1,800/mo</span>
           <h3 class="font-display text-2xl font-semibold text-white sm:text-3xl">Dentists, Physios &amp; Gyms</h3>
           <p class="max-w-lg text-base leading-relaxed text-white/90">Local clinics and high-ticket service businesses needing geo-targeted lead-generation ads and patient testimonials.</p>
@@ -282,11 +268,11 @@
 
       <!-- Coaches (full width) -->
       <article class="reveal-up group relative isolate flex min-h-[280px] overflow-hidden rounded-[2rem] bg-ink md:col-span-2 lg:col-span-6" style="transition-delay:330ms;">
-        <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1400"
-          alt="Business coach presenting to a small group around a conference table" loading="lazy"
-          class="absolute inset-0 -z-10 h-full w-full object-cover object-top transition duration-[1400ms] ease-out group-hover:scale-105">
-        <div class="photo-scrim absolute inset-0 -z-10"></div>
-        <div class="relative z-10 mt-auto flex w-full flex-col gap-4 p-6 sm:p-8 md:flex-row md:items-end md:justify-between">
+        <img src="assets/images/niche-coaches.jpg"
+          alt="Business coach presenting to a small group around a conference table"
+          class="absolute inset-0 h-full w-full object-cover object-top transition duration-[1400ms] ease-out group-hover:scale-105 pointer-events-none" style="z-index:0;">
+        <div class="photo-scrim absolute inset-0 pointer-events-none" style="z-index:1;"></div>
+        <div class="relative mt-auto flex w-full flex-col gap-4 p-6 sm:p-8 md:flex-row md:items-end md:justify-between" style="z-index:2;">
           <div>
             <h3 class="font-display text-2xl font-semibold text-white sm:text-3xl">Coaches &amp; Consultants</h3>
             <p class="mt-2 max-w-lg text-base leading-relaxed text-white/90">Desperate for daily Shorts, Reels, and TikTok authority content to build personal brands and book discovery calls.</p>
@@ -316,10 +302,10 @@
         </div>
 
         <div class="reveal-up relative mt-10 aspect-[16/10] overflow-hidden rounded-[2rem]" style="transition-delay:240ms;">
-          <img src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1400"
-            alt="Video editor working on a multi-track timeline across two monitors" loading="lazy"
+          <img src="assets/images/timeline-bottleneck.jpg"
+            alt="Video editor working on a multi-track timeline across two monitors"
             class="h-full w-full object-cover">
-          <div class="photo-scrim absolute inset-0"></div>
+          <div class="photo-scrim absolute inset-0 pointer-events-none"></div>
           <p class="font-mono-label absolute bottom-5 left-5 right-5 text-xs uppercase tracking-[0.14em] text-white/80">The manual timeline is the bottleneck</p>
         </div>
       </div>
@@ -327,7 +313,7 @@
       <!-- Right: Two tilted cards -->
       <div class="flex flex-col gap-6 lg:col-span-5 lg:pt-10">
 
-        <!-- Old Way card (slight counter-clockwise tilt) -->
+        <!-- Old Way card -->
         <article class="reveal-up hover-lift relative rounded-[2rem] border border-border bg-card p-7 text-card-foreground sm:p-9 lg:-rotate-1" style="transition-delay:120ms;">
           <span class="font-mono-label inline-block rounded-full bg-destructive px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-white">Old way</span>
           <h3 class="font-display mt-5 text-2xl font-semibold sm:text-3xl">The Old Way of Running an Agency</h3>
@@ -335,7 +321,7 @@
           <p class="font-display mt-6 text-5xl font-semibold text-destructive">$3,000+<span class="text-lg font-medium text-muted-foreground">/mo</span></p>
         </article>
 
-        <!-- New Way card (slight clockwise tilt, orange bg) -->
+        <!-- New Way card -->
         <article class="reveal-up hover-lift relative rounded-[2rem] bg-primary p-7 text-white shadow-[0_30px_70px_-25px_rgba(0,0,0,0.5)] sm:p-9 lg:translate-x-6 lg:rotate-1" style="transition-delay:240ms;">
           <span class="font-mono-label inline-block rounded-full bg-white px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-primary">New way</span>
           <h3 class="font-display mt-5 text-2xl font-semibold sm:text-3xl">The WyvStudio Agency Model</h3>
@@ -418,7 +404,7 @@
             </div>
 
             <!-- Row 2 -->
-            <div class="rounded-2xl border border-ink-foreground/20 bg-ink/40 p-5 sm:p-6">
+            <div class="rounded-2xl border border-border bg-ink/40 p-5 sm:p-6">
               <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
                 <p class="text-base font-bold text-ink-foreground sm:text-lg">3 Clients @ $1,200/mo</p>
                 <p class="font-mono-label text-xs uppercase tracking-[0.1em] text-ink-foreground/85">$3,600 recurring/mo</p>
@@ -479,13 +465,13 @@
     <!-- Bento Grid (10 cards) -->
     <div class="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-6">
 
-      <!-- 1. Workspaces (Tall photo card) -->
+      <!-- 1. Workspaces -->
       <article class="reveal-up group relative isolate flex min-h-[520px] flex-col justify-end overflow-hidden rounded-[2rem] border border-transparent bg-ink p-6 text-ink-foreground transition duration-500 hover:-translate-y-1.5 hover:border-accent hover:shadow-[0_28px_60px_-24px_rgba(242,85,31,0.5)] md:col-span-2 lg:col-span-3 lg:row-span-2 sm:p-8">
-        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1097b4e9c-1772096395595.png"
-          alt="Team reviewing multiple client brand boards pinned on a studio wall" loading="lazy"
-          class="absolute inset-0 -z-10 h-full w-full object-cover transition duration-[1400ms] group-hover:scale-105">
-        <div class="photo-scrim absolute inset-0 -z-10"></div>
-        <div class="flex h-full flex-col justify-end">
+        <img src="assets/images/agency-workspaces.jpg"
+          alt="Team reviewing multiple client brand boards pinned on a studio wall"
+          class="absolute inset-0 h-full w-full object-cover transition duration-[1400ms] group-hover:scale-105 pointer-events-none" style="z-index:0;">
+        <div class="photo-scrim absolute inset-0 pointer-events-none" style="z-index:1;"></div>
+        <div class="relative flex h-full flex-col justify-end" style="z-index:2;">
           <span class="font-mono-label mb-3 w-fit rounded-full bg-accent px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] text-white">Zero Asset Cross-Contamination</span>
           <h3 class="font-display text-2xl font-semibold leading-tight text-white sm:text-[1.7rem]">Up to 30 Dedicated Workspaces</h3>
           <p class="mt-3 max-w-xl text-base leading-relaxed text-white/90">Keep every client completely organized. Each workspace has isolated brand kits, logos, default fonts, color schemes, and media libraries so client assets never mix.</p>
@@ -588,7 +574,7 @@
         </div>
       </article>
 
-      <!-- 10. Toolkit (Wide photo card) -->
+      <!-- 10. Toolkit -->
       <article class="reveal-up group relative isolate flex flex-col overflow-hidden rounded-[2rem] border border-transparent bg-ink p-6 text-ink-foreground transition duration-500 hover:-translate-y-1.5 hover:border-accent hover:shadow-[0_28px_60px_-24px_rgba(242,85,31,0.5)] md:col-span-2 lg:col-span-6 sm:p-8">
         <div class="flex h-full flex-col">
           <span class="font-mono-label mb-3 w-fit rounded-full bg-accent px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] text-white">Plug-and-Play Sales Assets</span>
@@ -597,8 +583,8 @@
 
           <div class="mt-8 grid gap-5 pt-4 md:grid-cols-2">
             <div class="relative aspect-[16/10] overflow-hidden rounded-2xl">
-              <img src="https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=1000"
-                alt="Consultant reviewing a printed agency proposal and contract at a desk" loading="lazy"
+              <img src="assets/images/agency-toolkit.jpg"
+                alt="Consultant reviewing a printed agency proposal and contract at a desk"
                 class="h-full w-full object-cover">
             </div>
             <div class="flex flex-col justify-center gap-3 rounded-2xl border border-white/20 bg-white/5 p-6 backdrop-blur-sm">
@@ -761,7 +747,7 @@
         <div class="float-slower relative flex h-64 w-64 items-center justify-center rounded-full bg-ink p-8 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)] sm:h-80 sm:w-80">
           <div class="absolute inset-3 rounded-full border border-dashed border-accent"></div>
           <div class="relative h-full w-full flex items-center justify-center">
-            <img src="guarantee-badge.jpg" onerror="this.onerror=null;this.src='https://launchpad-ten-liart.vercel.app/assets/badges/guarantee-badge-14day.png'"
+            <img src="assets/badges/guarantee-badge-14day.png" onerror="this.onerror=null;this.src='guarantee-badge.jpg'"
               alt="14-Day 100% Money-Back Guarantee seal" class="h-full w-full object-contain">
           </div>
         </div>
@@ -898,10 +884,10 @@
       <!-- Right: Office photo card -->
       <aside class="flex flex-col gap-6 lg:col-span-5">
         <div class="reveal-up relative min-h-[360px] flex-1 overflow-hidden rounded-[2rem] bg-ink" style="transition-delay:120ms;">
-          <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=900"
-            alt="Agency team collaborating in modern office on video campaigns" loading="lazy"
+          <img src="assets/images/hero-bg.jpg"
+            alt="Agency team collaborating in modern office on video campaigns"
             class="h-full w-full object-cover">
-          <div class="photo-scrim absolute inset-0"></div>
+          <div class="photo-scrim absolute inset-0 pointer-events-none"></div>
           <p class="font-display absolute inset-x-6 bottom-6 text-2xl font-semibold leading-snug text-white">
             Instant provisioning to your active WyvStudio account. One-time charge. No surprise subscription fees.
           </p>
@@ -912,9 +898,7 @@
   </div>
 </section>
 
-<!-- =====================================================================
-     FOOTER
-     ===================================================================== -->
+<!-- FOOTER -->
 <footer id="site-footer" class="border-t border-border bg-background">
   <div class="mx-auto flex max-w-[1400px] flex-col gap-6 px-4 py-14 sm:px-8 md:flex-row md:items-center md:justify-between">
     <div class="flex items-center gap-3">
@@ -941,9 +925,7 @@
 
 </main>
 
-<!-- =====================================================================
-     MOBILE STICKY CTA (from StickyMobileCta.tsx)
-     ===================================================================== -->
+<!-- MOBILE STICKY CTA -->
 <div id="mobile-sticky-cta" class="fixed inset-x-0 bottom-0 z-30 border-t border-border bg-background/95 p-3 backdrop-blur-md transition-transform duration-500 translate-y-full lg:hidden">
   <a href="#order" data-buy="agency" class="lp-buy tap-44 flex w-full items-center justify-between gap-3 rounded-full bg-accent px-6 py-3.5 text-white shadow-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-ring">
     <span class="text-sm font-extrabold uppercase tracking-wide">Upgrade to Agency</span>
@@ -951,9 +933,7 @@
   </a>
 </div>
 
-<!-- =====================================================================
-     COOKIE NOTICE (from CookieNotice.tsx)
-     ===================================================================== -->
+<!-- COOKIE NOTICE -->
 <div id="cookie-notice" role="dialog" aria-label="Cookie notice" class="hidden fixed inset-x-4 bottom-4 z-50 mx-auto max-w-3xl rounded-2xl border border-border bg-card p-5 shadow-2xl sm:inset-x-6 sm:p-6">
   <p class="text-[15px] leading-relaxed text-muted-foreground">
     We use essential cookies for login and billing, plus anonymized error tracking via Sentry. With your OK, Google Ads and PostHog also use cookies to measure our ads and site visits. See our <a href="/privacy" class="font-semibold text-foreground underline underline-offset-4">Privacy Policy</a>.
