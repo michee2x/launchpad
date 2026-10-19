@@ -21,7 +21,7 @@
   --font-plus-jakarta-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-fraunces: 'Fraunces', Georgia, serif;
   --font-sans: var(--font-plus-jakarta-sans);
-  --font-display: var(--font-fraunces);
+  --font-display: var(--font-plus-jakarta-sans);
   --font-serif: var(--font-fraunces);
   --success: #2f7d4f;
   --success-foreground: #f4fff8;
@@ -89,17 +89,22 @@ h1, h2, h3, h4, h5, h6, p {
   outline-offset: 3px;
 }
 
-/* Custom Display Typography & Clamps */
+/* Custom Display Typography & Clamps (Aligned 1:1 with index.html) */
 .font-display {
-  font-family: var(--font-fraunces), serif;
-  font-weight: 400;
-  letter-spacing: -0.02em;
+  font-family: var(--font-plus-jakarta-sans);
+  font-weight: 800;
+  letter-spacing: -0.03em;
 }
 
-.font-serif-accent {
+.font-serif-accent,
+.font-serif,
+.font-display .italic,
+.font-display em,
+[class*="font-display"] .italic,
+[class*="font-display"] em {
   font-family: var(--font-fraunces), Georgia, serif;
   font-style: italic;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .text-hero-xl {
@@ -126,6 +131,58 @@ h1, h2, h3, h4, h5, h6, p {
 
 .ease-smooth {
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Framer Card Elevation & Inset System (From Reference Component) */
+.framer-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(6, 6, 18, 0.08);
+  box-shadow: 0px 14px 34px -4px rgba(6, 6, 18, 0.12), 0px 0px 6px 0px rgba(6, 6, 18, 0.18);
+  border-radius: 1.5rem;
+}
+
+.dark .framer-card {
+  background-color: #1A1614;
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 16px 36px -4px rgba(0, 0, 0, 0.5), inset 0px 0px 6px 0px rgba(255, 255, 255, 0.04);
+}
+
+.framer-inset-frame {
+  background-color: #F4F2F0;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0px 0px 6px 0px rgba(6, 6, 18, 0.18), 0 20px 50px -15px rgba(6, 6, 18, 0.08);
+  border-radius: 2rem;
+}
+
+.dark .framer-inset-frame {
+  background-color: #161210;
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.4), 0 20px 50px -15px rgba(0, 0, 0, 0.5);
+}
+
+.framer-btn-orange {
+  background-color: #ff6321;
+  color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0px 1.4px 4px 0px rgba(6, 6, 18, 0.3), inset 0px 1.4px 1px 0px rgba(255, 255, 255, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.framer-btn-orange:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 4px 12px 0px rgba(255, 99, 33, 0.4), inset 0px 1.4px 1px 0px rgba(255, 255, 255, 0.25);
+}
+
+.framer-btn-dark {
+  background-color: #060612;
+  color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: inset 0px 1.4px 1px 0px rgba(255, 255, 255, 0.15), 0px 4px 12px rgba(6, 6, 18, 0.25);
+  transition: transform 0.2s ease;
+}
+
+.framer-btn-dark:hover {
+  transform: scale(1.02);
 }
 
 /* Visual Blobs & Effects */

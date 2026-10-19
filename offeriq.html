@@ -120,7 +120,7 @@
           },
           fontFamily: {
             sans: ['var(--font-sans)', 'sans-serif'],
-            display: ['var(--font-display)', 'serif'],
+            display: ['var(--font-display)', 'sans-serif'],
             serif: ['var(--font-serif)', 'serif'],
           },
         },
@@ -129,7 +129,7 @@
   </script>
 
   <!-- Dedicated Stylesheet: Design Tokens, Clamps & Animation Keyframes -->
-  <link rel="stylesheet" href="rocket-offeriq-styles.css">
+  <link rel="stylesheet" href="rocket-offeriq-styles.css?v=2">
 </head>
 
 <body class="bg-background text-foreground selection:bg-primary selection:text-white">
@@ -535,26 +535,37 @@
     </section>
 
     <!-- ───── 6. PHASES SECTION (5 PHASES & INTERACTIVE TABS) ───── -->
-    <section id="phases" class="bg-inverse py-20 text-inverse-foreground md:py-28">
-      <div class="mx-auto max-w-7xl px-4 md:px-8">
+    <section id="phases" class="py-20 md:py-28" style="background-image: url('assets/images/section-phases-bg.jpg'); background-size: cover; background-position: center; position: relative; overflow: hidden;">
+
+      <!-- Decorative arc lines (matching Framer reference) -->
+      <svg aria-hidden="true" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice"
+        style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; opacity: 0.35;">
+        <circle cx="950" cy="80" r="380" fill="none" stroke="rgba(200,90,0,0.55)" stroke-width="2.5"/>
+        <circle cx="1050" cy="520" r="300" fill="none" stroke="rgba(200,90,0,0.45)" stroke-width="2"/>
+        <circle cx="180" cy="500" r="260" fill="none" stroke="rgba(200,90,0,0.3)" stroke-width="1.5"/>
+      </svg>
+
+      <div class="mx-auto max-w-7xl px-4 md:px-8" style="position: relative; z-index: 1;">
+
+
         <div class="reveal-ready">
           <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-primary">Introducing OfferIQ</p>
-          <h2 class="font-display text-section-xl max-w-4xl">
+          <h2 class="font-display text-section-xl max-w-4xl" style="color: rgb(6, 6, 18);">
             The Offer &amp; Live Funnel Machine, <span class="italic text-primary">in five phases</span>
           </h2>
-          <p class="mt-6 max-w-3xl text-base leading-relaxed text-inverse-foreground/70 sm:text-lg">
+          <p class="mt-6 max-w-3xl text-base leading-relaxed sm:text-lg" style="color: rgba(6,6,18,0.65);">
             OfferIQ is an end-to-end intelligence platform engineered to turn any rough idea, web link, or PDF document
             into a complete, market-validated offer, full direct-response copy, and a payment-ready funnel in under 30
             minutes. Your license includes 3 complete offer builds, for the life of the license.
           </p>
-          <p class="mt-4 max-w-3xl text-base leading-relaxed text-inverse-foreground/70 sm:text-lg">
+          <p class="mt-4 max-w-3xl text-base leading-relaxed sm:text-lg" style="color: rgba(6,6,18,0.65);">
             Best of all: it links directly with WyvStudio. OfferIQ creates the offer and copy, then feeds the marketing
             angles straight into WyvStudio to generate high-converting promotional video ads automatically.
           </p>
         </div>
 
         <div class="reveal-ready mt-12" style="animation-delay: 100ms;">
-          <div class="relative aspect-[21/9] w-full overflow-hidden rounded-lg border border-white/15">
+          <div class="relative aspect-[21/9] w-full overflow-hidden rounded-2xl" style="border: 1px solid rgba(255,255,255,0.85); box-shadow: inset 0 0 6px 0 rgba(6,6,18,0.18), 0px 0px 50px 0px rgba(6,6,18,0.05);">
             <img src="assets/images/section-funnel-pages.png"
               alt="Laptop with several funnel page wireframes fanned out on a dark desk lit by warm orange light"
               loading="lazy" class="h-full w-full object-cover">
@@ -566,7 +577,7 @@
         </div>
 
         <div class="reveal-ready mb-8 mt-16" style="animation-delay: 100ms;">
-          <p class="font-display text-2xl italic text-inverse-foreground/90 sm:text-3xl">
+          <p class="font-display text-2xl italic sm:text-3xl" style="color: rgba(6,6,18,0.85);">
             Here is exactly what OfferIQ builds for you in one session
           </p>
         </div>
@@ -584,25 +595,25 @@
             </button>
             <!-- Tab 02 -->
             <button type="button" role="tab" id="tab-1" aria-selected="false" data-phase-index="1"
-              class="phase-tab flex min-h-[56px] shrink-0 items-center gap-4 rounded-full px-5 py-3 text-left transition-all duration-300 ease-smooth lg:rounded-lg lg:py-5 border border-white/12 bg-white/6 text-inverse-foreground hover:bg-white/12">
+              class="phase-tab flex min-h-[56px] shrink-0 items-center gap-4 rounded-full px-5 py-3 text-left transition-all duration-300 ease-smooth lg:rounded-lg lg:py-5" style="background-color: #fff; border: 1px solid rgba(6,6,18,0.12); color: rgb(6,6,18); box-shadow: 0 1px 4px rgba(6,6,18,0.06);">
               <span class="font-display text-xl italic">02</span>
               <span class="text-sm font-semibold sm:text-base">Funnel Copy</span>
             </button>
             <!-- Tab 03 -->
             <button type="button" role="tab" id="tab-2" aria-selected="false" data-phase-index="2"
-              class="phase-tab flex min-h-[56px] shrink-0 items-center gap-4 rounded-full px-5 py-3 text-left transition-all duration-300 ease-smooth lg:rounded-lg lg:py-5 border border-white/12 bg-white/6 text-inverse-foreground hover:bg-white/12">
+              class="phase-tab flex min-h-[56px] shrink-0 items-center gap-4 rounded-full px-5 py-3 text-left transition-all duration-300 ease-smooth lg:rounded-lg lg:py-5" style="background-color: #fff; border: 1px solid rgba(6,6,18,0.12); color: rgb(6,6,18); box-shadow: 0 1px 4px rgba(6,6,18,0.06);">
               <span class="font-display text-xl italic">03</span>
               <span class="text-sm font-semibold sm:text-base">5-Page Funnel</span>
             </button>
             <!-- Tab 04 -->
             <button type="button" role="tab" id="tab-3" aria-selected="false" data-phase-index="3"
-              class="phase-tab flex min-h-[56px] shrink-0 items-center gap-4 rounded-full px-5 py-3 text-left transition-all duration-300 ease-smooth lg:rounded-lg lg:py-5 border border-white/12 bg-white/6 text-inverse-foreground hover:bg-white/12">
+              class="phase-tab flex min-h-[56px] shrink-0 items-center gap-4 rounded-full px-5 py-3 text-left transition-all duration-300 ease-smooth lg:rounded-lg lg:py-5" style="background-color: #fff; border: 1px solid rgba(6,6,18,0.12); color: rgb(6,6,18); box-shadow: 0 1px 4px rgba(6,6,18,0.06);">
               <span class="font-display text-xl italic">04</span>
               <span class="text-sm font-semibold sm:text-base">Asset Vault</span>
             </button>
             <!-- Tab 05 -->
             <button type="button" role="tab" id="tab-4" aria-selected="false" data-phase-index="4"
-              class="phase-tab flex min-h-[56px] shrink-0 items-center gap-4 rounded-full px-5 py-3 text-left transition-all duration-300 ease-smooth lg:rounded-lg lg:py-5 border border-white/12 bg-white/6 text-inverse-foreground hover:bg-white/12">
+              class="phase-tab flex min-h-[56px] shrink-0 items-center gap-4 rounded-full px-5 py-3 text-left transition-all duration-300 ease-smooth lg:rounded-lg lg:py-5" style="background-color: #fff; border: 1px solid rgba(6,6,18,0.12); color: rgb(6,6,18); box-shadow: 0 1px 4px rgba(6,6,18,0.06);">
               <span class="font-display text-xl italic">05</span>
               <span class="text-sm font-semibold sm:text-base">Publish &amp; Pay</span>
             </button>
@@ -612,7 +623,7 @@
           <div class="lg:col-span-8">
             <!-- Panel 01 -->
             <div id="panel-0" role="tabpanel"
-              class="phase-panel reveal-in rounded-lg border border-white/12 bg-white/6 p-7 backdrop-blur-md sm:p-10">
+              class="phase-panel reveal-in rounded-2xl p-7 sm:p-10" style="background-color: #fff; border: 1px solid rgba(255,255,255,0.85); box-shadow: inset 0 0 6px 0 rgba(6,6,18,0.18), 0 4px 24px rgba(6,6,18,0.07);">
               <div class="mb-6 flex items-center gap-4">
                 <span
                   class="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-md">
@@ -623,15 +634,15 @@
                 </span>
                 <div>
                   <p class="text-xs font-semibold uppercase tracking-widest text-primary">Phase 01</p>
-                  <h3 class="font-display text-2xl sm:text-3xl">The Market-Fit Strategy Report</h3>
+                  <h3 class="font-display text-2xl sm:text-3xl" style="color: rgb(6,6,18);">The Market-Fit Strategy Report</h3>
                 </div>
               </div>
-              <p class="text-base leading-relaxed text-inverse-foreground/75">
+              <p class="text-base leading-relaxed" style="color: rgba(6,6,18,0.65);">
                 Paste an existing URL, upload a PDF, or describe your idea in plain English. OfferIQ analyzes the market
                 and builds your roadmap:
               </p>
               <ul class="mt-6 space-y-3">
-                <li class="flex gap-3 text-sm leading-relaxed text-inverse-foreground/90 sm:text-base">
+                <li class="flex gap-3 text-sm leading-relaxed sm:text-base" style="color: rgba(6,6,18,0.85);">
                   <svg viewBox="0 0 24 24" fill="currentColor" class="mt-0.5 h-5 w-5 shrink-0 text-primary"
                     aria-hidden="true">
                     <path fill-rule="evenodd"
@@ -640,7 +651,7 @@
                   </svg>
                   <span>Exactly who to target and what specific pain points they are desperate to solve.</span>
                 </li>
-                <li class="flex gap-3 text-sm leading-relaxed text-inverse-foreground/90 sm:text-base">
+                <li class="flex gap-3 text-sm leading-relaxed sm:text-base" style="color: rgba(6,6,18,0.85);">
                   <svg viewBox="0 0 24 24" fill="currentColor" class="mt-0.5 h-5 w-5 shrink-0 text-primary"
                     aria-hidden="true">
                     <path fill-rule="evenodd"
@@ -649,7 +660,7 @@
                   </svg>
                   <span>The optimum pricing model: front-end entry, order bump pricing, and backend ascension.</span>
                 </li>
-                <li class="flex gap-3 text-sm leading-relaxed text-inverse-foreground/90 sm:text-base">
+                <li class="flex gap-3 text-sm leading-relaxed sm:text-base" style="color: rgba(6,6,18,0.85);">
                   <svg viewBox="0 0 24 24" fill="currentColor" class="mt-0.5 h-5 w-5 shrink-0 text-primary"
                     aria-hidden="true">
                     <path fill-rule="evenodd"
@@ -663,7 +674,7 @@
 
             <!-- Panel 02 -->
             <div id="panel-1" role="tabpanel"
-              class="phase-panel hidden rounded-lg border border-white/12 bg-white/6 p-7 backdrop-blur-md sm:p-10">
+              class="phase-panel hidden rounded-2xl p-7 sm:p-10" style="background-color: #fff; border: 1px solid rgba(255,255,255,0.85); box-shadow: inset 0 0 6px 0 rgba(6,6,18,0.18), 0 4px 24px rgba(6,6,18,0.07);">
               <div class="mb-6 flex items-center gap-4">
                 <span
                   class="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-md">
@@ -675,15 +686,15 @@
                 </span>
                 <div>
                   <p class="text-xs font-semibold uppercase tracking-widest text-primary">Phase 02</p>
-                  <h3 class="font-display text-2xl sm:text-3xl">Full-Funnel Direct-Response Copy</h3>
+                  <h3 class="font-display text-2xl sm:text-3xl" style="color: rgb(6,6,18);">Full-Funnel Direct-Response Copy</h3>
                 </div>
               </div>
-              <p class="text-base leading-relaxed text-inverse-foreground/75">
+              <p class="text-base leading-relaxed" style="color: rgba(6,6,18,0.65);">
                 No more staring at a blank screen or paying thousands of dollars to freelance copywriters. OfferIQ writes
                 every word based on your Strategy Report, in your buyer’s exact emotional vocabulary:
               </p>
               <ul class="mt-6 space-y-3">
-                <li class="flex gap-3 text-sm leading-relaxed text-inverse-foreground/90 sm:text-base">
+                <li class="flex gap-3 text-sm leading-relaxed sm:text-base" style="color: rgba(6,6,18,0.85);">
                   <svg viewBox="0 0 24 24" fill="currentColor" class="mt-0.5 h-5 w-5 shrink-0 text-primary"
                     aria-hidden="true">
                     <path fill-rule="evenodd"
@@ -692,7 +703,7 @@
                   </svg>
                   <span>Complete, high-converting long-form sales page copy.</span>
                 </li>
-                <li class="flex gap-3 text-sm leading-relaxed text-inverse-foreground/90 sm:text-base">
+                <li class="flex gap-3 text-sm leading-relaxed sm:text-base" style="color: rgba(6,6,18,0.85);">
                   <svg viewBox="0 0 24 24" fill="currentColor" class="mt-0.5 h-5 w-5 shrink-0 text-primary"
                     aria-hidden="true">
                     <path fill-rule="evenodd"
@@ -701,7 +712,7 @@
                   </svg>
                   <span>High-converting lead magnet opt-in copy.</span>
                 </li>
-                <li class="flex gap-3 text-sm leading-relaxed text-inverse-foreground/90 sm:text-base">
+                <li class="flex gap-3 text-sm leading-relaxed sm:text-base" style="color: rgba(6,6,18,0.85);">
                   <svg viewBox="0 0 24 24" fill="currentColor" class="mt-0.5 h-5 w-5 shrink-0 text-primary"
                     aria-hidden="true">
                     <path fill-rule="evenodd"
@@ -710,7 +721,7 @@
                   </svg>
                   <span>High-urgency upsell and downsell page copy.</span>
                 </li>
-                <li class="flex gap-3 text-sm leading-relaxed text-inverse-foreground/90 sm:text-base">
+                <li class="flex gap-3 text-sm leading-relaxed sm:text-base" style="color: rgba(6,6,18,0.85);">
                   <svg viewBox="0 0 24 24" fill="currentColor" class="mt-0.5 h-5 w-5 shrink-0 text-primary"
                     aria-hidden="true">
                     <path fill-rule="evenodd"
@@ -724,7 +735,7 @@
 
             <!-- Panel 03 -->
             <div id="panel-2" role="tabpanel"
-              class="phase-panel hidden rounded-lg border border-white/12 bg-white/6 p-7 backdrop-blur-md sm:p-10">
+              class="phase-panel hidden rounded-2xl p-7 sm:p-10" style="background-color: #fff; border: 1px solid rgba(255,255,255,0.85); box-shadow: inset 0 0 6px 0 rgba(6,6,18,0.18), 0 4px 24px rgba(6,6,18,0.07);">
               <div class="mb-6 flex items-center gap-4">
                 <span
                   class="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-md">
@@ -736,15 +747,15 @@
                 </span>
                 <div>
                   <p class="text-xs font-semibold uppercase tracking-widest text-primary">Phase 03</p>
-                  <h3 class="font-display text-2xl sm:text-3xl">The 5-Page Self-Assembling Funnel</h3>
+                  <h3 class="font-display text-2xl sm:text-3xl" style="color: rgb(6,6,18);">The 5-Page Self-Assembling Funnel</h3>
                 </div>
               </div>
-              <p class="text-base leading-relaxed text-inverse-foreground/75">
+              <p class="text-base leading-relaxed" style="color: rgba(6,6,18,0.65);">
                 You never have to build pages from scratch. OfferIQ automatically generates all 5 essential funnel
                 pages:
               </p>
               <ul class="mt-6 space-y-3">
-                <li class="flex gap-3 text-sm leading-relaxed text-inverse-foreground/90 sm:text-base">
+                <li class="flex gap-3 text-sm leading-relaxed sm:text-base" style="color: rgba(6,6,18,0.85);">
                   <svg viewBox="0 0 24 24" fill="currentColor" class="mt-0.5 h-5 w-5 shrink-0 text-primary"
                     aria-hidden="true">
                     <path fill-rule="evenodd"
@@ -753,7 +764,7 @@
                   </svg>
                   <span>The Lead Magnet Capture Page</span>
                 </li>
-                <li class="flex gap-3 text-sm leading-relaxed text-inverse-foreground/90 sm:text-base">
+                <li class="flex gap-3 text-sm leading-relaxed sm:text-base" style="color: rgba(6,6,18,0.85);">
                   <svg viewBox="0 0 24 24" fill="currentColor" class="mt-0.5 h-5 w-5 shrink-0 text-primary"
                     aria-hidden="true">
                     <path fill-rule="evenodd"
@@ -762,7 +773,7 @@
                   </svg>
                   <span>The Front-End Sales Page</span>
                 </li>
-                <li class="flex gap-3 text-sm leading-relaxed text-inverse-foreground/90 sm:text-base">
+                <li class="flex gap-3 text-sm leading-relaxed sm:text-base" style="color: rgba(6,6,18,0.85);">
                   <svg viewBox="0 0 24 24" fill="currentColor" class="mt-0.5 h-5 w-5 shrink-0 text-primary"
                     aria-hidden="true">
                     <path fill-rule="evenodd"
@@ -771,7 +782,7 @@
                   </svg>
                   <span>The 1-Click Upsell Page</span>
                 </li>
-                <li class="flex gap-3 text-sm leading-relaxed text-inverse-foreground/90 sm:text-base">
+                <li class="flex gap-3 text-sm leading-relaxed sm:text-base" style="color: rgba(6,6,18,0.85);">
                   <svg viewBox="0 0 24 24" fill="currentColor" class="mt-0.5 h-5 w-5 shrink-0 text-primary"
                     aria-hidden="true">
                     <path fill-rule="evenodd"
@@ -780,7 +791,7 @@
                   </svg>
                   <span>The Downsell Rescue Page</span>
                 </li>
-                <li class="flex gap-3 text-sm leading-relaxed text-inverse-foreground/90 sm:text-base">
+                <li class="flex gap-3 text-sm leading-relaxed sm:text-base" style="color: rgba(6,6,18,0.85);">
                   <svg viewBox="0 0 24 24" fill="currentColor" class="mt-0.5 h-5 w-5 shrink-0 text-primary"
                     aria-hidden="true">
                     <path fill-rule="evenodd"
@@ -790,7 +801,7 @@
                   <span>The Order Confirmation &amp; Thank-You Page</span>
                 </li>
               </ul>
-              <p class="mt-6 rounded-lg bg-white/8 p-5 text-sm leading-relaxed text-inverse-foreground/85 sm:text-base">
+              <p class="mt-6 rounded-xl p-5 text-sm leading-relaxed sm:text-base" style="background-color: rgba(6,6,18,0.04); color: rgba(6,6,18,0.75);">
                 Want to change a headline, font, or layout? Tell the built-in AI copilot in plain English, and it updates
                 your page in real time.
               </p>
@@ -798,7 +809,7 @@
 
             <!-- Panel 04 -->
             <div id="panel-3" role="tabpanel"
-              class="phase-panel hidden rounded-lg border border-white/12 bg-white/6 p-7 backdrop-blur-md sm:p-10">
+              class="phase-panel hidden rounded-2xl p-7 sm:p-10" style="background-color: #fff; border: 1px solid rgba(255,255,255,0.85); box-shadow: inset 0 0 6px 0 rgba(6,6,18,0.18), 0 4px 24px rgba(6,6,18,0.07);">
               <div class="mb-6 flex items-center gap-4">
                 <span
                   class="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-md">
@@ -810,14 +821,14 @@
                 </span>
                 <div>
                   <p class="text-xs font-semibold uppercase tracking-widest text-primary">Phase 04</p>
-                  <h3 class="font-display text-2xl sm:text-3xl">The Lead Generation &amp; Launch Asset Vault</h3>
+                  <h3 class="font-display text-2xl sm:text-3xl" style="color: rgb(6,6,18);">The Lead Generation &amp; Launch Asset Vault</h3>
                 </div>
               </div>
-              <p class="text-base leading-relaxed text-inverse-foreground/75">
+              <p class="text-base leading-relaxed" style="color: rgba(6,6,18,0.65);">
                 OfferIQ builds all the supporting marketing materials needed to launch and convert traffic:
               </p>
               <ul class="mt-6 space-y-3">
-                <li class="flex gap-3 text-sm leading-relaxed text-inverse-foreground/90 sm:text-base">
+                <li class="flex gap-3 text-sm leading-relaxed sm:text-base" style="color: rgba(6,6,18,0.85);">
                   <svg viewBox="0 0 24 24" fill="currentColor" class="mt-0.5 h-5 w-5 shrink-0 text-primary"
                     aria-hidden="true">
                     <path fill-rule="evenodd"
@@ -827,7 +838,7 @@
                   <span><strong>Instant Asset Generator:</strong> creates complete, formatted PDF lead magnets and bonus
                     guides in under 60 seconds with 1 click.</span>
                 </li>
-                <li class="flex gap-3 text-sm leading-relaxed text-inverse-foreground/90 sm:text-base">
+                <li class="flex gap-3 text-sm leading-relaxed sm:text-base" style="color: rgba(6,6,18,0.85);">
                   <svg viewBox="0 0 24 24" fill="currentColor" class="mt-0.5 h-5 w-5 shrink-0 text-primary"
                     aria-hidden="true">
                     <path fill-rule="evenodd"
@@ -837,7 +848,7 @@
                   <span><strong>Ready-to-Use Ad Copy:</strong> direct-response ad copy frameworks for Meta and
                     Google.</span>
                 </li>
-                <li class="flex gap-3 text-sm leading-relaxed text-inverse-foreground/90 sm:text-base">
+                <li class="flex gap-3 text-sm leading-relaxed sm:text-base" style="color: rgba(6,6,18,0.85);">
                   <svg viewBox="0 0 24 24" fill="currentColor" class="mt-0.5 h-5 w-5 shrink-0 text-primary"
                     aria-hidden="true">
                     <path fill-rule="evenodd"
@@ -847,7 +858,7 @@
                   <span><strong>Video Ad &amp; UGC Scripts:</strong> pre-written video scripts ready to paste directly
                     into WyvStudio.</span>
                 </li>
-                <li class="flex gap-3 text-sm leading-relaxed text-inverse-foreground/90 sm:text-base">
+                <li class="flex gap-3 text-sm leading-relaxed sm:text-base" style="color: rgba(6,6,18,0.85);">
                   <svg viewBox="0 0 24 24" fill="currentColor" class="mt-0.5 h-5 w-5 shrink-0 text-primary"
                     aria-hidden="true">
                     <path fill-rule="evenodd"
@@ -857,7 +868,7 @@
                   <span><strong>5 Automated Email Sequences:</strong> Lead Nurture, Offer Launch, Customer Onboarding,
                     Cart Re-Engagement, and Backend Upsell.</span>
                 </li>
-                <li class="flex gap-3 text-sm leading-relaxed text-inverse-foreground/90 sm:text-base">
+                <li class="flex gap-3 text-sm leading-relaxed sm:text-base" style="color: rgba(6,6,18,0.85);">
                   <svg viewBox="0 0 24 24" fill="currentColor" class="mt-0.5 h-5 w-5 shrink-0 text-primary"
                     aria-hidden="true">
                     <path fill-rule="evenodd"
@@ -872,7 +883,7 @@
 
             <!-- Panel 05 -->
             <div id="panel-4" role="tabpanel"
-              class="phase-panel hidden rounded-lg border border-white/12 bg-white/6 p-7 backdrop-blur-md sm:p-10">
+              class="phase-panel hidden rounded-2xl p-7 sm:p-10" style="background-color: #fff; border: 1px solid rgba(255,255,255,0.85); box-shadow: inset 0 0 6px 0 rgba(6,6,18,0.18), 0 4px 24px rgba(6,6,18,0.07);">
               <div class="mb-6 flex items-center gap-4">
                 <span
                   class="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-md">
@@ -884,10 +895,10 @@
                 </span>
                 <div>
                   <p class="text-xs font-semibold uppercase tracking-widest text-primary">Phase 05</p>
-                  <h3 class="font-display text-2xl sm:text-3xl">1-Click Publishing &amp; Payments</h3>
+                  <h3 class="font-display text-2xl sm:text-3xl" style="color: rgb(6,6,18);">1-Click Publishing &amp; Payments</h3>
                 </div>
               </div>
-              <p class="text-base leading-relaxed text-inverse-foreground/75">
+              <p class="text-base leading-relaxed" style="color: rgba(6,6,18,0.65);">
                 Publish on a free OfferIQ subdomain, connect your Stripe or PayPal account (subject to the relevant
                 account setup), and go live. Your buy buttons work the moment you publish, and the built-in CRM tracks
                 your leads from day one.
@@ -906,7 +917,7 @@
               <path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
             </svg>
           </a>
-          <p class="text-sm text-inverse-foreground/65">
+          <p class="text-sm" style="color: rgba(6,6,18,0.5);">
             1-click instant upgrade. Billed securely to card on file. Complete 5-phase funnel machine, 3 offer builds
             included.
           </p>
@@ -923,79 +934,93 @@
           </h2>
         </div>
 
-        <div class="relative mt-14 grid gap-5 md:grid-cols-3">
-          <!-- Step 1 -->
-          <div class="reveal-ready" style="animation-delay: 0ms;">
-            <div
-              class="relative flex h-full flex-col gap-5 rounded-lg border border-border bg-card p-8 text-card-foreground">
-              <div class="flex items-center justify-between">
-                <span class="font-display text-6xl italic opacity-90">1</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                  stroke-linejoin="round" class="h-7 w-7 text-primary" aria-hidden="true">
-                  <path fill-rule="evenodd"
-                    d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z"
-                    clip-rule="evenodd" />
-                </svg>
+        <!-- 3-Column Staggered Visual & Card Grid (Matching Reference Layout) -->
+        <div class="mt-14 grid gap-6 md:grid-cols-3">
+          <!-- Column 1: Step 1 (Visual on Top, Card on Bottom) -->
+          <div class="reveal-ready flex flex-col gap-6" style="animation-delay: 0ms;">
+            <div class="relative aspect-[4/3] w-full overflow-hidden rounded-[1.75rem] border border-border bg-card shadow-sm">
+              <img src="assets/images/section-funnel-pages.png"
+                alt="OfferIQ 5-page funnel blueprint"
+                loading="lazy" class="h-full w-full object-cover">
+            </div>
+            <div class="flex flex-1 flex-col justify-between rounded-[1.75rem] border border-border bg-card p-7 sm:p-8 shadow-sm text-card-foreground">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-widest text-primary">STEP 01</span>
+                <h3 class="font-display mt-3 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">Step 1: OfferIQ</h3>
+                <p class="mt-3 text-sm sm:text-base leading-relaxed text-muted-foreground">
+                  Builds your offer, market strategy, 5-page funnel, and sales copy in 30 minutes.
+                </p>
               </div>
-              <h3 class="font-display text-2xl">Step 1: OfferIQ</h3>
-              <p class="text-base leading-relaxed text-muted-foreground">
-                Builds your offer, market strategy, 5-page funnel, and sales copy in 30 minutes.
-              </p>
+              <div class="mt-8 flex items-center justify-between pt-4 border-t border-border/40">
+                <span class="text-xs font-semibold uppercase tracking-wider text-muted-foreground">01 / OfferIQ</span>
+                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-foreground text-background shadow-sm" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="h-4 w-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                  </svg>
+                </span>
+              </div>
             </div>
           </div>
 
-          <!-- Step 2 (Highlighted) -->
-          <div class="reveal-ready" style="animation-delay: 120ms;">
-            <div
-              class="relative flex h-full flex-col gap-5 rounded-lg bg-primary p-8 text-primary-foreground md:-translate-y-6 shadow-xl">
-              <div class="flex items-center justify-between">
-                <span class="font-display text-6xl italic opacity-90">2</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                  stroke-linejoin="round" class="h-7 w-7" aria-hidden="true">
-                  <rect width="18" height="18" x="3" y="3" rx="2" />
-                  <path d="M7 3v18M17 3v18M3 7.5h4M3 12h18M3 16.5h4M17 7.5h4M17 16.5h4" />
-                </svg>
+          <!-- Column 2: Step 2 (Card on Top, Video on Bottom - Staggered & Highlighted) -->
+          <div class="reveal-ready flex flex-col gap-6" style="animation-delay: 120ms;">
+            <div class="flex flex-1 flex-col justify-between rounded-[1.75rem] bg-primary p-7 sm:p-8 shadow-xl text-primary-foreground">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-widest text-primary-foreground/80">STEP 02</span>
+                <h3 class="font-display mt-3 text-2xl font-bold tracking-tight text-primary-foreground sm:text-3xl">Step 2: WyvStudio</h3>
+                <p class="mt-3 text-sm sm:text-base leading-relaxed text-primary-foreground/90">
+                  Pulls your OfferIQ scripts and generates scroll-stopping video ads in under 60 seconds.
+                </p>
               </div>
-              <h3 class="font-display text-2xl">Step 2: WyvStudio</h3>
-              <p class="text-base leading-relaxed text-primary-foreground/90">
-                Pulls your OfferIQ scripts and generates scroll-stopping video ads in under 60 seconds.
-              </p>
+              <div class="mt-8 flex items-center justify-between pt-4 border-t border-primary-foreground/20">
+                <span class="text-xs font-semibold uppercase tracking-wider text-primary-foreground/80">02 / WyvStudio</span>
+                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-primary-foreground text-primary shadow-sm" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="h-4 w-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+            <div class="relative aspect-[4/3] w-full overflow-hidden rounded-[1.75rem] border border-border bg-black shadow-sm">
+              <video class="h-full w-full object-cover"
+                src="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b09.mp4"
+                poster="https://s3.us-east-005.backblazeb2.com/frame-cast/marketing/samples/weave/b09.jpg"
+                muted loop playsinline autoplay preload="metadata"></video>
             </div>
           </div>
 
-          <!-- Step 3 -->
-          <div class="reveal-ready" style="animation-delay: 240ms;">
-            <div
-              class="relative flex h-full flex-col gap-5 rounded-lg border border-border bg-card p-8 text-card-foreground">
-              <div class="flex items-center justify-between">
-                <span class="font-display text-6xl italic opacity-90">3</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                  stroke-linejoin="round" class="h-7 w-7 text-primary" aria-hidden="true">
-                  <path
-                    d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6H2.25m0 0v8.25m0 0h.75A.75.75 0 0 1 3.75 15v.75m0-9.75h16.5m-16.5 9.75h16.5m-16.5 0a60.07 60.07 0 0 1-2.101-15.797c.198-.727.738-1.453 1.096-1.453H3.75m16.5 0V6a.75.75 0 0 1 .75-.75h.75m-1.5 9.75v.75a.75.75 0 0 0 .75.75h.75M21.75 6v8.25m0 0a60.07 60.07 0 0 1-2.101 15.797c-.198.727-.738 1.453-1.096 1.453H18.75m0 0H3.75M12 12.75a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Z" />
-                </svg>
+          <!-- Column 3: Step 3 (Visual on Top, Card on Bottom) -->
+          <div class="reveal-ready flex flex-col gap-6" style="animation-delay: 240ms;">
+            <div class="relative aspect-[4/3] w-full overflow-hidden rounded-[1.75rem] border border-border bg-card shadow-sm">
+              <img src="assets/images/section-abstract-loop.png"
+                alt="High-converting revenue and acquisition loop"
+                loading="lazy" class="h-full w-full object-cover">
+            </div>
+            <div class="flex flex-1 flex-col justify-between rounded-[1.75rem] border border-border bg-card p-7 sm:p-8 shadow-sm text-card-foreground">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-widest text-primary">STEP 03</span>
+                <h3 class="font-display mt-3 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">Step 3: Revenue</h3>
+                <p class="mt-3 text-sm sm:text-base leading-relaxed text-muted-foreground">
+                  Your video ads drive targeted clicks straight to your high-converting OfferIQ checkout pages.
+                </p>
               </div>
-              <h3 class="font-display text-2xl">Step 3: Revenue</h3>
-              <p class="text-base leading-relaxed text-muted-foreground">
-                Your video ads drive targeted clicks straight to your high-converting OfferIQ checkout pages.
-              </p>
+              <div class="mt-8 flex items-center justify-between pt-4 border-t border-border/40">
+                <span class="text-xs font-semibold uppercase tracking-wider text-muted-foreground">03 / Revenue</span>
+                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-foreground text-background shadow-sm" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="h-4 w-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                  </svg>
+                </span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="reveal-ready mt-16" style="animation-delay: 150ms;">
-          <div class="grid items-center gap-10 lg:grid-cols-12">
-            <div class="relative aspect-square overflow-hidden rounded-lg lg:col-span-5">
-              <img src="assets/images/section-abstract-loop.png"
-                alt="Glossy orange and black glass ring shapes forming an endless loop on a dark background"
-                loading="lazy" class="h-full w-full object-cover">
-            </div>
-            <p class="max-w-3xl text-lg leading-relaxed text-muted-foreground lg:col-span-7">
-              When you pair both platforms together, you control the complete acquisition loop:{' '}
-              <span class="font-semibold text-foreground">high-volume traffic generation + high-converting
-                monetization.</span>
-            </p>
-          </div>
+        <!-- Acquisition Loop Callout (Original Text Fixed) -->
+        <div class="reveal-ready mt-10 rounded-[1.75rem] border border-border bg-card/60 p-6 sm:p-8 backdrop-blur text-center" style="animation-delay: 150ms;">
+          <p class="mx-auto max-w-3xl text-base sm:text-lg leading-relaxed text-muted-foreground">
+            When you pair both platforms together, you control the complete acquisition loop: <span class="font-semibold text-foreground">high-volume traffic generation + high-converting monetization.</span>
+          </p>
         </div>
       </div>
     </section>
@@ -1434,9 +1459,9 @@
               var isSel = (i === idx);
               t.setAttribute('aria-selected', isSel ? 'true' : 'false');
               if (isSel) {
-                t.className = 'phase-tab flex min-h-[56px] shrink-0 items-center gap-4 rounded-full px-5 py-3 text-left transition-all duration-300 ease-smooth lg:rounded-lg lg:py-5 bg-primary text-primary-foreground lg:translate-x-2';
+                t.className = 'phase-tab flex min-h-[56px] shrink-0 items-center gap-4 rounded-2xl px-5 py-3 text-left transition-all duration-300 ease-smooth lg:py-5 bg-[#ff6321] text-white shadow-[0px_10px_25px_-5px_rgba(255,99,33,0.35),0px_0px_6px_0px_rgba(6,6,18,0.18)] lg:translate-x-2';
               } else {
-                t.className = 'phase-tab flex min-h-[56px] shrink-0 items-center gap-4 rounded-full px-5 py-3 text-left transition-all duration-300 ease-smooth lg:rounded-lg lg:py-5 border border-white/12 bg-white/6 text-inverse-foreground hover:bg-white/12';
+                t.className = 'phase-tab framer-card flex min-h-[56px] shrink-0 items-center gap-4 rounded-2xl px-5 py-3 text-left transition-all duration-300 ease-smooth lg:py-5 text-foreground hover:border-primary/50';
               }
             });
 
