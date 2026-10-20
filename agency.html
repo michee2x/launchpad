@@ -1040,8 +1040,7 @@
       }, { passive: true });
     }
 
-    // 5. Theme Toggle Logic
-    var themeToggle = document.getElementById('theme-toggle');
+    // 5. Theme Toggle Icon Sync (click is handled by launch.js)
     var sunIcon = document.getElementById('theme-icon-sun');
     var moonIcon = document.getElementById('theme-icon-moon');
 
@@ -1051,18 +1050,6 @@
       if (moonIcon) moonIcon.classList.toggle('hidden', isDark);
     }
     syncTheme();
-
-    if (themeToggle) {
-      themeToggle.addEventListener('click', function () {
-        var isDark = document.documentElement.classList.toggle('dark');
-        document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-        try {
-          localStorage.setItem('wyv-theme', isDark ? 'dark' : 'light');
-          localStorage.setItem('wyv_theme', isDark ? 'dark' : 'light');
-        } catch (e) {}
-        syncTheme();
-      });
-    }
 
     // 6. Cookie Notice Dismissal
     var cookieNotice = document.getElementById('cookie-notice');

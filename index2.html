@@ -2737,9 +2737,71 @@
         bumpCheckbox.addEventListener('change', updateCheckoutLinks);
       }
 
-      // 10. Hero Videos Autoplay (No rotation animation as requested)
-      function initHeroVideos() {
-        var videos = document.querySelectorAll('.arc-card video');
+      // 10. Hero 3D Perspective Carousel (Framer-style Cylindrical Ring with Drag and Static Default)
+      function initPerspectiveCarousel() {
+        var scene = document.getElementById('perspective-scene');
+        var ring = document.getElementById('perspective-ring');
+        if (!scene || !ring) return;
+
+        var rot = -90; // Sets Arm 4 (Center plane wreckage video) directly facing front
+        var vel = 0;
+        var dragging = false;
+        var lastX = 0;
+        var rafId = null;
+
+        function fit() {
+          var w = scene.clientWidth;
+          var scale = Math.min(1.25, Math.max(0.42, w / 1366));
+          ring.style.setProperty('--ring-scale', String(scale));
+        }
+
+        function loop() {
+          if (!dragging) {
+            // As requested by user: No continuous rotation animation! Only smooth inertial damping when user drags
+            vel += (0 - vel) * 0.05;
+            rot += vel;
+          }
+          ring.style.transform = 'scale(var(--ring-scale, 1)) rotateY(' + rot + 'deg)';
+          rafId = requestAnimationFrame(loop);
+        }
+
+        fit();
+        window.addEventListener('resize', fit);
+        rafId = requestAnimationFrame(loop);
+
+        function onPointerDown(e) {
+          dragging = true;
+          lastX = e.clientX;
+          scene.classList.add('is-dragging');
+          if (scene.setPointerCapture) {
+            try { scene.setPointerCapture(e.pointerId); } catch (_) {}
+          }
+        }
+
+        function onPointerMove(e) {
+          if (!dragging) return;
+          var dx = e.clientX - lastX;
+          lastX = e.clientX;
+          var delta = dx * 0.18;
+          rot += delta;
+          vel = delta;
+        }
+
+        function onPointerUp(e) {
+          dragging = false;
+          scene.classList.remove('is-dragging');
+          if (scene.releasePointerCapture) {
+            try { scene.releasePointerCapture(e.pointerId); } catch (_) {}
+          }
+        }
+
+        scene.addEventListener('pointerdown', onPointerDown);
+        scene.addEventListener('pointermove', onPointerMove);
+        scene.addEventListener('pointerup', onPointerUp);
+        scene.addEventListener('pointercancel', onPointerUp);
+
+        // Autoplay all portrait videos
+        var videos = ring.querySelectorAll('video');
         videos.forEach(function (v) {
           v.muted = true;
           v.play().catch(function () {});
@@ -2752,13 +2814,13 @@
           initScrollReveal();
           initFunnelBars();
           initFaq();
-          initHeroVideos();
+          initPerspectiveCarousel();
         });
       } else {
         initScrollReveal();
         initFunnelBars();
         initFaq();
-        initHeroVideos();
+        initPerspectiveCarousel();
       }
     })();
   </script>

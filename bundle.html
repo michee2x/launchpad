@@ -1553,8 +1553,7 @@
       window.addEventListener('scroll', checkMobileCta, { passive: true });
       checkMobileCta();
 
-      // 7. Theme Toggle Synchronization
-      var themeToggle = document.getElementById('theme-toggle');
+      // 7. Theme Toggle Icon Sync (click is handled by launch.js)
       var sunIcon = document.getElementById('theme-icon-sun');
       var moonIcon = document.getElementById('theme-icon-moon');
 
@@ -1567,21 +1566,6 @@
       var currentTheme = document.documentElement.getAttribute('data-theme') ||
         (document.documentElement.classList.contains('dark') ? 'dark' : 'light');
       updateThemeIcons(currentTheme);
-
-      if (themeToggle) {
-        themeToggle.addEventListener('click', function (e) {
-          e.preventDefault();
-          var isDark = document.documentElement.classList.contains('dark');
-          var nextTheme = isDark ? 'light' : 'dark';
-          document.documentElement.classList.toggle('dark', nextTheme === 'dark');
-          document.documentElement.setAttribute('data-theme', nextTheme);
-          updateThemeIcons(nextTheme);
-          try {
-            localStorage.setItem('wyv-theme', nextTheme);
-            localStorage.setItem('wyv_theme', nextTheme);
-          } catch (e) { }
-        });
-      }
     });
   </script>
 </body>
