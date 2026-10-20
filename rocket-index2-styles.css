@@ -154,142 +154,111 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 /* ============================================================
-   HERO 7-CARD CONCAVE VIDEO ARC (Matches Reference Screenshot)
+   PERSPECTIVE 3D CAROUSEL (Exact Architecture from PerspectiveCarousel)
    ============================================================ */
 
-.hero-video-arc-wrapper {
+.carousel-scene-container {
   position: relative;
+  z-index: 10;
+  margin-top: 1.25rem;
   width: 100%;
-  max-width: 1540px;
-  margin: 1.5rem auto 0 auto;
-  padding: 0 0.5rem;
-  overflow: visible;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.hero-video-arc-stage {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(8px, 1.2vw, 16px);
-  perspective: 1800px;
-  perspective-origin: 50% 35%;
-  transform-style: preserve-3d;
-  width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  overflow: visible;
-}
-
-.arc-card {
-  position: relative;
-  flex: 0 0 auto;
-  width: clamp(160px, 12.8vw, 215px);
-  height: clamp(260px, 20.8vw, 345px);
-  border-radius: 20px;
+  flex: 1;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
   overflow: hidden;
-  background-color: #0B0604;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.08);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  min-height: 440px;
+  touch-action: pan-y;
+}
+
+.carousel-scene-container:active,
+.carousel-scene-container.is-dragging {
+  cursor: grabbing;
+}
+
+.carousel-3d-stage {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  perspective: 500px;
+  transform-style: preserve-3d;
+  height: 0;
+}
+
+.carousel-3d-ring {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 0;
+  height: 0;
   transform-style: preserve-3d;
   will-change: transform;
 }
 
-.arc-card:hover {
-  transform: perspective(1800px) translateY(-10px) scale(1.05) !important;
-  z-index: 50;
+.carousel-arm {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 1400px;
+  height: 240px;
+  left: -700px;
+  top: -120px;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.carousel-panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--secondary, #1a0f0a);
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  width: 260px;
+  height: 360px; /* Portrait ratio as requested */
+  flex: none;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  pointer-events: auto;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.carousel-panel:hover {
   border-color: rgba(240, 122, 40, 0.6);
   box-shadow: 0 25px 50px -10px rgba(240, 122, 40, 0.35);
 }
 
-.arc-card img {
+.carousel-panel img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
   border-radius: inherit;
   z-index: 1;
 }
 
-.arc-card video {
+.carousel-panel video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
-  object-position: 50% 50%;
   border-radius: inherit;
   z-index: 2;
   background-color: transparent;
 }
 
-/* 7 Cards across the gentle concave arc matching user's screenshot */
-/* Card 1: Far Left (Ocean) */
-.arc-card-1 {
-  transform: perspective(1800px) rotateY(32deg) translateY(-14px) translateZ(35px);
-  z-index: 10;
-}
-
-/* Card 2: Mid Left (Waterfall) */
-.arc-card-2 {
-  transform: perspective(1800px) rotateY(22deg) translateY(-2px) translateZ(15px);
-  z-index: 12;
-}
-
-/* Card 3: Inner Left (NYC Street) */
-.arc-card-3 {
-  transform: perspective(1800px) rotateY(11deg) translateY(10px) translateZ(-5px);
-  z-index: 14;
-}
-
-/* Card 4: Dead Center (Plane Wreckage) - Large, Full-Size, Centerpiece */
-.arc-card-4 {
-  transform: perspective(1800px) rotateY(0deg) translateY(20px) translateZ(-18px);
-  z-index: 16;
-}
-
-/* Card 5: Inner Right (Forest Path) */
-.arc-card-5 {
-  transform: perspective(1800px) rotateY(-11deg) translateY(10px) translateZ(-5px);
-  z-index: 14;
-}
-
-/* Card 6: Mid Right (Mountain Valley) */
-.arc-card-6 {
-  transform: perspective(1800px) rotateY(-22deg) translateY(-2px) translateZ(15px);
-  z-index: 12;
-}
-
-/* Card 7: Far Right (Ocean) */
-.arc-card-7 {
-  transform: perspective(1800px) rotateY(-32deg) translateY(-14px) translateZ(35px);
-  z-index: 10;
-}
-
-/* Responsive Breakpoints */
-@media (max-width: 1180px) {
-  .arc-card-1, .arc-card-7 {
-    display: none;
-  }
-}
-
-@media (max-width: 680px) {
-  .arc-card-2, .arc-card-6 {
-    display: none;
-  }
-  .hero-video-arc-stage {
-    gap: 10px;
-  }
-  .arc-card {
-    width: 135px;
-    height: 220px;
-  }
+.panel-scrim {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.35) 100%);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
 }
 
 /* Tags Container underneath carousel */

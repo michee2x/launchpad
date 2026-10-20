@@ -299,75 +299,113 @@
         </p>
       </div>
 
-      <!-- Hero 7-Card Concave Video Arc & Tags (Matches Reference Screenshot) -->
-      <div class="relative z-10 pb-12 md:pb-16">
-        <div class="hero-video-arc-wrapper">
-          <div class="hero-video-arc-stage">
+      <!-- Hero Perspective 3D Carousel (Exact Architecture from Framer PerspectiveCarousel with Portrait Videos) -->
+      <div class="relative z-10 pb-12 md:pb-16 flex flex-col items-center">
+        <div id="perspective-scene" class="carousel-scene-container" style="min-height: 480px; touch-action: pan-y;">
+          <div class="carousel-3d-stage">
+            <div id="perspective-ring" class="carousel-3d-ring">
 
-            <!-- Card 1: Far Left (Ocean) -->
-            <div class="arc-card arc-card-1">
-              <img decoding="auto" width="640" height="960"
-                src="https://framerusercontent.com/images/rWkJ6c7ZNzWRqKAXFEXc6H06vC0.jpg?width=640&amp;height=960"
-                alt="Ocean coastline video frame" loading="eager">
-              <video src="https://framerusercontent.com/assets/VLYpQEgJksWEMFbKP3YaHxFfVs.mp4" loop muted playsinline
-                autoplay preload="auto"></video>
+              <!-- Arm 1: 90 deg -->
+              <div class="carousel-arm" style="transform: rotateY(90deg);">
+                <div class="carousel-panel" style="transform: rotateY(90deg);">
+                  <img src="https://framerusercontent.com/images/rWkJ6c7ZNzWRqKAXFEXc6H06vC0.jpg?width=640&amp;height=960" alt="Teal ocean waves rolling onto a rocky sand beach" loading="eager">
+                  <video src="https://framerusercontent.com/assets/VLYpQEgJksWEMFbKP3YaHxFfVs.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                  <div class="panel-scrim"></div>
+                </div>
+                <div class="carousel-panel" style="transform: rotateY(-90deg);">
+                  <img src="https://framerusercontent.com/images/rWkJ6c7ZNzWRqKAXFEXc6H06vC0.jpg?width=640&amp;height=960" alt="Rocky coastline with turquoise sea" loading="eager">
+                  <video src="https://framerusercontent.com/assets/4dSTZqfQShRZb2JWlBhMm2kAkA.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                  <div class="panel-scrim"></div>
+                </div>
+              </div>
+
+              <!-- Arm 2: 120 deg -->
+              <div class="carousel-arm" style="transform: rotateY(120deg);">
+                <div class="carousel-panel" style="transform: rotateY(90deg);">
+                  <img src="https://framerusercontent.com/images/QfnQEJsmYc2qfsvuDtGW6j0hQ.jpg?width=640&amp;height=1137" alt="Tall waterfall cascading over mossy cliffs" loading="eager">
+                  <video src="https://framerusercontent.com/assets/OUh0BxMeGqmebqe3OU950qgZd5Q.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                  <div class="panel-scrim"></div>
+                </div>
+                <div class="carousel-panel" style="transform: rotateY(-90deg);">
+                  <img src="https://framerusercontent.com/images/QfnQEJsmYc2qfsvuDtGW6j0hQ.jpg?width=640&amp;height=1137" alt="Waterfall tumbling down into misty pool" loading="eager">
+                  <video src="https://framerusercontent.com/assets/OUh0BxMeGqmebqe3OU950qgZd5Q.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                  <div class="panel-scrim"></div>
+                </div>
+              </div>
+
+              <!-- Arm 3: 150 deg -->
+              <div class="carousel-arm" style="transform: rotateY(150deg);">
+                <div class="carousel-panel" style="transform: rotateY(90deg);">
+                  <img src="https://framerusercontent.com/images/OXqtUf6sQWS0n0krBIE6oRYZMOc.jpg?width=640&amp;height=988" alt="Narrow city street at dusk leading toward lit suspension bridge" loading="eager">
+                  <video src="https://framerusercontent.com/assets/aaDgCGVVmNL57iUOvyPa1FHrT0.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                  <div class="panel-scrim"></div>
+                </div>
+                <div class="carousel-panel" style="transform: rotateY(-90deg);">
+                  <img src="https://framerusercontent.com/images/OXqtUf6sQWS0n0krBIE6oRYZMOc.jpg?width=640&amp;height=988" alt="Brooklyn street at twilight framing bridge towers" loading="eager">
+                  <video src="https://framerusercontent.com/assets/aaDgCGVVmNL57iUOvyPa1FHrT0.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                  <div class="panel-scrim"></div>
+                </div>
+              </div>
+
+              <!-- Arm 4: 180 deg (Center Highlight: Plane Wreckage on Beach) -->
+              <div class="carousel-arm" style="transform: rotateY(180deg);">
+                <div class="carousel-panel" style="transform: rotateY(90deg);">
+                  <img src="https://framerusercontent.com/images/0bfCdaXNgRiPMVDiDNq98HhwVEA.jpg?width=640&amp;height=960" alt="Abandoned plane wreck on black sand beach" loading="eager">
+                  <video src="https://framerusercontent.com/assets/0O56ed5D4Df3A8PfmCNF5GC9eno.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                  <div class="panel-scrim"></div>
+                </div>
+                <div class="carousel-panel" style="transform: rotateY(-90deg);">
+                  <img src="https://framerusercontent.com/images/0bfCdaXNgRiPMVDiDNq98HhwVEA.jpg?width=640&amp;height=960" alt="Plane wreckage on dark beach beneath overcast sky" loading="eager">
+                  <video src="https://framerusercontent.com/assets/0O56ed5D4Df3A8PfmCNF5GC9eno.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                  <div class="panel-scrim"></div>
+                </div>
+              </div>
+
+              <!-- Arm 5: 0 deg -->
+              <div class="carousel-arm" style="transform: rotateY(0deg);">
+                <div class="carousel-panel" style="transform: rotateY(90deg);">
+                  <img src="https://framerusercontent.com/images/3WuYMSDz8paruXEAF3eI3c8zA.jpg?width=640&amp;height=853" alt="Sunlit forest trail with tall dark trees" loading="eager">
+                  <video src="https://framerusercontent.com/assets/4e6W2vHiUa5qeeiGAcxaDg11GbM.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                  <div class="panel-scrim"></div>
+                </div>
+                <div class="carousel-panel" style="transform: rotateY(-90deg);">
+                  <img src="https://framerusercontent.com/images/3WuYMSDz8paruXEAF3eI3c8zA.jpg?width=640&amp;height=853" alt="Green mossy forest floor lit by sun" loading="eager">
+                  <video src="https://framerusercontent.com/assets/4e6W2vHiUa5qeeiGAcxaDg11GbM.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                  <div class="panel-scrim"></div>
+                </div>
+              </div>
+
+              <!-- Arm 6: 30 deg -->
+              <div class="carousel-arm" style="transform: rotateY(30deg);">
+                <div class="carousel-panel" style="transform: rotateY(90deg);">
+                  <img src="https://framerusercontent.com/images/aUPQmCFZWoQ5mVKmdue4SZ2DPqU.jpg?width=640&amp;height=853" alt="Snow-dusted mountain ridge above quiet valley" loading="eager">
+                  <video src="https://framerusercontent.com/assets/OF8Sj3bltaUyBpQsgUNxK11PKc.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                  <div class="panel-scrim"></div>
+                </div>
+                <div class="carousel-panel" style="transform: rotateY(-90deg);">
+                  <img src="https://framerusercontent.com/images/aUPQmCFZWoQ5mVKmdue4SZ2DPqU.jpg?width=640&amp;height=853" alt="Dark mountain range with snowy peaks" loading="eager">
+                  <video src="https://framerusercontent.com/assets/OF8Sj3bltaUyBpQsgUNxK11PKc.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                  <div class="panel-scrim"></div>
+                </div>
+              </div>
+
+              <!-- Arm 7: 60 deg -->
+              <div class="carousel-arm" style="transform: rotateY(60deg);">
+                <div class="carousel-panel" style="transform: rotateY(90deg);">
+                  <img src="https://framerusercontent.com/images/rWkJ6c7ZNzWRqKAXFEXc6H06vC0.jpg?width=640&amp;height=960" alt="Calm teal sea meeting rugged shoreline" loading="eager">
+                  <video src="https://framerusercontent.com/assets/VLYpQEgJksWEMFbKP3YaHxFfVs.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                  <div class="panel-scrim"></div>
+                </div>
+                <div class="carousel-panel" style="transform: rotateY(-90deg);">
+                  <img src="https://framerusercontent.com/images/rWkJ6c7ZNzWRqKAXFEXc6H06vC0.jpg?width=640&amp;height=960" alt="Waves washing over rocky beach" loading="eager">
+                  <video src="https://framerusercontent.com/assets/4dSTZqfQShRZb2JWlBhMm2kAkA.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                  <div class="panel-scrim"></div>
+                </div>
+              </div>
+
             </div>
-
-            <!-- Card 2: Mid Left (Waterfall) -->
-            <div class="arc-card arc-card-2">
-              <img decoding="auto" width="640" height="1137"
-                src="https://framerusercontent.com/images/QfnQEJsmYc2qfsvuDtGW6j0hQ.jpg?width=640&amp;height=1137"
-                alt="Waterfall video frame" loading="eager">
-              <video src="https://framerusercontent.com/assets/OUh0BxMeGqmebqe3OU950qgZd5Q.mp4" loop muted playsinline
-                autoplay preload="auto"></video>
-            </div>
-
-            <!-- Card 3: Inner Left (NYC Brooklyn Bridge Street) -->
-            <div class="arc-card arc-card-3">
-              <img decoding="auto" width="640" height="988"
-                src="https://framerusercontent.com/images/OXqtUf6sQWS0n0krBIE6oRYZMOc.jpg?width=640&amp;height=988"
-                alt="Historic bridge city street video frame" loading="eager">
-              <video src="https://framerusercontent.com/assets/aaDgCGVVmNL57iUOvyPa1FHrT0.mp4" loop muted playsinline
-                autoplay preload="auto"></video>
-            </div>
-
-            <!-- Card 4: Dead Center (Plane Wreckage Beach) - Large, Full-Size & Prominent -->
-            <div class="arc-card arc-card-4">
-              <img decoding="auto" width="640" height="960"
-                src="https://framerusercontent.com/images/0bfCdaXNgRiPMVDiDNq98HhwVEA.jpg?width=640&amp;height=960"
-                alt="Plane wreckage on beach video frame" loading="eager">
-              <video src="https://framerusercontent.com/assets/0O56ed5D4Df3A8PfmCNF5GC9eno.mp4" loop muted playsinline
-                autoplay preload="auto"></video>
-            </div>
-
-            <!-- Card 5: Inner Right (Sunlit Forest Trail) -->
-            <div class="arc-card arc-card-5">
-              <img decoding="auto" width="640" height="853"
-                src="https://framerusercontent.com/images/3WuYMSDz8paruXEAF3eI3c8zA.jpg?width=640&amp;height=853"
-                alt="Sunlit forest trail video frame" loading="eager">
-              <video src="https://framerusercontent.com/assets/4e6W2vHiUa5qeeiGAcxaDg11GbM.mp4" loop muted playsinline
-                autoplay preload="auto"></video>
-            </div>
-
-            <!-- Card 6: Mid Right (Mountain Valley Fjord) -->
-            <div class="arc-card arc-card-6">
-              <img decoding="auto" width="640" height="853"
-                src="https://framerusercontent.com/images/aUPQmCFZWoQ5mVKmdue4SZ2DPqU.jpg?width=640&amp;height=853"
-                alt="Mountain valley fjord video frame" loading="eager">
-              <video src="https://framerusercontent.com/assets/OF8Sj3bltaUyBpQsgUNxK11PKc.mp4" loop muted playsinline
-                autoplay preload="auto"></video>
-            </div>
-
-            <!-- Card 7: Far Right (Ocean Coastline) -->
-            <div class="arc-card arc-card-7">
-              <img decoding="auto" width="640" height="960"
-                src="https://framerusercontent.com/images/rWkJ6c7ZNzWRqKAXFEXc6H06vC0.jpg?width=640&amp;height=960"
-                alt="Ocean waves video frame" loading="eager">
-              <video src="https://framerusercontent.com/assets/4dSTZqfQShRZb2JWlBhMm2kAkA.mp4" loop muted playsinline
-                autoplay preload="auto"></video>
-            </div>
-
           </div>
+        </div>
 
           <!-- Tags Container (Matches Reference Screenshot) -->
           <div class="framer-ta3p1x" data-border="true" id="nav">
