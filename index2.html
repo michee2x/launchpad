@@ -105,114 +105,65 @@
   </script>
 
   <!-- Custom Stylesheet (Tokens, Gradients, Aurora, Cards, Animations) -->
-  <link rel="stylesheet" href="rocket-index2-styles.css?v=3">
+  <link rel="stylesheet" href="rocket-index2-styles.css?v=5">
 </head>
 
 <body class="bg-background text-foreground selection:bg-primary/20 selection:text-primary">
 
   <main class="relative bg-background text-foreground">
 
-    <!-- ==================== HEADER ==================== -->
-    <header class="absolute left-0 right-0 top-0 z-50 px-3 pt-4 md:px-8 md:pt-8">
-      <div
-        class="pill-glass mx-auto flex max-w-7xl items-center justify-between rounded-full px-3 py-2 md:px-5 md:py-3">
-        <!-- Logo -->
-        <a href="#top" class="flex items-center gap-2 rounded-full px-2 py-1.5 focus:outline-none">
-          <span class="btn-orange flex h-9 w-9 items-center justify-center rounded-xl text-primary-foreground">
-            <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4" aria-hidden="true">
-              <path fill-rule="evenodd"
-                d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z"
-                clip-rule="evenodd" />
-            </svg>
-          </span>
-          <span class="text-lg font-semibold tracking-tight text-hero-foreground md:text-xl">WyvStudio</span>
-        </a>
 
-        <!-- Desktop Navigation Links -->
-        <nav class="hidden items-center gap-8 md:flex" aria-label="Primary">
-          <a href="#how-it-works"
-            class="text-[15px] font-medium text-hero-muted transition-colors hover:text-hero-foreground">How it
-            works</a>
-          <a href="#use-cases"
-            class="text-[15px] font-medium text-hero-muted transition-colors hover:text-hero-foreground">Use cases</a>
-          <a href="#offer"
-            class="text-[15px] font-medium text-hero-muted transition-colors hover:text-hero-foreground">Pricing</a>
-          <a href="#faq"
-            class="text-[15px] font-medium text-hero-muted transition-colors hover:text-hero-foreground">FAQ</a>
-        </nav>
-
-        <!-- Right Side: Theme Toggle & CTA -->
-        <div class="flex items-center gap-2">
-          <button type="button" id="theme-toggle" aria-label="Switch theme"
-            class="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 text-sm font-medium text-hero-foreground backdrop-blur transition-colors hover:bg-white/10">
-            <span class="inline-block h-2.5 w-2.5 rounded-full bg-primary"></span>
-            <span id="theme-toggle-label">Dark mode</span>
-          </button>
-          <a href="#order"
-            class="hidden items-center gap-2 rounded-full bg-hero-foreground px-5 py-3 text-[15px] font-semibold text-hero transition-transform hover:scale-[1.03] sm:inline-flex">
-            Get Started
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" class="h-4 w-4" aria-hidden="true">
-              <path d="M7 17L17 7M17 7H7M17 7V17" />
-            </svg>
-          </a>
-          <button type="button" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false"
-            class="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-hero-foreground md:hidden">
-            <svg id="menu-icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
-              <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
-            <svg id="menu-icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round" class="hidden h-5 w-5" aria-hidden="true">
-              <path d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- Mobile Fullscreen Drawer -->
-      <div id="mobile-menu"
-        class="hidden fixed inset-0 z-[60] flex flex-col bg-hero/95 px-6 pt-24 backdrop-blur-xl md:hidden">
-        <button type="button" id="mobile-menu-close" aria-label="Close menu"
-          class="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-hero-foreground">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
-            <path d="M6 18L18 6M6 6l12 12" />
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="wyv-nav" id="wyv-nav" aria-label="Main navigation">
+      <!-- Logo -->
+      <a href="#top" class="wyv-nav__logo" aria-label="WyvStudio home">
+        <span class="wyv-nav__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+            <path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd"/>
           </svg>
-        </button>
-        <nav class="flex flex-col gap-3" aria-label="Mobile Navigation">
-          <a href="#how-it-works"
-            class="mobile-nav-link rounded-2xl border border-white/10 px-5 py-4 text-xl font-medium text-hero-foreground">How
-            it works</a>
-          <a href="#use-cases"
-            class="mobile-nav-link rounded-2xl border border-white/10 px-5 py-4 text-xl font-medium text-hero-foreground">Use
-            cases</a>
-          <a href="#offer"
-            class="mobile-nav-link rounded-2xl border border-white/10 px-5 py-4 text-xl font-medium text-hero-foreground">Pricing</a>
-          <a href="#faq"
-            class="mobile-nav-link rounded-2xl border border-white/10 px-5 py-4 text-xl font-medium text-hero-foreground">FAQ</a>
-        </nav>
-        <a href="#order"
-          class="mobile-nav-link btn-orange mt-6 inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 text-base font-semibold text-primary-foreground">
-          Get access for $7
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" class="h-4 w-4" aria-hidden="true">
-            <path d="M7 17L17 7M17 7H7M17 7V17" />
-          </svg>
-        </a>
-      </div>
-    </header>
+        </span>
+        <span class="wyv-nav__wordmark">WyvStudio</span>
+      </a>
 
-    <!-- ==================== HERO SECTION ==================== -->
+      <!-- Center Links -->
+      <ul class="wyv-nav__links" role="list">
+        <li><a href="#how-it-works" class="wyv-nav__link">How it works</a></li>
+        <li><a href="#use-cases" class="wyv-nav__link">Use cases</a></li>
+        <li><a href="#offer" class="wyv-nav__link">Pricing</a></li>
+        <li><a href="#faq" class="wyv-nav__link">FAQ</a></li>
+      </ul>
+
+      <!-- CTA -->
+      <a href="#order" class="wyv-nav__cta" data-buy="fe">Get Instant Access</a>
+
+      <!-- Mobile hamburger (hidden on desktop) -->
+      <button type="button" id="wyv-nav-toggle" class="wyv-nav__burger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- Mobile drawer -->
+    <div id="wyv-nav-drawer" class="wyv-nav__drawer" aria-hidden="true">
+      <ul role="list">
+        <li><a href="#how-it-works" class="wyv-nav__drawer-link">How it works</a></li>
+        <li><a href="#use-cases" class="wyv-nav__drawer-link">Use cases</a></li>
+        <li><a href="#offer" class="wyv-nav__drawer-link">Pricing</a></li>
+        <li><a href="#faq" class="wyv-nav__drawer-link">FAQ</a></li>
+      </ul>
+      <a href="#order" class="wyv-nav__cta wyv-nav__drawer-cta" data-buy="fe">Get Instant Access</a>
+    </div>
+
+
     <section id="top" class="hero-new">
       <div class="hero-wrap">
 
         <!-- Left Column: Phone + Hand + Curved Social Ticker -->
         <div class="phone-col">
           <div class="stage" id="stage">
-            <!-- Ticker Path (Icons emerge from behind phone & curve across) -->
+            <!-- Dual-layer Ticker: Back track (behind thumb & inside screen) & Front track (in front of phone & into open air) -->
             <div class="ticker" aria-hidden="true">
-              <div class="ticker-track" id="heroTrack"></div>
+              <div class="ticker-track track-back" id="heroTrackBack"></div>
+              <div class="ticker-track track-front" id="heroTrackFront"></div>
             </div>
 
             <!-- Phone Screen with Auto-playing Video -->
@@ -225,27 +176,27 @@
               </div>
             </div>
 
-            <!-- Hand holding Smartphone -->
+            <!-- Hand holding Smartphone (Cutout transparent screen, opaque fingers & thumb) -->
             <img class="hand" id="hand" src="https://framerusercontent.com/images/gikKVZRpkswAbGUTx3WfVbSk.png?width=1373&amp;height=1373" alt="Hand holding black smartphone">
           </div>
         </div>
 
         <!-- Right Column: Info & Copy -->
         <div class="info">
-          <!-- Chip Badge -->
+          <!-- Compact Single-Line Chip Badge like Image 2 -->
           <div class="hero-chip">
-            <span class="hero-chip-tag">2 Slots Left</span>
-            <span class="hero-chip-txt">Accepting new projects</span>
+            <span class="hero-chip-tag">Viral AI Engine</span>
+            <span class="hero-chip-txt">Turn any video link into yours</span>
           </div>
 
           <!-- Main Headline -->
           <h1 id="heroTitle" class="hero-heading">
-            See a Viral Video Pulling Millions of Views? Paste the Link and Get Your Own Version in Under 60 Seconds.
+            See a Viral Video Pulling Millions of Views? Paste the Link and Get Your Own in Under 60 Seconds.
           </h1>
 
-          <!-- Lead Subhead -->
+          <!-- Lead Subhead (Compact 2-3 lines) -->
           <p id="heroLead" class="hero-lead">
-            Steal the formula, not the footage. WyvStudio copies the hook, the pacing and the structure that made it explode, then rebuilds the video with your script, your voice, your visuals and your offer.
+            Steal the formula, not the footage. WyvStudio copies the hook, pacing and viral structure—then rebuilds it for your business in seconds. <strong>Zero editing. Zero guesswork.</strong>
           </p>
 
           <!-- Action Buttons -->
@@ -254,18 +205,42 @@
               Get Instant Access for $7
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
-            <a class="hero-btn-secondary" href="#how-it-works">
-              Watch Tutorial
-            </a>
           </div>
 
           <p class="hero-guarantee">
-            200 credits included · Viral video recreation included · 14-day full guarantee
+            200 credits included · 14-day money-back guarantee
           </p>
         </div>
 
       </div>
     </section>
+
+    <!-- ==================== STATS & PROOF STRIP ==================== -->
+    <div class="stats-strip reveal">
+      <div class="stats-strip__item">
+        <span class="stats-strip__num">50K+</span>
+        <span class="stats-strip__label">Viral Formats Rebuilt</span>
+      </div>
+      <div class="stats-strip__item">
+        <span class="stats-strip__num">99.4%</span>
+        <span class="stats-strip__label">Formula Match Accuracy</span>
+      </div>
+      <div class="stats-strip__item">
+        <span class="stats-strip__num">&lt;60s</span>
+        <span class="stats-strip__label">Average Generation Speed</span>
+      </div>
+      <div class="stats-strip__item">
+        <div class="flex items-center gap-2 mb-1">
+          <div class="avatar-strip">
+            <img class="avatar-strip__img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces" alt="Creator">
+            <img class="avatar-strip__img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces" alt="Creator">
+            <img class="avatar-strip__img" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop&crop=faces" alt="Creator">
+            <span class="avatar-strip__count">+5k</span>
+          </div>
+        </div>
+        <span class="stats-strip__label">&#9733;&#9733;&#9733;&#9733;&#9733; Trusted by 5,400+ Creators</span>
+      </div>
+    </div>
 
     <!-- ==================== FREE TEST SECTION ==================== -->
     <section id="free-test" class="section-y relative bg-background">
@@ -379,12 +354,12 @@
             <div class="reveal tile flex flex-col gap-4 p-6 md:p-8 lg:col-span-3">
               <div class="flex items-center justify-between">
                 <span class="font-mono-label text-primary">Trap #1</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                  stroke-linejoin="round" class="h-6 w-6 text-muted-foreground" aria-hidden="true">
-                  <circle cx="12" cy="12" r="9" />
-                  <path
-                    d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M12 18h.01" />
-                </svg>
+                <span class="rounded-full bg-primary/10 px-3 py-1 font-mono-label text-xs text-primary">Low Reach</span>
+              </div>
+              <div class="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-border/50 bg-black/40">
+                <img src="trap-creator-lottery.jpg" alt="The Blank-Page Gamble" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent"></div>
+                <span class="absolute bottom-2.5 left-3 rounded-full bg-espresso/80 px-2.5 py-1 text-xs font-semibold text-espresso-foreground backdrop-blur-md">40 views · Zero reach</span>
               </div>
               <h3 class="text-display-md font-medium">The Blank-Page Gamble</h3>
               <p class="text-[17px] leading-relaxed text-muted-foreground">
@@ -392,27 +367,18 @@
                 the best one and wait. Forty views. No comments. No idea why. Meanwhile, the video that was already
                 working for someone else sits untouched in your feed.
               </p>
-              <div class="mt-auto flex items-end gap-1.5 pt-2">
-                <span class="w-6 rounded-t-md bg-border" style="height: 64px;"></span>
-                <span class="w-6 rounded-t-md bg-border" style="height: 48px;"></span>
-                <span class="w-6 rounded-t-md bg-border" style="height: 40px;"></span>
-                <span class="w-6 rounded-t-md bg-border" style="height: 32px;"></span>
-                <span class="w-6 rounded-t-md bg-border" style="height: 24px;"></span>
-                <span class="w-6 rounded-t-md bg-border" style="height: 16px;"></span>
-                <span class="w-6 rounded-t-md bg-border" style="height: 16px;"></span>
-                <span class="ml-3 font-mono-label text-muted-foreground">40 views</span>
-              </div>
             </div>
 
             <!-- Trap 2: lg col-span-3 -->
             <div class="reveal tile flex flex-col gap-4 p-6 md:p-8 lg:col-span-3">
               <div class="flex items-center justify-between">
                 <span class="font-mono-label text-primary">Trap #2</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                  stroke-linejoin="round" class="h-6 w-6 text-muted-foreground" aria-hidden="true">
-                  <circle cx="12" cy="12" r="9" />
-                  <path d="M12 6v6l4 2" />
-                </svg>
+                <span class="rounded-full bg-primary/10 px-3 py-1 font-mono-label text-xs text-primary">Time Drain</span>
+              </div>
+              <div class="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-border/50 bg-black/40">
+                <img src="trap-editing-swamp.jpg" alt="The Reverse-Engineering Grind" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent"></div>
+                <span class="absolute bottom-2.5 left-3 rounded-full bg-espresso/80 px-2.5 py-1 text-xs font-semibold text-espresso-foreground backdrop-blur-md">3+ hours lost per clip</span>
               </div>
               <h3 class="text-display-md font-medium">The Reverse-Engineering Grind</h3>
               <p class="text-[17px] leading-relaxed text-muted-foreground">
@@ -420,17 +386,18 @@
                 for footage, record a voiceover, and rebuild it in a timeline editor. By the time you export, three hours
                 are gone, the trend has moved on, and you have one video to show for it.
               </p>
-              <p class="mt-auto text-5xl font-semibold tracking-tight text-foreground">3h+</p>
             </div>
 
             <!-- Trap 3: lg col-span-3 -->
             <div class="reveal tile flex flex-col gap-4 p-6 md:p-8 lg:col-span-3">
               <div class="flex items-center justify-between">
                 <span class="font-mono-label text-primary">Trap #3</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                  stroke-linejoin="round" class="h-6 w-6 text-destructive" aria-hidden="true">
-                  <path d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-                </svg>
+                <span class="rounded-full bg-destructive/15 px-3 py-1 font-mono-label text-xs text-destructive">Account Risk</span>
+              </div>
+              <div class="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-border/50 bg-black/40">
+                <img src="trap-bloated-subscription.jpg" alt="The Reupload Trap" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent"></div>
+                <span class="absolute bottom-2.5 left-3 rounded-full bg-destructive/90 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur-md">Copyright claim · shadowban</span>
               </div>
               <h3 class="text-display-md font-medium">The Reupload Trap</h3>
               <p class="text-[17px] leading-relaxed text-muted-foreground">
@@ -438,10 +405,6 @@
                 copyright claims, reduced reach and strikes, and even when it slips through, you are advertising someone
                 else's brand to your audience.
               </p>
-              <span
-                class="mt-auto inline-flex w-fit items-center gap-2 rounded-full border border-destructive/40 px-4 py-2 text-sm font-medium text-destructive">
-                Copyright claim · reduced reach
-              </span>
             </div>
 
             <!-- Closer: lg col-span-6 -->
@@ -462,6 +425,67 @@
         </div>
       </div>
     </section>
+
+    <!-- ==================== CINEMATIC BREAK ==================== -->
+    <div class="cinematic-break reveal mx-auto my-12 max-w-7xl px-5 md:my-20 md:px-8">
+      <div class="cinematic-break-card">
+        <!-- Ambient radial glow behind content -->
+        <div class="cinematic-break__glow -left-20 -top-20" aria-hidden="true"></div>
+        <div class="cinematic-break__glow -bottom-20 -right-20" aria-hidden="true"></div>
+
+        <!-- Subtle texture backdrop -->
+        <img src="assets/images/section-abstract-loop.jpg" alt="Viral Recreation Studio" loading="lazy"
+          class="cinematic-break__media">
+        
+        <!-- Gradient vignette overlay for maximum readability -->
+        <div class="absolute inset-0 bg-gradient-to-t from-espresso via-espresso/90 to-espresso/80 pointer-events-none"></div>
+
+        <!-- Content -->
+        <div class="relative z-10 flex flex-col items-center justify-center px-6 py-16 text-center md:px-12 md:py-24">
+          <!-- Frosted pill badge -->
+          <div class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 backdrop-blur-md">
+            <span class="h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+            <span class="font-mono-label text-xs uppercase tracking-wider text-primary">Formula Over Footage</span>
+          </div>
+
+          <!-- Bold, high contrast headline -->
+          <h2 class="mt-6 max-w-3xl text-3xl font-bold tracking-tight text-espresso-foreground sm:text-4xl md:text-5xl md:leading-tight">
+            Don't guess what will go viral.<br>
+            <span class="bg-gradient-to-r from-primary via-orange-400 to-amber-300 bg-clip-text text-transparent">
+              Rebuild the proven formula
+            </span> that already pulled millions.
+          </h2>
+
+          <!-- High-contrast subtext -->
+          <p class="mt-5 max-w-2xl text-base leading-relaxed text-espresso-foreground/80 sm:text-lg">
+            Steal the hook timing, cut rhythm and narrative pacing that stopped the scroll.
+            WyvStudio re-records it with your script, voiceover and visuals in under 60 seconds.
+          </p>
+
+          <!-- 3 Proof Pills -->
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm font-medium text-espresso-foreground/90">
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-md">
+              <svg class="h-4 w-4 text-primary" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              Zero Copyright Claims
+            </span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-md">
+              <svg class="h-4 w-4 text-primary" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              Original Footage &amp; Script
+            </span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-md">
+              <svg class="h-4 w-4 text-primary" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              100% Yours to Monetize
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- ==================== HOW IT WORKS SECTION ==================== -->
     <section id="how-it-works" class="section-y relative bg-background pt-8 md:pt-12">
@@ -1084,90 +1108,96 @@
 
         <!-- 6 Use Cases Grid -->
         <div class="reveal mt-12">
-          <p class="font-mono-label mb-5 text-muted-foreground">Who is using this?</p>
-          <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <p class="font-mono-label mb-6 text-muted-foreground">Who is using this?</p>
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             <!-- 1: Affiliate -->
-            <div class="tile flex flex-col gap-3 p-6 transition-transform duration-500 hover:-translate-y-1">
-              <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/15 text-primary">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                  stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
-                  <path
-                    d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.757 3.63 8.25 4.51 8.25H6.75z" />
-                </svg>
-              </span>
-              <h3 class="text-xl font-semibold tracking-tight">Affiliate marketers</h3>
-              <p class="text-[15px] leading-relaxed text-muted-foreground">Recreate the format that is selling an offer like
-                yours and send the traffic to your link.</p>
+            <div class="use-case-card reveal">
+              <div class="relative aspect-[16/10] overflow-hidden bg-black/40">
+                <img src="assets/images/ugc-creator-filming.png" alt="Affiliate marketers recreating viral videos" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent"></div>
+                <span class="absolute bottom-3 left-3 rounded-full bg-espresso/80 px-3 py-1 font-mono-label text-xs text-primary backdrop-blur-md border border-primary/20">Affiliate Offers</span>
+              </div>
+              <div class="use-case-card__body">
+                <h3 class="text-xl font-semibold tracking-tight">Affiliate marketers</h3>
+                <p class="mt-2 text-[15px] leading-relaxed text-muted-foreground">
+                  Recreate the format that is selling an offer like yours and send viral traffic directly to your affiliate link.
+                </p>
+              </div>
             </div>
 
             <!-- 2: Local Businesses -->
-            <div class="tile flex flex-col gap-3 p-6 transition-transform duration-500 hover:-translate-y-1">
-              <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/15 text-primary">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                  stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
-                  <path
-                    d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.651V9.35m0 0a3.001 3.001 0 003.75-.614A2.993 2.993 0 009 9.35c.828 0 1.577-.336 2.12-.88a3.001 3.001 0 004.24 0c.544.544 1.293.88 2.12.88 1.05 0 1.99-.54 2.54-1.365M3.75 9.35V4.875A1.875 1.875 0 015.625 3h12.75a1.875 1.875 0 011.875 1.875v4.474" />
-                </svg>
-              </span>
-              <h3 class="text-xl font-semibold tracking-tight">Local businesses</h3>
-              <p class="text-[15px] leading-relaxed text-muted-foreground">Turn the "day in the life" or "before and after"
-                format into a video for your salon, gym, restaurant or clinic.</p>
+            <div class="use-case-card reveal">
+              <div class="relative aspect-[16/10] overflow-hidden bg-black/40">
+                <img src="assets/images/niche-clinics.jpg" alt="Local businesses video recreation" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent"></div>
+                <span class="absolute bottom-3 left-3 rounded-full bg-espresso/80 px-3 py-1 font-mono-label text-xs text-primary backdrop-blur-md border border-primary/20">Local Growth</span>
+              </div>
+              <div class="use-case-card__body">
+                <h3 class="text-xl font-semibold tracking-tight">Local businesses</h3>
+                <p class="mt-2 text-[15px] leading-relaxed text-muted-foreground">
+                  Turn the "day in the life" or "before and after" format into a high-converting video for your clinic, gym, salon or restaurant.
+                </p>
+              </div>
             </div>
 
             <!-- 3: Coaches -->
-            <div class="tile flex flex-col gap-3 p-6 transition-transform duration-500 hover:-translate-y-1">
-              <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/15 text-primary">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                  stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
-                  <path
-                    d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-5.25 6.557q.06.666.166 1.324" />
-                </svg>
-              </span>
-              <h3 class="text-xl font-semibold tracking-tight">Coaches & course creators</h3>
-              <p class="text-[15px] leading-relaxed text-muted-foreground">Take the hook style that is filling someone
-                else's inbox and put your own lesson inside it.</p>
+            <div class="use-case-card reveal">
+              <div class="relative aspect-[16/10] overflow-hidden bg-black/40">
+                <img src="assets/images/niche-coaches.jpg" alt="Coaches and course creators" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent"></div>
+                <span class="absolute bottom-3 left-3 rounded-full bg-espresso/80 px-3 py-1 font-mono-label text-xs text-primary backdrop-blur-md border border-primary/20">Course Leads</span>
+              </div>
+              <div class="use-case-card__body">
+                <h3 class="text-xl font-semibold tracking-tight">Coaches & course creators</h3>
+                <p class="mt-2 text-[15px] leading-relaxed text-muted-foreground">
+                  Take the hook style that is filling someone else's DMs and inbox, then put your own expertise and curriculum inside it.
+                </p>
+              </div>
             </div>
 
             <!-- 4: Ecom -->
-            <div class="tile flex flex-col gap-3 p-6 transition-transform duration-500 hover:-translate-y-1">
-              <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/15 text-primary">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                  stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
-                  <path
-                    d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25c-.669 0-1.189-.578-1.119-1.243l1.263-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z" />
-                </svg>
-              </span>
-              <h3 class="text-xl font-semibold tracking-tight">Ecom & DTC brands</h3>
-              <p class="text-[15px] leading-relaxed text-muted-foreground">Rebuild the unboxing, demo or comparison
-                format that is moving products, using your product.</p>
+            <div class="use-case-card reveal">
+              <div class="relative aspect-[16/10] overflow-hidden bg-black/40">
+                <img src="assets/images/niche-ecommerce.jpg" alt="Ecommerce and DTC product demos" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent"></div>
+                <span class="absolute bottom-3 left-3 rounded-full bg-espresso/80 px-3 py-1 font-mono-label text-xs text-primary backdrop-blur-md border border-primary/20">DTC & Ecom</span>
+              </div>
+              <div class="use-case-card__body">
+                <h3 class="text-xl font-semibold tracking-tight">Ecom & DTC brands</h3>
+                <p class="mt-2 text-[15px] leading-relaxed text-muted-foreground">
+                  Rebuild the unboxing, demo or comparison format that is already generating sales, swapped with your brand and physical product.
+                </p>
+              </div>
             </div>
 
             <!-- 5: Creators -->
-            <div class="tile flex flex-col gap-3 p-6 transition-transform duration-500 hover:-translate-y-1">
-              <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/15 text-primary">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                  stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
-                  <path
-                    d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
-                </svg>
-              </span>
-              <h3 class="text-xl font-semibold tracking-tight">Creators</h3>
-              <p class="text-[15px] leading-relaxed text-muted-foreground">Ride the format of the week in your own voice,
-                before the trend cools off.</p>
+            <div class="use-case-card reveal">
+              <div class="relative aspect-[16/10] overflow-hidden bg-black/40">
+                <img src="assets/images/section-team.jpg" alt="Content creators scaling production" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent"></div>
+                <span class="absolute bottom-3 left-3 rounded-full bg-espresso/80 px-3 py-1 font-mono-label text-xs text-primary backdrop-blur-md border border-primary/20">Organic Reach</span>
+              </div>
+              <div class="use-case-card__body">
+                <h3 class="text-xl font-semibold tracking-tight">Content creators</h3>
+                <p class="mt-2 text-[15px] leading-relaxed text-muted-foreground">
+                  Ride the format of the week in your own voice and angle before the trend cools off, publishing daily without creative burnout.
+                </p>
+              </div>
             </div>
 
             <!-- 6: Agencies -->
-            <div class="tile flex flex-col gap-3 p-6 transition-transform duration-500 hover:-translate-y-1">
-              <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/15 text-primary">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                  stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
-                  <path
-                    d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />
-                </svg>
-              </span>
-              <h3 class="text-xl font-semibold tracking-tight">Agencies</h3>
-              <p class="text-[15px] leading-relaxed text-muted-foreground">Deliver client videos built on formats that
-                already have proof. (Agency scale is covered in the upgrades.)</p>
+            <div class="use-case-card reveal">
+              <div class="relative aspect-[16/10] overflow-hidden bg-black/40">
+                <img src="assets/images/agency-workspaces.jpg" alt="Agencies delivering client videos" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent"></div>
+                <span class="absolute bottom-3 left-3 rounded-full bg-espresso/80 px-3 py-1 font-mono-label text-xs text-primary backdrop-blur-md border border-primary/20">Agency Delivery</span>
+              </div>
+              <div class="use-case-card__body">
+                <h3 class="text-xl font-semibold tracking-tight">Agencies & media teams</h3>
+                <p class="mt-2 text-[15px] leading-relaxed text-muted-foreground">
+                  Deliver high-performing client videos built on proven viral frameworks. Scale production 10x without hiring more editors.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -1630,13 +1660,12 @@
               <span class="font-mono-label text-primary">Fast-Action Bonus #1</span>
               <span class="text-sm font-semibold text-muted-foreground">$197 value</span>
             </div>
-            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15 text-primary">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                stroke-linejoin="round" class="h-6 w-6" aria-hidden="true">
-                <path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-              </svg>
+            <div class="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-border/50 bg-black/40">
+              <img src="bonus-cpa-crusher.jpg" alt="100 Viral Hook & Script Vault" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent"></div>
+              <span class="absolute bottom-2.5 left-3 rounded-full bg-espresso/80 px-2.5 py-1 text-xs font-semibold text-primary backdrop-blur-md">100 Ready Hooks</span>
             </div>
-            <h3 class="text-xl font-semibold leading-snug tracking-tight">The 100 Viral Hook & Script Vault</h3>
+            <h3 class="text-xl font-semibold leading-snug tracking-tight">The 100 Viral Hook &amp; Script Vault</h3>
             <p class="text-[15px] leading-relaxed text-muted-foreground">
               Never wonder what to say in the first 3 seconds again. 100 field-tested, scroll-stopping hooks and full video script
               frameworks you can drop into any recreated video.
@@ -1649,14 +1678,17 @@
               <span class="font-mono-label text-primary">Fast-Action Bonus #2</span>
               <span class="text-sm font-semibold text-muted-foreground">$97 value</span>
             </div>
-            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15 text-primary">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                stroke-linejoin="round" class="h-6 w-6" aria-hidden="true">
-                <path
-                  d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-              </svg>
+            <div class="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-border/50 bg-espresso flex items-center justify-center p-4">
+              <div class="text-center space-y-2">
+                <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/20 text-primary">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-6 w-6">
+                    <path d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                  </svg>
+                </div>
+                <p class="font-mono-label text-xs text-primary uppercase tracking-wider">Formula Blueprint</p>
+              </div>
             </div>
-            <h3 class="text-xl font-semibold leading-snug tracking-tight">The "Formula, Not Footage" Viral Recreation Playbook</h3>
+            <h3 class="text-xl font-semibold leading-snug tracking-tight">The &ldquo;Formula, Not Footage&rdquo; Viral Playbook</h3>
             <p class="text-[15px] leading-relaxed text-muted-foreground">
               How to spot a video worth recreating, what to copy (hook style, pacing, structure) and what always stays original
               (script, voice, visuals), plus a checklist to keep every recreation clean and fully yours.
@@ -1669,14 +1701,12 @@
               <span class="font-mono-label text-primary">Fast-Action Bonus #3</span>
               <span class="text-sm font-semibold text-muted-foreground">$67 value</span>
             </div>
-            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15 text-primary">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                stroke-linejoin="round" class="h-6 w-6" aria-hidden="true">
-                <path
-                  d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0l4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0l-5.571 3-5.571-3" />
-              </svg>
+            <div class="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-border/50 bg-black/40">
+              <img src="bonus-series-playbook.jpg" alt="7-Part Series Organic Viral Playbook" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent"></div>
+              <span class="absolute bottom-2.5 left-3 rounded-full bg-espresso/80 px-2.5 py-1 text-xs font-semibold text-primary backdrop-blur-md">7-Part Playbook</span>
             </div>
-            <h3 class="text-xl font-semibold leading-snug tracking-tight">The "7-Part Series" Organic Viral Playbook</h3>
+            <h3 class="text-xl font-semibold leading-snug tracking-tight">The &ldquo;7-Part Series&rdquo; Organic Viral Playbook</h3>
             <p class="text-[15px] leading-relaxed text-muted-foreground">
               Turn one viral format into a 7-part series on TikTok, Reels and YouTube Shorts that builds authority and drives organic
               clicks, without running paid ads.
@@ -1756,16 +1786,10 @@
         <div class="tile-outer reveal grid grid-cols-1 gap-5 p-4 md:p-6 lg:grid-cols-12">
           <!-- Left Badge Box -->
           <div
-            class="relative flex flex-col items-start justify-between gap-8 overflow-hidden rounded-[1.5rem] bg-espresso p-6 text-espresso-foreground md:p-10 lg:col-span-5">
+            class="relative flex flex-col items-center sm:items-start justify-between gap-8 overflow-hidden rounded-[1.5rem] bg-espresso p-6 text-espresso-foreground md:p-10 lg:col-span-5">
             <div class="blob-soft absolute -right-20 -top-20 h-64 w-64 opacity-60" aria-hidden="true"></div>
-            <div class="relative flex h-28 w-28 items-center justify-center rounded-full border border-primary/60">
-              <div class="flex h-20 w-20 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                <svg viewBox="0 0 24 24" fill="currentColor" class="h-9 w-9" aria-hidden="true">
-                  <path fill-rule="evenodd"
-                    d="M12.516 2.17a.75.75 0 00-1.032 0 11.209 11.209 0 01-7.877 3.08.75.75 0 00-.722.515A12.74 12.74 0 002.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 00.374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 00-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08zm3.094 8.016a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z"
-                    clip-rule="evenodd" />
-                </svg>
-              </div>
+            <div class="relative flex items-center justify-center">
+              <img src="assets/images/guarantee-shield-3d.png" alt="14-Day Money Back Guarantee 3D Shield" loading="lazy" class="w-36 h-36 object-contain drop-shadow-[0_15px_35px_rgba(240,122,40,0.35)] transition-transform duration-500 hover:scale-105">
             </div>
             <div class="relative">
               <p class="font-mono-label text-primary">14 day refund</p>
@@ -2338,7 +2362,11 @@
           <!-- P.S. Card -->
           <div class="tile flex flex-col justify-between gap-6 p-6 md:p-10">
             <div>
-              <p class="font-mono-label text-primary">P.S.</p>
+              <div class="flex items-center gap-3">
+                <img src="assets/images/hero-founder.jpg" alt="WyvStudio founder portrait"
+                  class="h-12 w-12 shrink-0 rounded-full border-2 border-primary/30 object-cover object-[center_28%] shadow-md">
+                <p class="font-mono-label text-primary">P.S.</p>
+              </div>
               <p class="mt-4 text-[17px] leading-relaxed text-muted-foreground">
                 Think about what else $7 gets you today: a single coffee that's gone in 15 minutes. Or a complete
                 creative engine that turns the link to any viral video into your own original version in 60 seconds. If
@@ -2449,39 +2477,44 @@
         });
       }
 
-      // 2. Mobile Menu Navigation
-      var mobileBtn = document.getElementById('mobile-menu-btn');
-      var mobileMenu = document.getElementById('mobile-menu');
-      var mobileClose = document.getElementById('mobile-menu-close');
-      var iconBars = document.getElementById('menu-icon-bars');
-      var iconX = document.getElementById('menu-icon-x');
-      var mobileLinks = document.querySelectorAll('.mobile-nav-link');
+      // 2. New Minimal Nav — Mobile Drawer Toggle
+      (function () {
+        var navToggle = document.getElementById('wyv-nav-toggle');
+        var navDrawer = document.getElementById('wyv-nav-drawer');
+        if (!navToggle || !navDrawer) return;
 
-      function toggleMobileMenu(open) {
-        if (!mobileMenu) return;
-        var isOpen = open !== undefined ? open : mobileMenu.classList.contains('hidden');
-        if (isOpen) {
-          mobileMenu.classList.remove('hidden');
-          if (iconBars) iconBars.classList.add('hidden');
-          if (iconX) iconX.classList.remove('hidden');
-          if (mobileBtn) mobileBtn.setAttribute('aria-expanded', 'true');
-        } else {
-          mobileMenu.classList.add('hidden');
-          if (iconBars) iconBars.classList.remove('hidden');
-          if (iconX) iconX.classList.add('hidden');
-          if (mobileBtn) mobileBtn.setAttribute('aria-expanded', 'false');
+        var isOpen = false;
+
+        function openDrawer() {
+          isOpen = true;
+          navDrawer.classList.add('is-open');
+          navDrawer.setAttribute('aria-hidden', 'false');
+          navToggle.setAttribute('aria-expanded', 'true');
+          document.body.style.overflow = 'hidden';
         }
-      }
 
-      if (mobileBtn) {
-        mobileBtn.addEventListener('click', function () { toggleMobileMenu(); });
-      }
-      if (mobileClose) {
-        mobileClose.addEventListener('click', function () { toggleMobileMenu(false); });
-      }
-      mobileLinks.forEach(function (link) {
-        link.addEventListener('click', function () { toggleMobileMenu(false); });
-      });
+        function closeDrawer() {
+          isOpen = false;
+          navDrawer.classList.remove('is-open');
+          navDrawer.setAttribute('aria-hidden', 'true');
+          navToggle.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        }
+
+        navToggle.addEventListener('click', function () {
+          isOpen ? closeDrawer() : openDrawer();
+        });
+
+        navDrawer.querySelectorAll('a').forEach(function (a) {
+          a.addEventListener('click', closeDrawer);
+        });
+
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && isOpen) closeDrawer();
+        });
+      })();
+
+
 
       // 3. Hero Mouse Parallax
       var hero = document.getElementById('top');
@@ -2779,11 +2812,12 @@
         });
       }
 
-      // 11. New Hero Motion-Path Curved Social Ticker
+      // 11. New Hero Motion-Path Curved Social Ticker (Dual-Layer: Behind Thumb -> Through Screen -> Front Exit)
       function initHeroTicker() {
-        var track = document.getElementById('heroTrack');
+        var trackBack = document.getElementById('heroTrackBack');
+        var trackFront = document.getElementById('heroTrackFront');
         var stage = document.getElementById('stage');
-        if (!track || !stage) return;
+        if (!trackBack || !trackFront || !stage) return;
 
         var F = 'https://framerusercontent.com/';
         var LOGOS = [
@@ -2834,15 +2868,11 @@
           }
         ];
 
-        var SLOTS = 18;
-        var SPEED = 0.055;
+        var SLOTS = 9; // Exactly 9 icons for huge, elegant spacing like the original site
+        var SPEED = 0.042;
         var BASE = 520;
-        var slots = [];
-        var chips = [];
 
-        track.innerHTML = '';
-        for (var i = 0; i < SLOTS; i++) {
-          var item = LOGOS[i % LOGOS.length];
+        function createSlot(item) {
           var slot = document.createElement('div');
           slot.className = 'ticker-slot';
 
@@ -2862,15 +2892,34 @@
           chip.appendChild(img);
 
           slot.appendChild(chip);
-          track.appendChild(slot);
-          slots.push(slot);
-          chips.push(chip);
+          return { slot: slot, chip: chip };
+        }
+
+        trackBack.innerHTML = '';
+        trackFront.innerHTML = '';
+        var backItems = [];
+        var frontItems = [];
+
+        for (var i = 0; i < SLOTS; i++) {
+          var item = LOGOS[i % LOGOS.length];
+
+          var backObj = createSlot(item);
+          trackBack.appendChild(backObj.slot);
+          backItems.push(backObj);
+
+          var frontObj = createSlot(item);
+          trackFront.appendChild(frontObj.slot);
+          frontItems.push(frontObj);
         }
 
         function fit() {
           var scale = stage.clientWidth / BASE;
-          track.style.transform = 'scale(' + scale + ') translateY(-365.875px)';
+          // translateY(-365px) makes icons enter at the TOP-LEFT of the phone and exit at the bottom-right
+          var transformVal = 'scale(' + scale + ') translateY(-365px)';
+          trackBack.style.transform = transformVal;
+          trackFront.style.transform = transformVal;
         }
+
         if (window.ResizeObserver) {
           new ResizeObserver(fit).observe(stage);
         }
@@ -2881,10 +2930,20 @@
           for (var i = 0; i < SLOTS; i++) {
             var p = (t * SPEED + i / SLOTS) % 1;
             var o = p < 0.03 ? p / 0.03 : p > 0.86 ? Math.max(0, (1 - p) / 0.14) : 1;
-            slots[i].style.offsetDistance = (p * 100) + '%';
-            slots[i].style.opacity = o;
-            chips[i].style.transform = 'scale(' + (0.8 * (0.7 + 0.3 * o)) + ')';
-            slots[i].style.zIndex = Math.floor(p * 10) + 1;
+            var scaleVal = (0.84 * (0.7 + 0.3 * o));
+
+            var dist = (p * 100) + '%';
+            // Back layer: Behind thumb & inside screen cutout at top-left (visible when p < 0.42)
+            var isBack = p < 0.42;
+
+            backItems[i].slot.style.offsetDistance = dist;
+            backItems[i].slot.style.opacity = isBack ? o : 0;
+            backItems[i].chip.style.transform = 'scale(' + scaleVal + ')';
+
+            // Front layer: Emerging through front screen at bottom-right into open room (visible when p >= 0.42)
+            frontItems[i].slot.style.offsetDistance = dist;
+            frontItems[i].slot.style.opacity = isBack ? 0 : o;
+            frontItems[i].chip.style.transform = 'scale(' + scaleVal + ')';
           }
         }
 
