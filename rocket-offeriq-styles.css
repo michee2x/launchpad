@@ -18,11 +18,12 @@
   --input: #e3d0b9;
   --ring: #e8590c;
   --radius: 1.5rem;
-  --font-plus-jakarta-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-fraunces: 'Fraunces', Georgia, serif;
-  --font-sans: var(--font-plus-jakarta-sans);
-  --font-display: var(--font-plus-jakarta-sans);
-  --font-serif: var(--font-fraunces);
+  --font-dm-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-space-mono: 'Space Mono', monospace;
+  --font-sans: var(--font-dm-sans);
+  --font-display: var(--font-dm-sans);
+  --font-serif: var(--font-dm-sans);
+  --font-mono: var(--font-space-mono);
   --success: #2f7d4f;
   --success-foreground: #f4fff8;
   --warning: #b7791f;
@@ -91,7 +92,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 /* Custom Display Typography & Clamps (Aligned 1:1 with index.html) */
 .font-display {
-  font-family: var(--font-plus-jakarta-sans);
+  font-family: var(--font-dm-sans), sans-serif;
   font-weight: 800;
   letter-spacing: -0.03em;
 }
@@ -102,7 +103,7 @@ h1, h2, h3, h4, h5, h6, p {
 .font-display em,
 [class*="font-display"] .italic,
 [class*="font-display"] em {
-  font-family: var(--font-fraunces), Georgia, serif;
+  font-family: var(--font-dm-sans), sans-serif;
   font-style: italic;
   font-weight: 500;
 }

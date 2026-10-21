@@ -61,11 +61,11 @@
   }
   </script>
 
-  <!-- Google Fonts: Plus Jakarta Sans & Fraunces -->
+  <!-- Google Fonts: DM Sans & Space Mono (matching wyvstudio.com) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap"
     rel="stylesheet">
 
   <!-- Tailwind Play CDN with exact OfferIQ tokens configuration -->
@@ -119,9 +119,9 @@
             },
           },
           fontFamily: {
-            sans: ['var(--font-sans)', 'sans-serif'],
-            display: ['var(--font-display)', 'sans-serif'],
-            serif: ['var(--font-serif)', 'serif'],
+            sans: ['var(--font-dm-sans)', 'sans-serif'],
+            display: ['var(--font-dm-sans)', 'sans-serif'],
+            mono: ['var(--font-space-mono)', 'monospace'],
           },
         },
       },
@@ -1361,7 +1361,7 @@
             </div>
 
             <!-- Buy CTA Button -->
-            <a href="#" data-buy="offeriq" id="order-buy-btn"
+            <a href="https://launchpadjv.com/product/checkout/5948?page=5069&offer=601&offerProduct=6946" data-buy="offeriq" id="order-buy-btn"
               class="lp-buy group mt-6 flex min-h-[60px] w-full items-center justify-center gap-3 rounded-full bg-primary px-6 py-4 text-center text-base font-bold text-primary-foreground shadow-[0_18px_50px_-14px_var(--primary)] transition-transform duration-300 ease-spring hover:scale-[1.02] sm:text-lg">
               <span id="order-btn-text">Yes! Upgrade my order to include OfferIQ for just $47</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
@@ -1374,8 +1374,10 @@
               1-click charge to card on file. Lifetime license unlocked immediately.
             </p>
 
-            <!-- Decline Link -->
-            <div class="mt-10 border-t border-border pt-6">
+            <!-- Decline Link & Launchpad Embed -->
+            <div class="mt-10 border-t border-border pt-6 text-center">
+              <div class="forgeContainer mb-4" data-offer="601" data-page="5069" data-id="5948"></div>
+              <script src="https://launchpadjv.com/js/embed.js"></script>
               <a href="/agency" data-decline="offeriq"
                 class="lp-decline block text-sm leading-relaxed text-muted-foreground underline decoration-border underline-offset-4 transition-colors hover:text-foreground">
                 No thanks, I will pass on OfferIQ. I understand that by clicking this link, I will not be able to get

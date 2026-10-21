@@ -30,11 +30,11 @@
   <meta property="og:description" content="Paste a viral link. Get your own version in 60 seconds.">
   <meta property="og:image" content="/assets/images/app_logo.png">
 
-  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <!-- Google Fonts: DM Sans & Space Mono (matching wyvstudio.com) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap"
     rel="stylesheet">
 
   <!-- Tailwind Play CDN with exact Rocket.new tokens configuration -->
@@ -96,8 +96,8 @@
             DEFAULT: 'var(--radius)',
           },
           fontFamily: {
-            sans: ['var(--font-plus-jakarta-sans)', 'sans-serif'],
-            mono: ['var(--font-jetbrains-mono)', 'monospace'],
+            sans: ['var(--font-dm-sans)', 'sans-serif'],
+            mono: ['var(--font-space-mono)', 'monospace'],
           },
         },
       },
@@ -204,272 +204,66 @@
     </header>
 
     <!-- ==================== HERO SECTION ==================== -->
-    <section id="top" class="relative isolate min-h-screen overflow-hidden bg-hero text-hero-foreground">
-      <!-- Animated Hero Backdrop -->
-      <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div class="hero-aurora absolute inset-0"></div>
-        <div id="hero-parallax-layer" class="absolute inset-0 transition-transform duration-700 ease-out">
-          <div class="aurora-ring anim-drift absolute -left-[22%] -top-[40%] h-[120vh] w-[120vh]"></div>
-          <div class="aurora-ring anim-drift absolute -left-[12%] -top-[32%] h-[96vh] w-[96vh]"></div>
-          <div class="aurora-ring anim-drift absolute -left-[4%] -top-[24%] h-[74vh] w-[74vh]"></div>
-          <div class="blob-primary anim-drift absolute -left-[10%] -top-[18%] h-[60vh] w-[60vh] opacity-70"></div>
-        </div>
-        <div class="blob-soft absolute left-1/2 top-[48%] h-[340px] w-[720px] -translate-x-1/2 opacity-60"></div>
+    <section id="top" class="hero-new">
+      <div class="hero-wrap">
 
-        <!-- 16 Twinkling Stars -->
-        <span class="anim-twinkle absolute h-1 w-1 rounded-full bg-hero-foreground"
-          style="left: 4%; top: 26%; animation-delay: 0s;"></span>
-        <span class="anim-twinkle absolute h-1 w-1 rounded-full bg-hero-foreground"
-          style="left: 12%; top: 54%; animation-delay: 1.2s;"></span>
-        <span class="anim-twinkle absolute h-1 w-1 rounded-full bg-hero-foreground"
-          style="left: 22%; top: 18%; animation-delay: 2.1s;"></span>
-        <span class="anim-twinkle absolute h-1 w-1 rounded-full bg-hero-foreground"
-          style="left: 31%; top: 62%; animation-delay: 0.6s;"></span>
-        <span class="anim-twinkle absolute h-1 w-1 rounded-full bg-hero-foreground"
-          style="left: 38%; top: 33%; animation-delay: 1.7s;"></span>
-        <span class="anim-twinkle absolute h-1 w-1 rounded-full bg-hero-foreground"
-          style="left: 47%; top: 20%; animation-delay: 2.8s;"></span>
-        <span class="anim-twinkle absolute h-1 w-1 rounded-full bg-hero-foreground"
-          style="left: 55%; top: 48%; animation-delay: 0.3s;"></span>
-        <span class="anim-twinkle absolute h-1 w-1 rounded-full bg-hero-foreground"
-          style="left: 63%; top: 15%; animation-delay: 1.4s;"></span>
-        <span class="anim-twinkle absolute h-1 w-1 rounded-full bg-hero-foreground"
-          style="left: 71%; top: 38%; animation-delay: 2.4s;"></span>
-        <span class="anim-twinkle absolute h-1 w-1 rounded-full bg-hero-foreground"
-          style="left: 79%; top: 24%; animation-delay: 0.9s;"></span>
-        <span class="anim-twinkle absolute h-1 w-1 rounded-full bg-hero-foreground"
-          style="left: 86%; top: 58%; animation-delay: 1.9s;"></span>
-        <span class="anim-twinkle absolute h-1 w-1 rounded-full bg-hero-foreground"
-          style="left: 93%; top: 30%; animation-delay: 3.2s;"></span>
-        <span class="anim-twinkle absolute h-1 w-1 rounded-full bg-hero-foreground"
-          style="left: 18%; top: 40%; animation-delay: 2.6s;"></span>
-        <span class="anim-twinkle absolute h-1 w-1 rounded-full bg-hero-foreground"
-          style="left: 58%; top: 66%; animation-delay: 1.1s;"></span>
-        <span class="anim-twinkle absolute h-1 w-1 rounded-full bg-hero-foreground"
-          style="left: 90%; top: 14%; animation-delay: 0.5s;"></span>
-        <span class="anim-twinkle absolute h-1 w-1 rounded-full bg-hero-foreground"
-          style="left: 8%; top: 12%; animation-delay: 3.0s;"></span>
-
-        <div class="stripe-lines absolute inset-0 opacity-70"></div>
-        <div class="grain-overlay absolute inset-0"></div>
-      </div>
-
-      <!-- Hero Header Content -->
-      <div
-        class="relative z-10 mx-auto flex max-w-5xl flex-col items-center px-5 pb-8 pt-24 text-center md:px-8 md:pb-10 md:pt-32">
-        <!-- Target Audience Glass Pill -->
-        <div class="reveal pill-glass inline-flex max-w-full items-center gap-2 rounded-full px-4 py-1.5">
-          <span class="text-sm text-primary">✦</span>
-          <span class="text-[13px] font-medium md:text-sm">
-            Creators, Affiliate Marketers, Local Businesses, Coaches & Brands
-          </span>
-        </div>
-
-        <!-- Hero Headline (Reduced size as requested) -->
-        <h1 class="text-hero-xl reveal mt-5 max-w-3xl font-medium">
-          See a Viral Video Pulling Millions of Views? Paste the Link and Get Your Own Version
-          <span class="text-primary"> in Under 60 Seconds.</span>
-        </h1>
-
-        <!-- Hero Subheadline -->
-        <p class="reveal mt-4 max-w-2xl text-[15px] leading-relaxed text-hero-muted md:text-[16px]">
-          Steal the formula, not the footage. WyvStudio copies the hook, the pacing and the structure that made it
-          explode, then rebuilds the video with your script, your voice, your visuals and your offer. No editing. No
-          $200+/month tools. No guessing. Start for less than the price of a cup of coffee.
-        </p>
-
-        <!-- CTA Buttons -->
-        <div class="reveal mt-6 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row">
-          <a href="#order" data-buy="fe"
-            class="lp-buy btn-orange inline-flex min-h-[48px] w-full items-center justify-center gap-3 rounded-full px-7 text-[15px] font-semibold text-primary-foreground transition-transform hover:scale-[1.03] sm:w-auto">
-            Get instant access for just $7
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" class="h-4 w-4" aria-hidden="true">
-              <path d="M7 17L17 7M17 7H7M17 7V17" />
-            </svg>
-          </a>
-          <a href="#how-it-works"
-            class="inline-flex min-h-[48px] w-full items-center justify-center rounded-full border border-primary/60 bg-white/5 px-7 text-[15px] font-semibold text-hero-foreground transition-colors hover:bg-white/10 sm:w-auto">
-            Watch it work
-          </a>
-        </div>
-
-        <p class="reveal mt-4 text-xs text-hero-muted">
-          200 credits included · Viral video recreation included · 14-day full guarantee
-        </p>
-      </div>
-
-      <!-- Hero Perspective 3D Carousel (Exact Architecture from Framer PerspectiveCarousel with Portrait Videos) -->
-      <div class="relative z-10 pb-12 md:pb-16 flex flex-col items-center">
-        <div id="perspective-scene" class="carousel-scene-container" style="min-height: 480px; touch-action: pan-y;">
-          <div class="carousel-3d-stage">
-            <div id="perspective-ring" class="carousel-3d-ring">
-
-              <!-- Arm 1: 90 deg -->
-              <div class="carousel-arm" style="transform: rotateY(90deg);">
-                <div class="carousel-panel" style="transform: rotateY(90deg);">
-                  <img src="https://framerusercontent.com/images/rWkJ6c7ZNzWRqKAXFEXc6H06vC0.jpg?width=640&amp;height=960" alt="Teal ocean waves rolling onto a rocky sand beach" loading="eager">
-                  <video src="https://framerusercontent.com/assets/VLYpQEgJksWEMFbKP3YaHxFfVs.mp4" loop muted playsinline autoplay preload="metadata"></video>
-                  <div class="panel-scrim"></div>
-                </div>
-                <div class="carousel-panel" style="transform: rotateY(-90deg);">
-                  <img src="https://framerusercontent.com/images/rWkJ6c7ZNzWRqKAXFEXc6H06vC0.jpg?width=640&amp;height=960" alt="Rocky coastline with turquoise sea" loading="eager">
-                  <video src="https://framerusercontent.com/assets/4dSTZqfQShRZb2JWlBhMm2kAkA.mp4" loop muted playsinline autoplay preload="metadata"></video>
-                  <div class="panel-scrim"></div>
-                </div>
-              </div>
-
-              <!-- Arm 2: 120 deg -->
-              <div class="carousel-arm" style="transform: rotateY(120deg);">
-                <div class="carousel-panel" style="transform: rotateY(90deg);">
-                  <img src="https://framerusercontent.com/images/QfnQEJsmYc2qfsvuDtGW6j0hQ.jpg?width=640&amp;height=1137" alt="Tall waterfall cascading over mossy cliffs" loading="eager">
-                  <video src="https://framerusercontent.com/assets/OUh0BxMeGqmebqe3OU950qgZd5Q.mp4" loop muted playsinline autoplay preload="metadata"></video>
-                  <div class="panel-scrim"></div>
-                </div>
-                <div class="carousel-panel" style="transform: rotateY(-90deg);">
-                  <img src="https://framerusercontent.com/images/QfnQEJsmYc2qfsvuDtGW6j0hQ.jpg?width=640&amp;height=1137" alt="Waterfall tumbling down into misty pool" loading="eager">
-                  <video src="https://framerusercontent.com/assets/OUh0BxMeGqmebqe3OU950qgZd5Q.mp4" loop muted playsinline autoplay preload="metadata"></video>
-                  <div class="panel-scrim"></div>
-                </div>
-              </div>
-
-              <!-- Arm 3: 150 deg -->
-              <div class="carousel-arm" style="transform: rotateY(150deg);">
-                <div class="carousel-panel" style="transform: rotateY(90deg);">
-                  <img src="https://framerusercontent.com/images/OXqtUf6sQWS0n0krBIE6oRYZMOc.jpg?width=640&amp;height=988" alt="Narrow city street at dusk leading toward lit suspension bridge" loading="eager">
-                  <video src="https://framerusercontent.com/assets/aaDgCGVVmNL57iUOvyPa1FHrT0.mp4" loop muted playsinline autoplay preload="metadata"></video>
-                  <div class="panel-scrim"></div>
-                </div>
-                <div class="carousel-panel" style="transform: rotateY(-90deg);">
-                  <img src="https://framerusercontent.com/images/OXqtUf6sQWS0n0krBIE6oRYZMOc.jpg?width=640&amp;height=988" alt="Brooklyn street at twilight framing bridge towers" loading="eager">
-                  <video src="https://framerusercontent.com/assets/aaDgCGVVmNL57iUOvyPa1FHrT0.mp4" loop muted playsinline autoplay preload="metadata"></video>
-                  <div class="panel-scrim"></div>
-                </div>
-              </div>
-
-              <!-- Arm 4: 180 deg (Center Highlight: Plane Wreckage on Beach) -->
-              <div class="carousel-arm" style="transform: rotateY(180deg);">
-                <div class="carousel-panel" style="transform: rotateY(90deg);">
-                  <img src="https://framerusercontent.com/images/0bfCdaXNgRiPMVDiDNq98HhwVEA.jpg?width=640&amp;height=960" alt="Abandoned plane wreck on black sand beach" loading="eager">
-                  <video src="https://framerusercontent.com/assets/0O56ed5D4Df3A8PfmCNF5GC9eno.mp4" loop muted playsinline autoplay preload="metadata"></video>
-                  <div class="panel-scrim"></div>
-                </div>
-                <div class="carousel-panel" style="transform: rotateY(-90deg);">
-                  <img src="https://framerusercontent.com/images/0bfCdaXNgRiPMVDiDNq98HhwVEA.jpg?width=640&amp;height=960" alt="Plane wreckage on dark beach beneath overcast sky" loading="eager">
-                  <video src="https://framerusercontent.com/assets/0O56ed5D4Df3A8PfmCNF5GC9eno.mp4" loop muted playsinline autoplay preload="metadata"></video>
-                  <div class="panel-scrim"></div>
-                </div>
-              </div>
-
-              <!-- Arm 5: 0 deg -->
-              <div class="carousel-arm" style="transform: rotateY(0deg);">
-                <div class="carousel-panel" style="transform: rotateY(90deg);">
-                  <img src="https://framerusercontent.com/images/3WuYMSDz8paruXEAF3eI3c8zA.jpg?width=640&amp;height=853" alt="Sunlit forest trail with tall dark trees" loading="eager">
-                  <video src="https://framerusercontent.com/assets/4e6W2vHiUa5qeeiGAcxaDg11GbM.mp4" loop muted playsinline autoplay preload="metadata"></video>
-                  <div class="panel-scrim"></div>
-                </div>
-                <div class="carousel-panel" style="transform: rotateY(-90deg);">
-                  <img src="https://framerusercontent.com/images/3WuYMSDz8paruXEAF3eI3c8zA.jpg?width=640&amp;height=853" alt="Green mossy forest floor lit by sun" loading="eager">
-                  <video src="https://framerusercontent.com/assets/4e6W2vHiUa5qeeiGAcxaDg11GbM.mp4" loop muted playsinline autoplay preload="metadata"></video>
-                  <div class="panel-scrim"></div>
-                </div>
-              </div>
-
-              <!-- Arm 6: 30 deg -->
-              <div class="carousel-arm" style="transform: rotateY(30deg);">
-                <div class="carousel-panel" style="transform: rotateY(90deg);">
-                  <img src="https://framerusercontent.com/images/aUPQmCFZWoQ5mVKmdue4SZ2DPqU.jpg?width=640&amp;height=853" alt="Snow-dusted mountain ridge above quiet valley" loading="eager">
-                  <video src="https://framerusercontent.com/assets/OF8Sj3bltaUyBpQsgUNxK11PKc.mp4" loop muted playsinline autoplay preload="metadata"></video>
-                  <div class="panel-scrim"></div>
-                </div>
-                <div class="carousel-panel" style="transform: rotateY(-90deg);">
-                  <img src="https://framerusercontent.com/images/aUPQmCFZWoQ5mVKmdue4SZ2DPqU.jpg?width=640&amp;height=853" alt="Dark mountain range with snowy peaks" loading="eager">
-                  <video src="https://framerusercontent.com/assets/OF8Sj3bltaUyBpQsgUNxK11PKc.mp4" loop muted playsinline autoplay preload="metadata"></video>
-                  <div class="panel-scrim"></div>
-                </div>
-              </div>
-
-              <!-- Arm 7: 60 deg -->
-              <div class="carousel-arm" style="transform: rotateY(60deg);">
-                <div class="carousel-panel" style="transform: rotateY(90deg);">
-                  <img src="https://framerusercontent.com/images/rWkJ6c7ZNzWRqKAXFEXc6H06vC0.jpg?width=640&amp;height=960" alt="Calm teal sea meeting rugged shoreline" loading="eager">
-                  <video src="https://framerusercontent.com/assets/VLYpQEgJksWEMFbKP3YaHxFfVs.mp4" loop muted playsinline autoplay preload="metadata"></video>
-                  <div class="panel-scrim"></div>
-                </div>
-                <div class="carousel-panel" style="transform: rotateY(-90deg);">
-                  <img src="https://framerusercontent.com/images/rWkJ6c7ZNzWRqKAXFEXc6H06vC0.jpg?width=640&amp;height=960" alt="Waves washing over rocky beach" loading="eager">
-                  <video src="https://framerusercontent.com/assets/4dSTZqfQShRZb2JWlBhMm2kAkA.mp4" loop muted playsinline autoplay preload="metadata"></video>
-                  <div class="panel-scrim"></div>
-                </div>
-              </div>
-
+        <!-- Left Column: Phone + Hand + Curved Social Ticker -->
+        <div class="phone-col">
+          <div class="stage" id="stage">
+            <!-- Ticker Path (Icons emerge from behind phone & curve across) -->
+            <div class="ticker" aria-hidden="true">
+              <div class="ticker-track" id="heroTrack"></div>
             </div>
+
+            <!-- Phone Screen with Auto-playing Video -->
+            <div class="phone">
+              <video id="phoneVideo" loop muted playsinline autoplay preload="auto" src="https://framerusercontent.com/assets/SZxKWW4QqUKtxqq3aGoDDX5SWA.mp4"></video>
+              <div class="shade"></div>
+              <div class="who">
+                <img id="avatar" src="https://framerusercontent.com/images/DGMVfVuMNAcA91kidw9ljwsVg0.png?width=2316&amp;height=2316" alt="WyvStudio Creator">
+                <span>umeh chinonso</span>
+              </div>
+            </div>
+
+            <!-- Hand holding Smartphone -->
+            <img class="hand" id="hand" src="https://framerusercontent.com/images/gikKVZRpkswAbGUTx3WfVbSk.png?width=1373&amp;height=1373" alt="Hand holding black smartphone">
           </div>
         </div>
 
-          <!-- Tags Container (Matches Reference Screenshot) -->
-          <div class="framer-ta3p1x" data-border="true" id="nav">
-            <!-- Tag 1 -->
-            <div class="framer-yfnnhb">
-              <svg data-framer-name="elements" class="framer-u7Bt8" viewBox="0 0 16 16" aria-hidden="true">
-                <path
-                  d="M 4.961 3.246 C 4.835 3.768 4.238 4.137 3.045 4.875 C 1.891 5.589 1.315 5.946 0.85 5.802 C 0.658 5.743 0.483 5.63 0.342 5.475 C 0 5.1 0 4.372 0 2.917 C 0 1.461 0 0.733 0.342 0.358 C 0.483 0.203 0.658 0.091 0.85 0.031 C 1.315 -0.112 1.891 0.245 3.045 0.958 C 4.238 1.696 4.835 2.065 4.961 2.588 C 5.013 2.803 5.013 3.03 4.961 3.246 Z"
-                  fill="transparent" stroke="rgba(255, 255, 255, 0.9)" stroke-width="1.46"
-                  transform="translate(5.422 5)"></path>
-                <path
-                  d="M 0 7.917 C 0 4.185 0 2.319 1.159 1.159 C 2.319 0 4.185 0 7.917 0 C 11.649 0 13.515 0 14.674 1.159 C 15.833 2.319 15.833 4.185 15.833 7.917 C 15.833 11.649 15.833 13.515 14.674 14.674 C 13.515 15.833 11.649 15.833 7.917 15.833 C 4.185 15.833 2.319 15.833 1.159 14.674 C 0 13.515 0 11.649 0 7.917 Z"
-                  fill="transparent" stroke="rgba(255, 255, 255, 0.9)" stroke-width="1.46" width="15.8333px"></path>
-              </svg>
-              <p class="framer-text">Short Video Editing</p>
-            </div>
-
-            <!-- Diamond 1 -->
-            <div class="framer-18xjh8x" aria-hidden="true">
-              <img decoding="auto" width="14" height="14"
-                src="https://framerusercontent.com/images/YEVb64Pj6y4rpUHnvLZtUOI4U.png?width=32&amp;height=32"
-                alt="✦">
-            </div>
-
-            <!-- Tag 2 -->
-            <div class="framer-1qvhsab">
-              <svg data-framer-name="dashboard-speed-01" class="framer-5O7Le" viewBox="0 0 20 20" aria-hidden="true">
-                <path d="M 2.917 3.333 L 5.833 0 M 3.333 5 C 3.333 5.921 2.587 6.667 1.667 6.667 C 0.746 6.667 0 5.921 0 5 C 0 4.08 0.746 3.333 1.667 3.333 C 2.587 3.333 3.333 4.08 3.333 5 Z"
-                  fill="transparent" stroke="rgba(255, 255, 255, 0.9)" stroke-width="1.25"
-                  transform="translate(8.328 7.5)"></path>
-                <path d="M 0 5 C 0 2.239 2.239 0 5 0 C 5.911 0 6.765 0.243 7.5 0.669" fill="transparent"
-                  stroke="rgba(255, 255, 255, 0.9)" stroke-width="1.25" transform="translate(5 5)"></path>
-                <path
-                  d="M 0 7.917 C 0 4.185 0 2.319 1.159 1.159 C 2.319 0 4.185 0 7.917 0 C 11.649 0 13.515 0 14.674 1.159 C 15.833 2.319 15.833 4.185 15.833 7.917 C 15.833 11.649 15.833 13.515 14.674 14.674 C 13.515 15.833 11.649 15.833 7.917 15.833 C 4.185 15.833 2.319 15.833 1.159 14.674 C 0 13.515 0 11.649 0 7.917 Z"
-                  fill="transparent" stroke="rgba(255, 255, 255, 0.9)" stroke-width="1.25"
-                  transform="translate(2.078 2.084)"></path>
-              </svg>
-              <p class="framer-text">Content Strategy</p>
-            </div>
-
-            <!-- Diamond 2 -->
-            <div class="framer-14l0eqi" aria-hidden="true">
-              <img decoding="auto" width="14" height="14"
-                src="https://framerusercontent.com/images/YEVb64Pj6y4rpUHnvLZtUOI4U.png?width=32&amp;height=32"
-                alt="✦">
-            </div>
-
-            <!-- Tag 3 -->
-            <div class="framer-46hqn4">
-              <svg data-framer-name="analytics-up" class="framer-IMBY9" viewBox="0 0 20 20" aria-hidden="true">
-                <path d="M 3.75 12.917 L 3.75 11.25 M 7.917 12.917 L 7.917 10.417 M 12.083 12.917 L 12.083 8.75 M 0 7.917 C 0 4.185 0 2.319 1.159 1.159 C 2.319 0 4.185 0 7.917 0 C 11.649 0 13.515 0 14.674 1.159 C 15.833 2.319 15.833 4.185 15.833 7.917 C 15.833 11.649 15.833 13.515 14.674 14.674 C 13.515 15.833 11.649 15.833 7.917 15.833 C 4.185 15.833 2.319 15.833 1.159 14.674 C 0 13.515 0 11.649 0 7.917 Z"
-                  fill="transparent" stroke="rgba(255, 255, 255, 0.9)" stroke-width="1.25"
-                  transform="translate(2.078 2.084)"></path>
-                <path d="M 0 4.586 C 1.796 4.646 5.868 4.375 8.185 0.698 M 6.667 0.254 L 8.23 0.003 C 8.42 -0.022 8.7 0.129 8.769 0.308 L 9.182 1.673"
-                  fill="transparent" stroke="rgba(255, 255, 255, 0.9)" stroke-width="1.25"
-                  transform="translate(4.992 4.984)"></path>
-              </svg>
-              <p class="framer-text">Growth Optimization</p>
-            </div>
-
-            <!-- Purple shade ambient glow -->
-            <div class="framer-12il3x5" aria-hidden="true"></div>
+        <!-- Right Column: Info & Copy -->
+        <div class="info">
+          <!-- Chip Badge -->
+          <div class="hero-chip">
+            <span class="hero-chip-tag">2 Slots Left</span>
+            <span class="hero-chip-txt">Accepting new projects</span>
           </div>
+
+          <!-- Main Headline -->
+          <h1 id="heroTitle" class="hero-heading">
+            See a Viral Video Pulling Millions of Views? Paste the Link and Get Your Own Version in Under 60 Seconds.
+          </h1>
+
+          <!-- Lead Subhead -->
+          <p id="heroLead" class="hero-lead">
+            Steal the formula, not the footage. WyvStudio copies the hook, the pacing and the structure that made it explode, then rebuilds the video with your script, your voice, your visuals and your offer.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="hero-actions">
+            <a class="hero-btn" href="#order" data-buy="fe">
+              Get Instant Access for $7
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="hero-btn-secondary" href="#how-it-works">
+              Watch Tutorial
+            </a>
+          </div>
+
+          <p class="hero-guarantee">
+            200 credits included · Viral video recreation included · 14-day full guarantee
+          </p>
         </div>
+
       </div>
     </section>
 
@@ -998,6 +792,183 @@
                 </div>
               </li>
             </ul>
+          </div>
+        </div>
+
+        <!-- ==================== 3D PERSPECTIVE CAROUSEL (Moved under Meet WyvStudio) ==================== -->
+        <div class="reveal mt-16 pt-6 flex flex-col items-center">
+          <div class="mb-4 text-center">
+            <p class="font-mono-label text-accent">Interactive Visual Showcase</p>
+            <h3 class="text-display-md mt-2 font-medium">Recreated Formats Across Every Niche</h3>
+          </div>
+
+          <div id="perspective-scene" class="carousel-scene-container" style="min-height: 480px; touch-action: pan-y;">
+            <div class="carousel-3d-stage">
+              <div id="perspective-ring" class="carousel-3d-ring">
+
+                <!-- Arm 1: 90 deg -->
+                <div class="carousel-arm" style="transform: rotateY(90deg);">
+                  <div class="carousel-panel" style="transform: rotateY(90deg);">
+                    <img src="https://framerusercontent.com/images/rWkJ6c7ZNzWRqKAXFEXc6H06vC0.jpg?width=640&amp;height=960" alt="Teal ocean waves rolling onto a rocky sand beach" loading="eager">
+                    <video src="https://framerusercontent.com/assets/VLYpQEgJksWEMFbKP3YaHxFfVs.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                    <div class="panel-scrim"></div>
+                  </div>
+                  <div class="carousel-panel" style="transform: rotateY(-90deg);">
+                    <img src="https://framerusercontent.com/images/rWkJ6c7ZNzWRqKAXFEXc6H06vC0.jpg?width=640&amp;height=960" alt="Rocky coastline with turquoise sea" loading="eager">
+                    <video src="https://framerusercontent.com/assets/4dSTZqfQShRZb2JWlBhMm2kAkA.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                    <div class="panel-scrim"></div>
+                  </div>
+                </div>
+
+                <!-- Arm 2: 120 deg -->
+                <div class="carousel-arm" style="transform: rotateY(120deg);">
+                  <div class="carousel-panel" style="transform: rotateY(90deg);">
+                    <img src="https://framerusercontent.com/images/QfnQEJsmYc2qfsvuDtGW6j0hQ.jpg?width=640&amp;height=1137" alt="Tall waterfall cascading over mossy cliffs" loading="eager">
+                    <video src="https://framerusercontent.com/assets/OUh0BxMeGqmebqe3OU950qgZd5Q.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                    <div class="panel-scrim"></div>
+                  </div>
+                  <div class="carousel-panel" style="transform: rotateY(-90deg);">
+                    <img src="https://framerusercontent.com/images/QfnQEJsmYc2qfsvuDtGW6j0hQ.jpg?width=640&amp;height=1137" alt="Waterfall tumbling down into misty pool" loading="eager">
+                    <video src="https://framerusercontent.com/assets/OUh0BxMeGqmebqe3OU950qgZd5Q.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                    <div class="panel-scrim"></div>
+                  </div>
+                </div>
+
+                <!-- Arm 3: 150 deg -->
+                <div class="carousel-arm" style="transform: rotateY(150deg);">
+                  <div class="carousel-panel" style="transform: rotateY(90deg);">
+                    <img src="https://framerusercontent.com/images/OXqtUf6sQWS0n0krBIE6oRYZMOc.jpg?width=640&amp;height=988" alt="Narrow city street at dusk leading toward lit suspension bridge" loading="eager">
+                    <video src="https://framerusercontent.com/assets/aaDgCGVVmNL57iUOvyPa1FHrT0.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                    <div class="panel-scrim"></div>
+                  </div>
+                  <div class="carousel-panel" style="transform: rotateY(-90deg);">
+                    <img src="https://framerusercontent.com/images/OXqtUf6sQWS0n0krBIE6oRYZMOc.jpg?width=640&amp;height=988" alt="Brooklyn street at twilight framing bridge towers" loading="eager">
+                    <video src="https://framerusercontent.com/assets/aaDgCGVVmNL57iUOvyPa1FHrT0.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                    <div class="panel-scrim"></div>
+                  </div>
+                </div>
+
+                <!-- Arm 4: 180 deg (Center Highlight: Plane Wreckage on Beach) -->
+                <div class="carousel-arm" style="transform: rotateY(180deg);">
+                  <div class="carousel-panel" style="transform: rotateY(90deg);">
+                    <img src="https://framerusercontent.com/images/0bfCdaXNgRiPMVDiDNq98HhwVEA.jpg?width=640&amp;height=960" alt="Abandoned plane wreck on black sand beach" loading="eager">
+                    <video src="https://framerusercontent.com/assets/0O56ed5D4Df3A8PfmCNF5GC9eno.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                    <div class="panel-scrim"></div>
+                  </div>
+                  <div class="carousel-panel" style="transform: rotateY(-90deg);">
+                    <img src="https://framerusercontent.com/images/0bfCdaXNgRiPMVDiDNq98HhwVEA.jpg?width=640&amp;height=960" alt="Plane wreckage on dark beach beneath overcast sky" loading="eager">
+                    <video src="https://framerusercontent.com/assets/0O56ed5D4Df3A8PfmCNF5GC9eno.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                    <div class="panel-scrim"></div>
+                  </div>
+                </div>
+
+                <!-- Arm 5: 0 deg -->
+                <div class="carousel-arm" style="transform: rotateY(0deg);">
+                  <div class="carousel-panel" style="transform: rotateY(90deg);">
+                    <img src="https://framerusercontent.com/images/3WuYMSDz8paruXEAF3eI3c8zA.jpg?width=640&amp;height=853" alt="Sunlit forest trail with tall dark trees" loading="eager">
+                    <video src="https://framerusercontent.com/assets/4e6W2vHiUa5qeeiGAcxaDg11GbM.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                    <div class="panel-scrim"></div>
+                  </div>
+                  <div class="carousel-panel" style="transform: rotateY(-90deg);">
+                    <img src="https://framerusercontent.com/images/3WuYMSDz8paruXEAF3eI3c8zA.jpg?width=640&amp;height=853" alt="Green mossy forest floor lit by sun" loading="eager">
+                    <video src="https://framerusercontent.com/assets/4e6W2vHiUa5qeeiGAcxaDg11GbM.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                    <div class="panel-scrim"></div>
+                  </div>
+                </div>
+
+                <!-- Arm 6: 30 deg -->
+                <div class="carousel-arm" style="transform: rotateY(30deg);">
+                  <div class="carousel-panel" style="transform: rotateY(90deg);">
+                    <img src="https://framerusercontent.com/images/aUPQmCFZWoQ5mVKmdue4SZ2DPqU.jpg?width=640&amp;height=853" alt="Snow-dusted mountain ridge above quiet valley" loading="eager">
+                    <video src="https://framerusercontent.com/assets/OF8Sj3bltaUyBpQsgUNxK11PKc.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                    <div class="panel-scrim"></div>
+                  </div>
+                  <div class="carousel-panel" style="transform: rotateY(-90deg);">
+                    <img src="https://framerusercontent.com/images/aUPQmCFZWoQ5mVKmdue4SZ2DPqU.jpg?width=640&amp;height=853" alt="Dark mountain range with snowy peaks" loading="eager">
+                    <video src="https://framerusercontent.com/assets/OF8Sj3bltaUyBpQsgUNxK11PKc.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                    <div class="panel-scrim"></div>
+                  </div>
+                </div>
+
+                <!-- Arm 7: 60 deg -->
+                <div class="carousel-arm" style="transform: rotateY(60deg);">
+                  <div class="carousel-panel" style="transform: rotateY(90deg);">
+                    <img src="https://framerusercontent.com/images/rWkJ6c7ZNzWRqKAXFEXc6H06vC0.jpg?width=640&amp;height=960" alt="Calm teal sea meeting rugged shoreline" loading="eager">
+                    <video src="https://framerusercontent.com/assets/VLYpQEgJksWEMFbKP3YaHxFfVs.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                    <div class="panel-scrim"></div>
+                  </div>
+                  <div class="carousel-panel" style="transform: rotateY(-90deg);">
+                    <img src="https://framerusercontent.com/images/rWkJ6c7ZNzWRqKAXFEXc6H06vC0.jpg?width=640&amp;height=960" alt="Waves washing over rocky beach" loading="eager">
+                    <video src="https://framerusercontent.com/assets/4dSTZqfQShRZb2JWlBhMm2kAkA.mp4" loop muted playsinline autoplay preload="metadata"></video>
+                    <div class="panel-scrim"></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Tags Container (Matches Reference Screenshot) -->
+          <div class="framer-ta3p1x" data-border="true" id="nav">
+            <!-- Tag 1 -->
+            <div class="framer-yfnnhb">
+              <svg data-framer-name="elements" class="framer-u7Bt8" viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M 4.961 3.246 C 4.835 3.768 4.238 4.137 3.045 4.875 C 1.891 5.589 1.315 5.946 0.85 5.802 C 0.658 5.743 0.483 5.63 0.342 5.475 C 0 5.1 0 4.372 0 2.917 C 0 1.461 0 0.733 0.342 0.358 C 0.483 0.203 0.658 0.091 0.85 0.031 C 1.315 -0.112 1.891 0.245 3.045 0.958 C 4.238 1.696 4.835 2.065 4.961 2.588 C 5.013 2.803 5.013 3.03 4.961 3.246 Z"
+                  fill="transparent" stroke="rgba(255, 255, 255, 0.9)" stroke-width="1.46"
+                  transform="translate(5.422 5)"></path>
+                <path
+                  d="M 0 7.917 C 0 4.185 0 2.319 1.159 1.159 C 2.319 0 4.185 0 7.917 0 C 11.649 0 13.515 0 14.674 1.159 C 15.833 2.319 15.833 4.185 15.833 7.917 C 15.833 11.649 15.833 13.515 14.674 14.674 C 13.515 15.833 11.649 15.833 7.917 15.833 C 4.185 15.833 2.319 15.833 1.159 14.674 C 0 13.515 0 11.649 0 7.917 Z"
+                  fill="transparent" stroke="rgba(255, 255, 255, 0.9)" stroke-width="1.46" width="15.8333px"></path>
+              </svg>
+              <p class="framer-text">Short Video Editing</p>
+            </div>
+
+            <!-- Diamond 1 -->
+            <div class="framer-18xjh8x" aria-hidden="true">
+              <img decoding="auto" width="14" height="14"
+                src="https://framerusercontent.com/images/YEVb64Pj6y4rpUHnvLZtUOI4U.png?width=32&amp;height=32"
+                alt="✦">
+            </div>
+
+            <!-- Tag 2 -->
+            <div class="framer-1qvhsab">
+              <svg data-framer-name="dashboard-speed-01" class="framer-5O7Le" viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M 2.917 3.333 L 5.833 0 M 3.333 5 C 3.333 5.921 2.587 6.667 1.667 6.667 C 0.746 6.667 0 5.921 0 5 C 0 4.08 0.746 3.333 1.667 3.333 C 2.587 3.333 3.333 4.08 3.333 5 Z"
+                  fill="transparent" stroke="rgba(255, 255, 255, 0.9)" stroke-width="1.25"
+                  transform="translate(8.328 7.5)"></path>
+                <path d="M 0 5 C 0 2.239 2.239 0 5 0 C 5.911 0 6.765 0.243 7.5 0.669" fill="transparent"
+                  stroke="rgba(255, 255, 255, 0.9)" stroke-width="1.25" transform="translate(5 5)"></path>
+                <path
+                  d="M 0 7.917 C 0 4.185 0 2.319 1.159 1.159 C 2.319 0 4.185 0 7.917 0 C 11.649 0 13.515 0 14.674 1.159 C 15.833 2.319 15.833 4.185 15.833 7.917 C 15.833 11.649 15.833 13.515 14.674 14.674 C 13.515 15.833 11.649 15.833 7.917 15.833 C 4.185 15.833 2.319 15.833 1.159 14.674 C 0 13.515 0 11.649 0 7.917 Z"
+                  fill="transparent" stroke="rgba(255, 255, 255, 0.9)" stroke-width="1.25"
+                  transform="translate(2.078 2.084)"></path>
+              </svg>
+              <p class="framer-text">Content Strategy</p>
+            </div>
+
+            <!-- Diamond 2 -->
+            <div class="framer-14l0eqi" aria-hidden="true">
+              <img decoding="auto" width="14" height="14"
+                src="https://framerusercontent.com/images/YEVb64Pj6y4rpUHnvLZtUOI4U.png?width=32&amp;height=32"
+                alt="✦">
+            </div>
+
+            <!-- Tag 3 -->
+            <div class="framer-46hqn4">
+              <svg data-framer-name="analytics-up" class="framer-IMBY9" viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M 3.75 12.917 L 3.75 11.25 M 7.917 12.917 L 7.917 10.417 M 12.083 12.917 L 12.083 8.75 M 0 7.917 C 0 4.185 0 2.319 1.159 1.159 C 2.319 0 4.185 0 7.917 0 C 11.649 0 13.515 0 14.674 1.159 C 15.833 2.319 15.833 4.185 15.833 7.917 C 15.833 11.649 15.833 13.515 14.674 14.674 C 13.515 15.833 11.649 15.833 7.917 15.833 C 4.185 15.833 2.319 15.833 1.159 14.674 C 0 13.515 0 11.649 0 7.917 Z"
+                  fill="transparent" stroke="rgba(255, 255, 255, 0.9)" stroke-width="1.25"
+                  transform="translate(2.078 2.084)"></path>
+                <path d="M 0 4.586 C 1.796 4.646 5.868 4.375 8.185 0.698 M 6.667 0.254 L 8.23 0.003 C 8.42 -0.022 8.7 0.129 8.769 0.308 L 9.182 1.673"
+                  fill="transparent" stroke="rgba(255, 255, 255, 0.9)" stroke-width="1.25"
+                  transform="translate(4.992 4.984)"></path>
+              </svg>
+              <p class="framer-text">Growth Optimization</p>
+            </div>
+
+            <!-- Purple shade ambient glow -->
+            <div class="framer-12il3x5" aria-hidden="true"></div>
           </div>
         </div>
       </div>
@@ -2713,8 +2684,8 @@
 
       // 9. Funnel Checkout URL Injection
       var CHECKOUT = {
-        fe: '',
-        'fe+booster': ''
+        fe: 'https://launchpadjv.com/product/checkout/5945?page=5065&offer=601&offerProduct=6942',
+        'fe+booster': 'https://launchpadjv.com/product/checkout/5945?page=5065&offer=601&offerProduct=6942'
       };
 
       function updateCheckoutLinks() {
@@ -2808,6 +2779,128 @@
         });
       }
 
+      // 11. New Hero Motion-Path Curved Social Ticker
+      function initHeroTicker() {
+        var track = document.getElementById('heroTrack');
+        var stage = document.getElementById('stage');
+        if (!track || !stage) return;
+
+        var F = 'https://framerusercontent.com/';
+        var LOGOS = [
+          {
+            name: 'YouTube Shorts',
+            src: F + 'images/MSWkHLmz9Hy6LfxmrLmsVeh2Qi4.png?width=1280&height=1590',
+            svg: '<svg viewBox="0 0 24 24" width="28" height="28"><path fill="#FF0000" d="M17.77 10.32l-1.2-.5a3.9 3.9 0 00-.77-.24l1.37-.73a3.56 3.56 0 001.25-4.86 3.56 3.56 0 00-4.86-1.25L6.5 6.46a3.56 3.56 0 00-1.25 4.86c.2.36.47.67.78.93l1.2.5.77.24-1.37.73a3.56 3.56 0 00-1.25 4.86 3.56 3.56 0 004.86 1.25l7.06-3.72a3.56 3.56 0 001.25-4.86 3.2 3.2 0 00-.78-.93z"/><polygon fill="#fff" points="10 14.5 15 12 10 9.5 10 14.5"/></svg>'
+          },
+          {
+            name: 'Gemini',
+            src: F + 'images/m37ey4ViPlehfrRv9HqkUKK4s.png?width=300&height=300',
+            svg: '<svg viewBox="0 0 24 24" width="28" height="28"><defs><linearGradient id="geminiGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#4285F4"/><stop offset="50%" stop-color="#9B72CB"/><stop offset="100%" stop-color="#D96570"/></linearGradient></defs><path fill="url(#geminiGrad)" d="M12 2C12 7.523 7.523 12 2 12c5.523 0 10 4.477 10 10 0-5.523 4.477-10 10-10-5.523 0-10-4.477-10-10z"/></svg>'
+          },
+          {
+            name: 'DaVinci',
+            src: F + 'images/GI9ydsAfspJAZrNSnZCVxqKIQ.png?width=207&height=207',
+            svg: '<svg viewBox="0 0 24 24" width="28" height="28"><circle cx="12" cy="12" r="10" fill="#222"/><circle cx="9" cy="8.5" r="3.2" fill="#e53935"/><circle cx="15" cy="8.5" r="3.2" fill="#1e88e5"/><circle cx="12" cy="14.5" r="3.2" fill="#43a047"/></svg>'
+          },
+          {
+            name: 'Instagram',
+            src: F + 'images/NImcwjnryZLt1TmsMGhlLK5dA.png?width=5001&height=5001',
+            svg: '<svg viewBox="0 0 24 24" width="28" height="28"><defs><radialGradient id="igG" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#fdf497"/><stop offset="10%" stop-color="#fd5949"/><stop offset="50%" stop-color="#d6249f"/><stop offset="100%" stop-color="#285AEB"/></radialGradient></defs><rect width="24" height="24" rx="6" fill="url(#igG)"/><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="#fff" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="#fff" stroke-width="2"/><circle cx="17.2" cy="6.8" r="1.1" fill="#fff"/></svg>'
+          },
+          {
+            name: 'TikTok',
+            src: F + 'images/AwAQT9BhW2pRfXdozbdPWWl9L5c.png?width=3688&height=4167',
+            svg: '<svg viewBox="0 0 24 24" width="28" height="28"><path fill="#000" d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.34 0 .67.06.98.17v-3.52a6.37 6.37 0 00-.98-.08A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V9.05a8.28 8.28 0 003.76.95v-3.31z"/></svg>'
+          },
+          {
+            name: 'YouTube',
+            src: F + 'images/fnGvsGFl7L04RY1Y4DVUhGNCT4.png?width=257&height=178',
+            svg: '<svg viewBox="0 0 24 24" width="28" height="28"><rect width="24" height="24" rx="5" fill="#f5f5f5"/><path fill="#FF0000" d="M21.5 6.2a2.8 2.8 0 00-1.9-1.9C17.9 3.8 12 3.8 12 3.8s-5.9 0-7.6.5A2.8 2.8 0 002.5 6.2 29 29 0 002 11.5a29 29 0 00.5 5.3 2.8 2.8 0 001.9 1.9c1.7.5 7.6.5 7.6.5s5.9 0 7.6-.5a2.8 2.8 0 001.9-1.9 29 29 0 00.5-5.3 29 29 0 00-.5-5.3z"/><polygon fill="#fff" points="10 14.5 15 11.5 10 8.5 10 14.5"/></svg>'
+          },
+          {
+            name: 'CapCut',
+            src: F + 'images/jPoPjBtD09irzhQGFyGAdfUYg.webp?width=1500&height=1111',
+            svg: '<svg viewBox="0 0 24 24" width="28" height="28"><rect width="24" height="24" rx="5" fill="#000"/><path fill="#fff" d="M5 8l7 4-7 4V8zm14 0l-7 4 7 4V8z"/></svg>'
+          },
+          {
+            name: 'After Effects',
+            src: F + 'images/A31ESQrRpTuRTcdKxpDgPf9zw.png?width=512&height=512',
+            svg: '<svg viewBox="0 0 24 24" width="28" height="28"><rect width="24" height="24" rx="5" fill="#00005b"/><text x="12" y="16.5" fill="#9999ff" font-size="11" font-weight="bold" font-family="sans-serif" text-anchor="middle">Ae</text></svg>'
+          },
+          {
+            name: 'Premiere Pro',
+            src: F + 'images/dUmNoA4ZuWJ0ZmWbCNswxF8.png?width=960&height=936',
+            svg: '<svg viewBox="0 0 24 24" width="28" height="28"><rect width="24" height="24" rx="5" fill="#00005b"/><text x="12" y="16.5" fill="#ea77ff" font-size="11" font-weight="bold" font-family="sans-serif" text-anchor="middle">Pr</text></svg>'
+          }
+        ];
+
+        var SLOTS = 18;
+        var SPEED = 0.055;
+        var BASE = 520;
+        var slots = [];
+        var chips = [];
+
+        track.innerHTML = '';
+        for (var i = 0; i < SLOTS; i++) {
+          var item = LOGOS[i % LOGOS.length];
+          var slot = document.createElement('div');
+          slot.className = 'ticker-slot';
+
+          var chip = document.createElement('div');
+          chip.className = 'ticker-chip';
+
+          var img = document.createElement('img');
+          img.alt = item.name;
+          img.src = item.src;
+          img.loading = 'eager';
+          (function(currentImg, currentItem, currentChip) {
+            currentImg.onerror = function() {
+              currentImg.style.display = 'none';
+              currentChip.innerHTML = currentItem.svg;
+            };
+          })(img, item, chip);
+          chip.appendChild(img);
+
+          slot.appendChild(chip);
+          track.appendChild(slot);
+          slots.push(slot);
+          chips.push(chip);
+        }
+
+        function fit() {
+          var scale = stage.clientWidth / BASE;
+          track.style.transform = 'scale(' + scale + ') translateY(-365.875px)';
+        }
+        if (window.ResizeObserver) {
+          new ResizeObserver(fit).observe(stage);
+        }
+        window.addEventListener('resize', fit);
+        fit();
+
+        function draw(t) {
+          for (var i = 0; i < SLOTS; i++) {
+            var p = (t * SPEED + i / SLOTS) % 1;
+            var o = p < 0.03 ? p / 0.03 : p > 0.86 ? Math.max(0, (1 - p) / 0.14) : 1;
+            slots[i].style.offsetDistance = (p * 100) + '%';
+            slots[i].style.opacity = o;
+            chips[i].style.transform = 'scale(' + (0.8 * (0.7 + 0.3 * o)) + ')';
+            slots[i].style.zIndex = Math.floor(p * 10) + 1;
+          }
+        }
+
+        (function loop(now) {
+          draw(now / 1000);
+          requestAnimationFrame(loop);
+        })(0);
+
+        // Phone video auto-start fallback
+        var pVideo = document.getElementById('phoneVideo');
+        if (pVideo) {
+          pVideo.muted = true;
+          pVideo.play().catch(function() {});
+        }
+      }
+
       // Initialize all on DOM Ready
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function () {
@@ -2815,12 +2908,14 @@
           initFunnelBars();
           initFaq();
           initPerspectiveCarousel();
+          initHeroTicker();
         });
       } else {
         initScrollReveal();
         initFunnelBars();
         initFaq();
         initPerspectiveCarousel();
+        initHeroTicker();
       }
     })();
   </script>

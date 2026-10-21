@@ -60,11 +60,11 @@
   }
   </script>
 
-  <!-- Google Fonts: Plus Jakarta Sans & Fraunces (exact match with index.html) -->
+  <!-- Google Fonts: DM Sans & Space Mono (matching wyvstudio.com) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap"
     rel="stylesheet">
 
   <!-- Tailwind Play CDN with exact Rocket.new tokens configuration -->
@@ -117,8 +117,8 @@
             DEFAULT: 'var(--radius)',
           },
           fontFamily: {
-            sans: ['var(--font-plus-jakarta-sans)', 'sans-serif'],
-            serif: ['var(--font-fraunces)', 'serif'],
+            sans: ['var(--font-dm-sans)', 'sans-serif'],
+            mono: ['var(--font-space-mono)', 'monospace'],
           },
         },
       },
@@ -813,9 +813,9 @@
             </div>
 
             <!-- Main CTA Buy Button matching index.html Hero glowing brand-cta-btn -->
-            <a id="bundle-buy-btn" href="#" data-buy="bundle"
+            <a id="pro-buy-btn" href="https://launchpadjv.com/product/checkout/5947?page=5068&offer=601&offerProduct=6945" data-buy="pro"
               class="lp-buy brand-cta-btn group relative mt-8 flex min-h-[52px] sm:min-h-[60px] w-full items-center justify-center gap-2 sm:gap-3 overflow-hidden rounded-full px-5 py-3 sm:px-8 sm:py-4 text-center">
-              <span class="text-sm sm:text-lg font-black tracking-tight text-white whitespace-nowrap">Yes, upgrade my order to the Bundle</span>
+              <span class="text-sm sm:text-lg font-black tracking-tight text-white whitespace-nowrap">Yes, upgrade my account to Pro for $67</span>
               <span class="text-lg sm:text-2xl font-black text-white transition-transform duration-300 group-hover:translate-x-1.5 shrink-0">→</span>
             </a>
 
@@ -823,11 +823,15 @@
               Charged to the card you just used · Instant access · 14-day money-back guarantee
             </p>
 
-            <!-- Decline / Next Step Link -->
-            <a href="/pro" data-decline="bundle"
-              class="lp-decline mt-6 flex min-h-[44px] items-center justify-center text-center text-[15px] font-semibold text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground">
-              No thanks. I'll stay with my starting credits and make my videos one at a time. Take me to the next step.
-            </a>
+            <!-- Decline / Next Step Link & Launchpad Embed -->
+            <div class="mt-6 text-center">
+              <div class="forgeContainer mb-4" data-offer="601" data-page="5068" data-id="5947"></div>
+              <script src="https://launchpadjv.com/js/embed.js"></script>
+              <a href="/offeriq" data-decline="pro"
+                class="lp-decline flex min-h-[44px] items-center justify-center text-center text-[15px] font-semibold text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground">
+                No thanks. I'll stay with my starting credits and make my videos one at a time. Take me to the next step.
+              </a>
+            </div>
           </div>
         </div>
       </div>

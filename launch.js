@@ -5,11 +5,20 @@
   'use strict';
 
   var CHECKOUT = {
-    fe: '',
-    bundle: '', 'bundle+bundle_dfy': '', 'bundle+bundle_length': '', 'bundle+bundle_dfy+bundle_length': '',
-    pro: '', 'pro+pro_credits': '', 'pro+pro_seats': '', 'pro+pro_credits+pro_seats': '',
-    offeriq: '',
-    agency: '', 'agency+agency_clients': '', 'agency+agency_credits': '', 'agency+agency_clients+agency_credits': ''
+    fe: 'https://launchpadjv.com/product/checkout/5945?page=5065&offer=601&offerProduct=6942',
+    bundle: 'https://launchpadjv.com/product/checkout/5946?page=5066&offer=601&offerProduct=6944',
+    'bundle+bundle_dfy': 'https://launchpadjv.com/product/checkout/5946?page=5066&offer=601&offerProduct=6944',
+    'bundle+bundle_length': 'https://launchpadjv.com/product/checkout/5946?page=5066&offer=601&offerProduct=6944',
+    'bundle+bundle_dfy+bundle_length': 'https://launchpadjv.com/product/checkout/5946?page=5066&offer=601&offerProduct=6944',
+    pro: 'https://launchpadjv.com/product/checkout/5947?page=5068&offer=601&offerProduct=6945',
+    'pro+pro_credits': 'https://launchpadjv.com/product/checkout/5947?page=5068&offer=601&offerProduct=6945',
+    'pro+pro_seats': 'https://launchpadjv.com/product/checkout/5947?page=5068&offer=601&offerProduct=6945',
+    'pro+pro_credits+pro_seats': 'https://launchpadjv.com/product/checkout/5947?page=5068&offer=601&offerProduct=6945',
+    offeriq: 'https://launchpadjv.com/product/checkout/5948?page=5069&offer=601&offerProduct=6946',
+    agency: 'https://launchpadjv.com/product/checkout/5949?page=5070&offer=601&offerProduct=6947',
+    'agency+agency_clients': 'https://launchpadjv.com/product/checkout/5949?page=5070&offer=601&offerProduct=6947',
+    'agency+agency_credits': 'https://launchpadjv.com/product/checkout/5949?page=5070&offer=601&offerProduct=6947',
+    'agency+agency_clients+agency_credits': 'https://launchpadjv.com/product/checkout/5949?page=5070&offer=601&offerProduct=6947'
   };
 
   // The funnel: FE -> Bundle (no: Pro) -> OfferIQ -> Agency -> thank-you. Launchpad's own accept/decline links may replace these.
